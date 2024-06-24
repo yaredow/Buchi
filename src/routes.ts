@@ -1,8 +1,11 @@
 export const publicRoutes = [
   "/",
-  "/contact-us",
+  "/contact",
+  "/about",
+  "/breeds",
+  "/my-dogs",
   "/auth/new-verification",
-  "/api/stripe/webhook",
+  ,
 ];
 
 export const authRoutes = [

@@ -8,7 +8,19 @@ export const navLinks = [
     title: "About",
   },
   {
-    src: "/contact-us",
-    title: "Contact Us",
+    src: "/breeds",
+    title: "Breeds",
+  },
+  {
+    src: "/my-dogs",
+    title: "MyDogs",
+  },
+  {
+    src: "/about",
+    title: "About",
+  },
+  {
+    src: "/contact",
+    title: "Contact",
   },
 ];
