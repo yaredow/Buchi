@@ -13,7 +13,7 @@
     "coverage": "jest --coverage",
     "cypress:open": "cypress open",
     "lint": "next lint",
-    "prepare": "husky install",
+    "prepare": "husky",
     "email:dev": "email dev --dir src/emails"
   },
   "dependencies": {
