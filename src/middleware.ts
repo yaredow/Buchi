@@ -3,8 +3,8 @@ import NextAuth from "next-auth";
 import {
   DEFAULT_LOGIN_REDIRECT,
   apiAuthPrefix,
-  publicRoutes,
   authRoutes,
+  publicRoutes,
 } from "@/routes";
 import { NextResponse } from "next/server";
 
@@ -18,7 +18,7 @@ export default auth((req) => {
     nextUrl.pathname.startsWith(apiPrefix),
   );
 
-  const isPublicRoute = publicRoutes.some((publicRoute) => {
+  const isPublicRoute = publicRoutes.some((publicRoute: any) => {
     if (publicRoute.endsWith("*")) {
       const baseRoute = publicRoute.slice(0, -1);
       return nextUrl.pathname.startsWith(baseRoute);

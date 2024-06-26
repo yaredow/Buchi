@@ -1,8 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { counterSlice } from "./testSlice/testSlice";
+import { breedsSlice } from "./breedSlice/breedSlice";
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {},
+    reducer: {
+      test: counterSlice.reducer,
+      breeds: breedsSlice.reducer,
+    },
   });
 };
 
