@@ -11,6 +11,7 @@ import UserMenu from "@/components/user-menu";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/../public/images/logo.png";
+import ChatToggle from "../chat/chat-toggle";
 
 export default async function Header() {
   return (
@@ -20,7 +21,7 @@ export default async function Header() {
           <Image src={Logo} height={50} width={50} alt="An image of a dog" />
           <span className="text-xl font-semibold">Buchi</span>
         </Link>
-        <div className="flex flex-row gap-8">
+        <div className="flex flex-row items-center justify-center gap-8">
           <div className="hidden md:flex">
             <ul className="flex gap-[1.2rem] font-main">
               {navLinks.map((navLink, index) => (
@@ -31,9 +32,9 @@ export default async function Header() {
             </ul>
           </div>
 
-          <div>
-            <ModeToggle />
-          </div>
+          <ChatToggle />
+
+          <ModeToggle />
 
           <div className="hidden cursor-pointer md:flex md:flex-row md:items-center md:gap-8">
             <div>
