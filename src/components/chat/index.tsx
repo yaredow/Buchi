@@ -70,10 +70,7 @@ export default function Chat() {
 
         <div className="flex items-center border-t p-4">
           <SmileIcon className="mr-4 h-6 w-6" />
-          <Input
-            placeholder="Write your message here"
-            className="flex-1 bg-input text-secondary-article placeholder-secondary-article"
-          />
+          <Input placeholder="Write your message here" className="flex-1" />
           <PaperclipIcon className="mx-4 h-6 w-6" />
           <MicIcon className="h-6 w-6" />
         </div>
