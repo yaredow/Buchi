@@ -1,6 +1,6 @@
 import Image from "next/image";
 import HeroImgMob from "@/../public/images/hero/dogfield-mobile.png";
-import HeroImg from "@/../public/images/hero/dog-running.png";
+import HeroImg from "@/../public/images/hero/dog-running.jpg";
 import SearchBar from "@/components/ui/search-bar";
 
 function Hero() {
