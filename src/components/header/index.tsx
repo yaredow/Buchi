@@ -10,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import UserMenu from "@/components/user-menu";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "@/../public/images/logo.png";
+import Logo from "@/../public/images/logo-light.svg";
 import ChatToggle from "../chat/chat-toggle";
 
 export default async function Header() {
@@ -18,7 +18,7 @@ export default async function Header() {
     <header className="sticky inset-0 inset-y-0 right-0 z-10 w-full border-b bg-background px-4 py-3 text-secondary-body dark:text-white md:px-12">
       <nav className="flex items-center justify-between">
         <Link href="/" className="flex items-center justify-center gap-2">
-          <Image src={Logo} height={50} width={50} alt="An image of a dog" />
+          <Image src={Logo} height={40} width={40} alt="An image of a dog" />
           <span className="text-xl font-semibold">Buchi</span>
         </Link>
         <div className="flex flex-row items-center justify-center gap-8">
