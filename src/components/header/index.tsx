@@ -19,7 +19,7 @@ export default async function Header() {
       <nav className="flex items-center justify-between">
         <Link href="/" className="flex items-center justify-center gap-2">
           <Image src={Logo} height={40} width={40} alt="An image of a dog" />
-          <span className="text-xl font-semibold">Buchi</span>
+          <span className="text-xl font-semibold">Doggo</span>
         </Link>
         <div className="flex flex-row items-center justify-center gap-8">
           <div className="hidden md:flex">
