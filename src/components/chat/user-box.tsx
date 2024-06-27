@@ -1,6 +1,15 @@
+"use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function UserBox() {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleClick = async () => {};
+
   return (
     <div className="group flex cursor-pointer items-center border-b p-4 hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-gray-200 dark:hover:text-slate-800">
       <Avatar className="mr-4">
