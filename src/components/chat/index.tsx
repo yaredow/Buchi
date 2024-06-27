@@ -36,7 +36,7 @@ export default function Chat() {
           </div>
           <span className="text-green-600">ETB 36,000</span>
         </div>
-        <div className="flex-1 overflow-y-auto bg-slate-100 p-4">
+        <div className="flex-1 overflow-y-auto bg-slate-100 p-4 dark:bg-slate-300">
           <div className="mb-4 flex justify-center">
             <span className="text-sm text-slate-500 dark:text-slate-700">
               June, 26 2024
