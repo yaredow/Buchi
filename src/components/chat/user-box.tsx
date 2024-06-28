@@ -1,17 +1,24 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import useStartConversation from "@/utils/hook/useStartConversation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function UserBox() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { chat, isPending } = useStartConversation();
 
-  const handleClick = async () => {};
+  const handleClick = async () => {
+    setIsLoading(true);
+  };
 
   return (
-    <div className="group flex cursor-pointer items-center border-b p-4 hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-gray-200 dark:hover:text-slate-800">
+    <div
+      onClick={handleClick}
+      className="group flex cursor-pointer items-center border-b p-4 hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-gray-200 dark:hover:text-slate-800"
+    >
       <Avatar className="mr-4">
         <AvatarImage src="/placeholder-user.jpg" />
         <AvatarFallback>U</AvatarFallback>

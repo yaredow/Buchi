@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import prisma from "@/utils/db/db";
 
 export const getUserByEmail = async (email: string) => {
@@ -18,6 +19,31 @@ export const getUserById = async (id: string) => {
       where: { id },
     });
     return user;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const getCurrentUser = async () => {
+  try {
+    const session = await auth();
+
+    if (!session) {
+      return null;
+    }
+
+    const currentUser = await prisma.user.findFirst({
+      where: {
+        email: session.user.email,
+      },
+    });
+
+    if (!currentUser) {
+      return null;
+    }
+
+    return currentUser;
   } catch (error) {
     console.error(error);
     return null;

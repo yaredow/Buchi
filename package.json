@@ -1,5 +1,5 @@
 {
-  "name": "Doggo",
+  "name": "doggo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -42,7 +42,7 @@
     "next-auth": "^5.0.0-beta.19",
     "next-themes": "^0.3.0",
     "nextjs-toploader": "^1.6.12",
-    "prisma": "^5.15.0",
+    "prisma": "^5.16.1",
     "pusher": "^5.2.0",
     "pusher-js": "^8.4.0-rc2",
     "react": "^18",
