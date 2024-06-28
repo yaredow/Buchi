@@ -1,21 +1,33 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 
 interface BreedCardProps {
+  breedId: number;
   breedName: string;
   breedImages: string[];
   breedShortDescription: string;
 }
 
 const BreedCard: FC<BreedCardProps> = ({
+  breedId,
   breedName,
   breedImages,
   breedShortDescription,
 }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/breeds/${breedId}`);
+  };
+
   return (
-    <article className="mb-4 rounded-lg text-secondary-body">
+    <article
+      onClick={handleClick}
+      className="mb-4 cursor-pointer rounded-lg text-secondary-body"
+    >
       <Image
         src={`/images/breeds/${breedImages[0]}.jpg`}
         alt={breedName}

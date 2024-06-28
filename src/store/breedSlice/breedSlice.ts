@@ -20,7 +20,8 @@ export const breedsSlice = createSlice({
 export const {} = breedsSlice.actions;
 
 export const selectBreeds = (state: RootState) => state.breeds.breeds;
-export const selectBreed = (state: RootState, breedId: number) =>
-  state.breeds.breeds.find((breed) => breed.id === breedId);
+
+export const getBreed = (id: number) => (state: RootState) =>
+  state.breeds.breeds.find((breed) => breed.id === id);
 
 export default breedsSlice.reducer;

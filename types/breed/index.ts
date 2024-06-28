@@ -5,17 +5,17 @@ export type DogBreed = {
   breedLongDescription: string;
   breedCharacteristics: string[];
   breedImages: string[];
-  averageHeight?: number; // Average height in centimeters
-  averageWeight?: number; // Average weight in kilograms
-  lifeExpectancy?: number; // Life expectancy in years
-  temperament?: string; // Description of temperament
-  hairShedding?: string; // Hair shedding information
-  activity?: string; // Activity level description
-  sociability?: string; // Sociability description
-  intelligence?: string; // Intelligence level description
-  childFriendly?: string; // Child-friendliness description
-  careLevel?: string; // Care level description
-  healthProblems?: string; // Common health problems description
-  geneticProfile?: string; // Genetic profile description
-  feedingHabits?: string; // Feeding habits description
+  averageHeight?: number;
+  averageWeight?: number;
+  lifeExpectancy?: number;
+  temperament?: string;
+  hairShedding?: string;
+  activity?: string;
+  sociability?: string;
+  intelligence?: string;
+  childFriendly?: string;
+  careLevel?: string;
+  healthProblems?: string;
+  geneticProfile?: string;
+  feedingHabits?: string;
 };

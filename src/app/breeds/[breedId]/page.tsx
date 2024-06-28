@@ -1,18 +1,17 @@
 "use client";
 
-import { selectBreed } from "@/store/breedSlice/breedSlice";
+import { getBreed } from "@/store/breedSlice/breedSlice";
 import { useAppSelector } from "@/store/hooks";
-import { RootState } from "@/store/store";
 import Image from "next/image";
 import { DogBreed } from "@/../types/breed";
+import { RootState } from "@/store/store";
 
 export default function Page({ params }: { params: { breedId: number } }) {
   const { breedId } = params;
-  const breed = useAppSelector(
-    (state: RootState) => selectBreed(state, breedId) as DogBreed,
-  );
+  console.log(breedId);
+  const breed = useAppSelector(getBreed(breedId)) as DogBreed;
 
-  const { breedImages, breedName, breedLongDescription } = breed;
+  console.log(breed);
 
   return (
     <section className="mx-6 md:mx-8">
@@ -22,29 +21,30 @@ export default function Page({ params }: { params: { breedId: number } }) {
             alt={breed?.breedImages[0] as string}
             className="h-full w-full rounded-md object-cover object-center"
             height={800}
-            src={breedImages[0] as string}
+            src={breed?.breedImages[0] as string}
             width={1200}
           />
         </div>
 
         <div className="mt-4 w-full gap-2 space-y-4">
-          <h2 className="text-lg font-semibold">{`${breedName} Gallery`}</h2>
+          <h2 className="text-lg font-semibold">{`${breed.breedName} Gallery`}</h2>
           <ul className="flex flex-row items-center gap-4">
-            {breedImages.map((image, index) => (
+            {breed.breedImages.map((image, index) => (
               <li key={index}>
                 <Image
                   alt="dog image"
                   className="aspect-video rounded-md object-cover"
                   height={200}
-                  src={image}
+                  src={`/images/breeds/${image}.jpg`}
                   width={300}
                 />
               </li>
             ))}
           </ul>
         </div>
+
         <div className="mt-6 w-full">
-          <p className="mx-4 text-sm">{breedLongDescription}</p>
+          <p className="mx-4 text-sm">{breed.breedLongDescription}</p>
         </div>
       </div>
     </section>

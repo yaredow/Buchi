@@ -8,7 +8,6 @@ const useDogDirectory = () => {
   const breedData = useAppSelector(selectBreeds);
 
   const [dogBreeds, setDogBreeds] = useState<DogBreed[]>(breedData);
-  const [breed, setBreed] = useState<DogBreed>();
 
   const setNewDogBreeds = (dogBreeds: DogBreed[]) => {
     setDogBreeds(dogBreeds);
