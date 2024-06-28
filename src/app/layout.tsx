@@ -12,7 +12,7 @@ import StoreProvider from "@/components/providers/store-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Title",
+  title: "Doggo",
   description: "description",
 };
 
@@ -37,7 +37,7 @@ export default function RootLayout({
               <StoreProvider>
                 <NextTopLoader />
                 <Header />
-                <div className="m-12">{children}</div>
+                <div className="m-6 md:m-12">{children}</div>
                 <Toaster />
               </StoreProvider>
             </AuthProvider>

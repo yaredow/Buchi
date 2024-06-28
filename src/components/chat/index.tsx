@@ -5,9 +5,9 @@ import UserBox from "./user-box";
 
 export default function Chat() {
   return (
-    <div className="flex h-screen border">
-      <div className="flex w-1/3 flex-col border-r">
-        <div className="flex items-center justify-between border-b p-4">
+    <div className="flex h-screen w-full border">
+      <div className="flex w-full flex-col md:w-1/3 md:border-r">
+        <div className="flex items-center justify-between p-4 md:border-b">
           <h2 className="text-lg font-semibold text-green-600">My messages</h2>
           <MenuIcon className="h-6 w-6" />
         </div>
@@ -20,8 +20,10 @@ export default function Chat() {
           ))}
         </div>
       </div>
-      <div className="flex flex-1 flex-col">
-        <div className="flex items-center justify-between border-b p-4">
+
+      {/* conversation */}
+      <div className="hidden md:flex md:flex-1 md:flex-col">
+        <div className="flex items-center justify-between p-4 md:border-b">
           <div className="flex items-center">
             <Avatar className="mr-4">
               <AvatarImage src="/placeholder-user.jpg" />
