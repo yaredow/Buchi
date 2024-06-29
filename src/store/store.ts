@@ -8,6 +8,7 @@ export const makeStore = () => {
       test: counterSlice.reducer,
       breeds: breedsSlice.reducer,
     },
+    devTools: process.env.NODE_ENV !== "production",
   });
 };
 

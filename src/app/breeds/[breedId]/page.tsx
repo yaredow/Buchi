@@ -2,7 +2,6 @@
 
 import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
-import { DogBreed } from "@/../types/breed";
 import { selectBreed } from "@/store/breedSlice/breedSlice";
 
 export default function Page({ params }: { params: { breedId: number } }) {

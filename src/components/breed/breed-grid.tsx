@@ -13,7 +13,7 @@ type BreedProps = {
 
 function BreedGrid() {
   const { dogBreeds } = useDogDirectory();
-  console.log(dogBreeds);
+
   return (
     <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
       {dogBreeds.map(
