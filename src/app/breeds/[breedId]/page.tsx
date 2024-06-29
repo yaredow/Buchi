@@ -1,17 +1,15 @@
 "use client";
 
-import { getBreed } from "@/store/breedSlice/breedSlice";
 import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
 import { DogBreed } from "@/../types/breed";
-import { RootState } from "@/store/store";
+import { selectBreed } from "@/store/breedSlice/breedSlice";
 
 export default function Page({ params }: { params: { breedId: number } }) {
   const { breedId } = params;
-  console.log(breedId);
-  const breed = useAppSelector(getBreed(breedId)) as DogBreed;
+  const breed = useAppSelector(selectBreed(breedId));
 
-  console.log(breed);
+  if (!breed) return <div>No dog breed found</div>;
 
   return (
     <section className="mx-6 md:mx-8">
