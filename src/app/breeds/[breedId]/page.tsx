@@ -12,8 +12,8 @@ export default function Page({ params }: { params: { breedId: string } }) {
 
   return (
     <section className="mx-6 md:mx-8">
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-center">
-        <div className="mx-4 mt-4 h-[50vh] w-full overflow-hidden">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-8">
+        <div className="relative mx-4 mt-4 h-[50vh] w-full overflow-hidden">
           <Image
             alt={breed?.breedImages[0] as string}
             className="h-full w-full rounded-btn object-cover object-center"
@@ -21,6 +21,9 @@ export default function Page({ params }: { params: { breedId: string } }) {
             src={`/images/breeds/${breed?.breedImages[0] as string}.jpg`}
             width={1200}
           />
+          <h1 className="absolute bottom-4 left-4 rounded bg-black bg-opacity-50 px-4 py-2 text-2xl font-bold text-white">
+            {breed.breedName}
+          </h1>
         </div>
 
         <div className="mt-4 w-full gap-2 space-y-4">

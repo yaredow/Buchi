@@ -2,7 +2,7 @@ export const publicRoutes = [
   "/",
   "/contact",
   "/about",
-  "/breeds",
+  "/breeds/*",
   "/my-dogs",
   "/chat",
   "/auth/new-verification",
