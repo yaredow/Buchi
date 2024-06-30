@@ -13,9 +13,14 @@ const useDogDirectory = () => {
     setDogBreeds(dogBreeds);
   };
 
+  const getBreedById = (breedId: number): DogBreed | undefined => {
+    return dogBreeds.find((breed) => breed.id === breedId);
+  };
+
   return {
     dogBreeds,
     setNewDogBreeds,
+    getBreedById,
   };
 };
 

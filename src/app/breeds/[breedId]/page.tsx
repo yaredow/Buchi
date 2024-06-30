@@ -4,8 +4,8 @@ import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
 import { selectBreed } from "@/store/breedSlice/breedSlice";
 
-export default function Page({ params }: { params: { breedId: number } }) {
-  const { breedId } = params;
+export default function Page({ params }: { params: { breedId: string } }) {
+  const breedId = Number(params.breedId);
   const breed = useAppSelector(selectBreed(breedId));
 
   if (!breed) return <div>No dog breed found</div>;
@@ -16,9 +16,9 @@ export default function Page({ params }: { params: { breedId: number } }) {
         <div className="mx-4 mt-4 h-[50vh] w-full overflow-hidden">
           <Image
             alt={breed?.breedImages[0] as string}
-            className="h-full w-full rounded-md object-cover object-center"
+            className="h-full w-full rounded-btn object-cover object-center"
             height={800}
-            src={breed?.breedImages[0] as string}
+            src={`/images/breeds/${breed?.breedImages[0] as string}.jpg`}
             width={1200}
           />
         </div>
@@ -29,11 +29,12 @@ export default function Page({ params }: { params: { breedId: number } }) {
             {breed.breedImages.map((image, index) => (
               <li key={index}>
                 <Image
-                  alt="dog image"
-                  className="aspect-video rounded-md object-cover"
-                  height={200}
+                  alt={breed.breedName}
+                  className="rounded-btn shadow"
+                  height={400}
                   src={`/images/breeds/${image}.jpg`}
-                  width={300}
+                  width={800}
+                  unoptimized={true}
                 />
               </li>
             ))}

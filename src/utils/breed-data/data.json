@@ -464,7 +464,12 @@
       "breedShortDescription": "A small breed known for its cheerful disposition and fluffy white coat.",
       "breedLongDescription": "Bichon Frises are small dogs known for their cheerful and affectionate personality. They have a distinctive fluffy white coat that requires regular grooming to keep it in good condition. Bichons are playful and social, getting along well with children and other pets. They are intelligent and respond well to training, although they can be a bit stubborn at times. Bichons thrive on companionship and do well in various living situations.",
       "breedCharacteristics": ["cheerful", "affectionate", "playful", "social"],
-      "breedImages": ["bichon-frise-1", "bichon-frise-2", "bichon-frise-3"],
+      "breedImages": [
+        "bichon-frise-1",
+        "bichon-frise-2",
+        "bichon-frise-3",
+        "bichon-frise-4"
+      ],
       "averageHeight": 30,
       "averageWeight": 5,
       "lifeExpectancy": 15,
