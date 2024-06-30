@@ -3,6 +3,7 @@
 import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
 import { selectBreed } from "@/store/breedSlice/breedSlice";
+import { Badge } from "@/components/ui/badge";
 
 export default function Page({ params }: { params: { breedId: string } }) {
   const breedId = Number(params.breedId);
@@ -47,6 +48,92 @@ export default function Page({ params }: { params: { breedId: string } }) {
         <div className="mt-6 w-full">
           <p className="mx-4 text-sm">{breed.breedLongDescription}</p>
         </div>
+
+        <section className="space-y-4">
+          <h2 className="text-lg font-bold">Beagle Breeds</h2>
+          <h3 className="text-lg font-bold">Beagle Traits</h3>
+          <div className="flex flex-wrap gap-2">
+            <Badge>Energetic</Badge>
+            <Badge>Intelligent</Badge>
+            <Badge>Gentle</Badge>
+            <Badge>Friendly</Badge>
+            <Badge>Lively</Badge>
+            <Badge>Loving</Badge>
+            <Badge>Trusting</Badge>
+            <Badge>Curious</Badge>
+            <Badge>Great with kids</Badge>
+            <Badge>Good with other dogs</Badge>
+          </div>
+          <h3 className="text-lg font-bold">Beagle Health</h3>
+          <div className="flex flex-wrap gap-2">
+            <Badge>Obesity</Badge>
+            <Badge>Ear Infection</Badge>
+            <Badge>Allergies</Badge>
+            <Badge>Hypothyroidism</Badge>
+            <Badge>Glaucoma</Badge>
+            <Badge>Corneal Dystrophy</Badge>
+            <Badge>Cherry Eye</Badge>
+            <Badge>Patellar Luxation</Badge>
+            <Badge>Retinal Atrophy</Badge>
+            <Badge>Cataracts</Badge>
+          </div>
+
+          <h3 className="text-lg font-bold">Beagle Breed Information</h3>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <h4 className="font-semibold">Average Height:</h4>
+              <p>{`${breed.averageHeight} cm`}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Average Weight:</h4>
+              <p>{`${breed.averageWeight} kg`}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Life Expectancy:</h4>
+              <p>{`${breed.lifeExpectancy} years`}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Temperament:</h4>
+              <p>{breed.temperament}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Hair Shedding:</h4>
+              <p>{breed.hairShedding}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Activity Level:</h4>
+              <p>{breed.hairShedding}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Sociability:</h4>
+              <p>{breed.sociability}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Intelligence:</h4>
+              <p>{breed.intelligence}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Child Friendly:</h4>
+              <p>{breed.childFriendly}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Care Level:</h4>
+              <p>{breed.careLevel}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Health Problems:</h4>
+              <p>{breed.healthProblems}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Genetic Profile:</h4>
+              <p>{breed.geneticProfile}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold">Feeding Habits:</h4>
+              <p>{breed.feedingHabits}</p>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   );
