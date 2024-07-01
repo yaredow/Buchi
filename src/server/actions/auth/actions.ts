@@ -338,9 +338,9 @@ export async function updatePasswordAction(
 }
 
 export async function updateUserData(
-  values: z.infer<typeof UpdateAccountFormSchema>,
+  formData: FormData,
 ): Promise<ErrorAndSuccessType> {
-  const validatedFields = UpdateAccountFormSchema.safeParse(values);
+  const validatedFields = UpdateAccountFormSchema.safeParse(formData);
 
   if (!validatedFields.success) {
     return { error: "Invalid data" };
