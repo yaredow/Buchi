@@ -14,7 +14,9 @@
     "cypress:open": "cypress open",
     "lint": "next lint",
     "prepare": "husky",
-    "email:dev": "email dev --dir src/emails"
+    "email:dev": "email dev --dir src/emails",
+    "prisma:db:push": "npx prisma db push",
+    "prisma:generate": "npx prisma generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.2.0",
