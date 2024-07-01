@@ -49,7 +49,7 @@ export default function Page({ params }: { params: { breedId: string } }) {
           <p className="mx-2">{breed.breedLongDescription}</p>
         </div>
 
-        <section className="space-y-4">
+        <div className="space-y-4">
           <h2 className="text-lg font-bold">Beagle Breeds</h2>
           <h3 className="text-lg font-bold">Beagle Traits</h3>
           <div className="flex flex-wrap gap-2">
@@ -119,7 +119,7 @@ export default function Page({ params }: { params: { breedId: string } }) {
               <p>{breed.feedingHabits}</p>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </section>
   );
