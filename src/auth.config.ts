@@ -41,7 +41,14 @@ export default {
 
             user = await prisma.user.findUnique({
               where: { email },
-              select: { id: true, password: true, name: true, role: true },
+              select: {
+                id: true,
+                password: true,
+                name: true,
+                role: true,
+                bio: true,
+                userName: true,
+              },
             });
 
             if (!user || !user.password) return null;

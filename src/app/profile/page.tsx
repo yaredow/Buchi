@@ -1,8 +1,8 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import React, { useEffect, useRef, useState } from "react";
-import UseProfile from "@/assets/image/user-profile.png";
+import React, { useEffect, useRef, useState, useTransition } from "react";
+import UseProfile from "@/../public/images/Default_pfp.svg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -32,6 +32,7 @@ export default function Page() {
   const [isEditingUsername, setIsEditingUsername] = useState<boolean>(false);
   const [isEditingFullname, setIsEditingaFullname] = useState<boolean>(false);
   const [isEditingUserEmail, setIsEditingUserEmail] = useState<boolean>(false);
+  const [isPending, startTransition] = useTransition();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { data: session, status } = useSession();
   const user = session?.user;
@@ -96,18 +97,20 @@ export default function Page() {
       }
     }
 
-    const result = await updateUserData(formData);
-    if (result.success) {
-      toast({
-        description: "Profile updated successfully",
+    startTransition(() => {
+      updateUserData(formData).then((data) => {
+        if (data.success) {
+          toast({
+            description: data.success,
+          });
+        } else {
+          toast({
+            variant: "destructive",
+            description: data.error,
+          });
+        }
       });
-      setIsLoading(false);
-    } else {
-      toast({
-        variant: "destructive",
-        description: "Failed to update profile",
-      });
-    }
+    });
   };
 
   useEffect(() => {

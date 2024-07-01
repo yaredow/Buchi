@@ -29,8 +29,8 @@ model User {
   updatedAt          DateTime  @updatedAt
   isTwoFactorEnabled Boolean   @default(false)
 
-  bio      String?
-  username String? @unique
+  bio      String? @default("")
+  userName String? @unique @default("")
 
   createdAt             DateTime                @default(now())
   TwoFactorConfirmation TwoFactorConfirmation[]

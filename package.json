@@ -15,7 +15,7 @@
     "lint": "next lint",
     "prepare": "husky",
     "email:dev": "email dev --dir src/emails",
-    "prisma:db:push": "npx prisma db push",
+    "prisma:push": "npx prisma db push",
     "prisma:generate": "npx prisma generate"
   },
   "dependencies": {
