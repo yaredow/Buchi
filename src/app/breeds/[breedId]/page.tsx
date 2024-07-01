@@ -46,36 +46,22 @@ export default function Page({ params }: { params: { breedId: string } }) {
         </div>
 
         <div className="mt-6 w-full">
-          <p className="mx-4 text-sm">{breed.breedLongDescription}</p>
+          <p className="mx-2">{breed.breedLongDescription}</p>
         </div>
 
         <section className="space-y-4">
           <h2 className="text-lg font-bold">Beagle Breeds</h2>
           <h3 className="text-lg font-bold">Beagle Traits</h3>
           <div className="flex flex-wrap gap-2">
-            <Badge>Energetic</Badge>
-            <Badge>Intelligent</Badge>
-            <Badge>Gentle</Badge>
-            <Badge>Friendly</Badge>
-            <Badge>Lively</Badge>
-            <Badge>Loving</Badge>
-            <Badge>Trusting</Badge>
-            <Badge>Curious</Badge>
-            <Badge>Great with kids</Badge>
-            <Badge>Good with other dogs</Badge>
+            {breed.traits.map((trait, index) => (
+              <Badge key={index}>{trait}</Badge>
+            ))}
           </div>
           <h3 className="text-lg font-bold">Beagle Health</h3>
           <div className="flex flex-wrap gap-2">
-            <Badge>Obesity</Badge>
-            <Badge>Ear Infection</Badge>
-            <Badge>Allergies</Badge>
-            <Badge>Hypothyroidism</Badge>
-            <Badge>Glaucoma</Badge>
-            <Badge>Corneal Dystrophy</Badge>
-            <Badge>Cherry Eye</Badge>
-            <Badge>Patellar Luxation</Badge>
-            <Badge>Retinal Atrophy</Badge>
-            <Badge>Cataracts</Badge>
+            {breed.diseases.map((disease, index) => (
+              <Badge key={index}>{disease}</Badge>
+            ))}
           </div>
 
           <h3 className="text-lg font-bold">Beagle Breed Information</h3>

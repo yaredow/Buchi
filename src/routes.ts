@@ -2,6 +2,8 @@ export const publicRoutes = [
   "/",
   "/contact",
   "/about",
+  "/breeds",
+  "/breeds/:breedId",
   "/breeds/*",
   "/my-dogs",
   "/chat",

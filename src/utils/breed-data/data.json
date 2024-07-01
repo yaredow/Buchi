@@ -11,6 +11,15 @@
         "labrador-retriever-2",
         "labrador-retriever-3"
       ],
+      "traits": ["friendly", "outgoing", "gentle", "energetic", "intelligent"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Elbow Dysplasia",
+        "Obesity",
+        "Progressive Retinal Atrophy",
+        "Cataracts",
+        "Bloat"
+      ],
       "averageHeight": 57,
       "averageWeight": 29,
       "lifeExpectancy": 12,
@@ -40,6 +49,15 @@
         "german-shephard-1",
         "german-shephard-2",
         "german-shephard-3"
+      ],
+      "traits": ["intelligent", "versatile", "loyal", "protective"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Digestive Issues",
+        "Elbow Dysplasia",
+        "Bloat",
+        "Degenerative Myelopathy",
+        "Epilepsy"
       ],
       "averageHeight": 60,
       "averageWeight": 34,
@@ -71,6 +89,21 @@
         "golden-retriever-2",
         "golden-retriever-3"
       ],
+      "traits": [
+        "friendly",
+        "tolerant",
+        "intelligent",
+        "devoted",
+        "trustworthy"
+      ],
+      "diseases": [
+        "Hip Dysplasia",
+        "Elbow Dysplasia",
+        "Cancer",
+        "Heart Disease",
+        "Eye Disorders",
+        "Hypothyroidism"
+      ],
       "averageHeight": 56,
       "averageWeight": 32,
       "lifeExpectancy": 11,
@@ -96,6 +129,15 @@
         "french-bulldog-2",
         "french-bulldog-3"
       ],
+      "traits": ["playful", "affectionate", "easygoing", "alert", "patient"],
+      "diseases": [
+        "Brachycephalic Syndrome",
+        "Intervertebral Disc Disease",
+        "Hip Dysplasia",
+        "Patellar Luxation",
+        "Allergies",
+        "Breathing Problems"
+      ],
       "averageHeight": 30,
       "averageWeight": 9,
       "lifeExpectancy": 12,
@@ -120,6 +162,15 @@
         "affectionate",
         "courageous",
         "dependable"
+      ],
+      "traits": ["calm", "courageous", "friendly", "loyal", "docile"],
+      "diseases": [
+        "Brachycephalic Syndrome",
+        "Hip Dysplasia",
+        "Cherry Eye",
+        "Skin Infections",
+        "Heart Problems",
+        "Breathing Issues"
       ],
       "breedImages": ["bulldog-1", "bulldog-2", "bulldog-3"],
       "averageHeight": 35,
@@ -148,6 +199,15 @@
         "friendly"
       ],
       "breedImages": ["poodle-1", "poodle-2", "poodle-3"],
+      "traits": ["Intelligent", "Active", "Alert", "Faithful", "Trainable"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Progressive Retinal Atrophy",
+        "Epilepsy",
+        "Addison's Disease",
+        "Bloat",
+        "Hypothyroidism"
+      ],
       "averageHeight": 38,
       "averageWeight": 25,
       "lifeExpectancy": 12,
@@ -169,6 +229,15 @@
       "breedLongDescription": "Beagles are small to medium-sized dogs with a great sense of smell and tracking instincts. They were originally bred for hunting small game due to their keen sense of smell and stamina. Beagles are friendly and curious, making them great companions for families. They have a lot of energy and require regular exercise. Their short coat is easy to care for, but they are known for their tendency to bark and howl.",
       "breedCharacteristics": ["curious", "energetic", "friendly", "vocal"],
       "breedImages": ["beagle-1", "beagle-2", "beagle-3"],
+      "traits": ["friendly", "curious", "merry", "affectionate", "loyal"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Epilepsy",
+        "Hypothyroidism",
+        "Cherry Eye",
+        "Ear Infections",
+        "Obesity"
+      ],
       "averageHeight": 38,
       "averageWeight": 11,
       "lifeExpectancy": 13,
@@ -190,6 +259,21 @@
       "breedLongDescription": "Rottweilers are robust, powerful dogs with a great deal of strength, agility, and endurance. They are known for their loyalty and protective nature, making them excellent guard dogs. Rottweilers require consistent, positive training from an early age and thrive on physical and mental challenges. They are generally good-natured, obedient, and are eager to work. Their coat is easy to maintain, requiring regular brushing.",
       "breedCharacteristics": ["loyal", "protective", "strong", "obedient"],
       "breedImages": ["rottweiler-1", "rottweiler-2", "rottweiler-3"],
+      "traits": [
+        "loyal",
+        "protective",
+        "confident",
+        "fearless",
+        "good-natured"
+      ],
+      "diseases": [
+        "Hip Dysplasia",
+        "Elbow Dysplasia",
+        "Heart Problems",
+        "Cancer",
+        "Bloat",
+        "Joint Issues"
+      ],
       "averageHeight": 61,
       "averageWeight": 50,
       "lifeExpectancy": 10,
@@ -220,6 +304,21 @@
         "yorkshire-terrier-2",
         "yorkshire-terrier-3"
       ],
+      "traits": [
+        "affectionate",
+        "sprightly",
+        "tomboyish",
+        "bold",
+        "intelligent"
+      ],
+      "diseases": [
+        "Collapsed Trachea",
+        "Legg-Calve-Perthes Disease",
+        "Hypoglycemia",
+        "Dental Issues",
+        "Luxating Patella",
+        "Bronchitis"
+      ],
       "averageHeight": 18,
       "averageWeight": 3,
       "lifeExpectancy": 14,
@@ -241,6 +340,15 @@
       "breedLongDescription": "Boxers are medium to large-sized dogs with a strong and muscular build. They are known for their playful and energetic nature, as well as their patience and protective instincts. Boxers are excellent with children and make great family pets. They are intelligent and eager to learn but can be stubborn at times. Regular exercise and consistent training are important for this breed.",
       "breedCharacteristics": ["playful", "energetic", "protective", "patient"],
       "breedImages": ["boxer-1", "boxer-2", "boxer-3"],
+      "traits": ["playful", "loyal", "energetic", "fearless", "devoted"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Heart Problems",
+        "Cancer",
+        "Allergies",
+        "Hypothyroidism",
+        "Bloat"
+      ],
       "averageHeight": 61,
       "averageWeight": 30,
       "lifeExpectancy": 10,
@@ -262,6 +370,15 @@
       "breedLongDescription": "Dachshunds, also known as 'wiener dogs,' are recognized for their distinctive long bodies and short legs. They have a playful and curious nature, making them charming companions. Dachshunds can be stubborn, requiring patient and consistent training. They are known for their bravery and can be quite vocal. Due to their unique body structure, it's important to monitor their exercise to avoid back problems.",
       "breedCharacteristics": ["lively", "playful", "stubborn", "brave"],
       "breedImages": ["dachshund-1", "dachshund-2", "dachshund-3"],
+      "traits": ["clever", "lively", "courageous", "playful", "tenacious"],
+      "diseases": [
+        "Intervertebral Disc Disease",
+        "Hip Dysplasia",
+        "Epilepsy",
+        "Progressive Retinal Atrophy",
+        "Bloat",
+        "Obesity"
+      ],
       "averageHeight": 20,
       "averageWeight": 5,
       "lifeExpectancy": 14,
@@ -286,6 +403,15 @@
         "siberian-husky-1",
         "siberian-husky-2",
         "siberian-husky-3"
+      ],
+      "traits": ["friendly", "outgoing", "alert", "gentle", "intelligent"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Eye Disorders",
+        "Hypothyroidism",
+        "Bloat",
+        "Skin Conditions",
+        "Progressive Retinal Atrophy"
       ],
       "averageHeight": 60,
       "averageWeight": 23,
@@ -313,6 +439,15 @@
         "affectionate"
       ],
       "breedImages": ["great-dane-1", "great-dane-2", "great-dane-3"],
+      "traits": ["gentle", "friendly", "patient", "reliable", "protective"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Bloat",
+        "Heart Disease",
+        "Bone Cancer",
+        "Hypothyroidism",
+        "Wobbler Syndrome"
+      ],
       "averageHeight": 86,
       "averageWeight": 54,
       "lifeExpectancy": 8,
@@ -337,6 +472,15 @@
         "doberman-pinscher-1",
         "doberman-pinscher-2",
         "doberman-pinscher-3"
+      ],
+      "traits": ["fearless", "alert", "loyal", "energetic", "intelligent"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Dilated Cardiomyopathy",
+        "Von Willebrand's Disease",
+        "Hypothyroidism",
+        "Wobbler Syndrome",
+        "Eye Problems"
       ],
       "averageHeight": 68,
       "averageWeight": 34,
@@ -368,6 +512,21 @@
         "australian-shephard-2",
         "australian-shephard-3"
       ],
+      "traits": [
+        "intelligent",
+        "energetic",
+        "loyal",
+        "protective",
+        "good-natured"
+      ],
+      "diseases": [
+        "Hip Dysplasia",
+        "Elbow Dysplasia",
+        "Epilepsy",
+        "Progressive Retinal Atrophy",
+        "Collie Eye Anomaly",
+        "Allergies"
+      ],
       "averageHeight": 51,
       "averageWeight": 25,
       "lifeExpectancy": 13,
@@ -392,6 +551,21 @@
         "cavalier-king-charles-spaniel-1",
         "cavalier-king-charles-spaniel-2",
         "cavalier-king-charles-spaniel-3"
+      ],
+      "traits": [
+        "affectionate",
+        "gentle",
+        "playful",
+        "intelligent",
+        "sociable"
+      ],
+      "diseases": [
+        "Mitral Valve Disease",
+        "Syringomyelia",
+        "Hip Dysplasia",
+        "Ear Infections",
+        "Eye Problems",
+        "Patellar Luxation"
       ],
       "averageHeight": 32,
       "averageWeight": 5,
@@ -419,6 +593,15 @@
         "affectionate"
       ],
       "breedImages": ["shih-tzu-1", "shih-tzu-2", "shih-tzu-3"],
+      "traits": ["affectionate", "outgoing", "playful", "gentle", "alert"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Ear Infections",
+        "Dental Issues",
+        "Brachycephalic Syndrome",
+        "Kidney Disease",
+        "Eye Disorders"
+      ],
       "averageHeight": 27,
       "averageWeight": 5,
       "lifeExpectancy": 13,
@@ -443,6 +626,15 @@
         "pembroke-welsh-corgi-1",
         "pembroke-welsh-corgi-2",
         "pembroke-welsh-corgi-3"
+      ],
+      "traits": ["friendly", "playful", "affectionate", "intelligent", "alert"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Intervertebral Disc Disease",
+        "Eye Disorders",
+        "Obesity",
+        "Epilepsy",
+        "Degenerative Myelopathy"
       ],
       "averageHeight": 25,
       "averageWeight": 11,
@@ -469,6 +661,15 @@
         "bichon-frise-2",
         "bichon-frise-3",
         "bichon-frise-4"
+      ],
+      "traits": ["playful", "affectionate", "curious", "gentle", "cheerful"],
+      "diseases": [
+        "Hip Dysplasia",
+        "Allergies",
+        "Dental Issues",
+        "Patellar Luxation",
+        "Bladder Stones",
+        "Cataracts"
       ],
       "averageHeight": 30,
       "averageWeight": 5,
@@ -499,6 +700,15 @@
         "boston-terrier-1",
         "boston-terrier-2",
         "boston-terrier-3"
+      ],
+      "traits": ["friendly", "bright", "amusing", "gentle", "affectionate"],
+      "diseases": [
+        "Brachycephalic Syndrome",
+        "Patellar Luxation",
+        "Heart Problems",
+        "Eye Disorders",
+        "Deafness",
+        "Allergies"
       ],
       "averageHeight": 38,
       "averageWeight": 7,

@@ -2,6 +2,8 @@ export type DogBreed = {
   id: number;
   breedName: string;
   breedShortDescription: string;
+  traits: string[];
+  diseases: string[];
   breedLongDescription: string;
   breedCharacteristics: string[];
   breedImages: string[];
