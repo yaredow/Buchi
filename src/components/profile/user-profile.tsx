@@ -3,11 +3,17 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { User } from "@prisma/client";
 import { MessageCircleIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 
-export default function UserProfile() {
+type UserProfileProps = {
+  user: User;
+};
+
+export default function UserProfile({ user }: UserProfileProps) {
   const [showChat, setShowChat] = useState(false);
+  const { name, userName, bio } = user;
   return (
     <div className="mx-auto w-full max-w-2xl rounded-xl bg-background p-8 shadow-lg">
       <div className="flex items-center justify-between gap-6">
@@ -17,8 +23,8 @@ export default function UserProfile() {
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>
           <div className="space-y-2 text-center">
-            <h2 className="text-3xl font-bold">John Doe</h2>
-            <p className="text-muted-foreground">@johndoe</p>
+            <h2 className="text-3xl font-bold">{name}</h2>
+            <p className="text-muted-foreground">{userName}</p>
           </div>
         </div>
         <Button
