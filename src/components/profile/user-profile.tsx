@@ -13,13 +13,14 @@ type UserProfileProps = {
 
 export default function UserProfile({ user }: UserProfileProps) {
   const [showChat, setShowChat] = useState(false);
-  const { name, userName, bio } = user;
+  const { name, userName, bio, image } = user;
+
   return (
     <div className="mx-auto w-full max-w-2xl rounded-xl bg-background p-8 shadow-lg">
       <div className="flex items-center justify-between gap-6">
         <div className="flex items-center gap-6">
           <Avatar className="h-32 w-32">
-            <AvatarImage src="/placeholder-user.jpg" />
+            <AvatarImage src={image || ""} />
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>
           <div className="space-y-2 text-center">

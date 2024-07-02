@@ -2,9 +2,8 @@
 
 import { auth } from "@/auth";
 import prisma from "@/utils/db/db";
-import { User } from "@prisma/client";
 
-export const getUserByEmail = async (email: string): Promise<User | null> => {
+export const getUserByEmail = async (email: string) => {
   try {
     const user = await prisma.user.findFirst({
       where: { email },
