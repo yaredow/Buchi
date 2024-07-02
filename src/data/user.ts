@@ -1,3 +1,5 @@
+"use server";
+
 import { auth } from "@/auth";
 import prisma from "@/utils/db/db";
 
@@ -46,6 +48,6 @@ export const getCurrentUser = async () => {
     return currentUser;
   } catch (error) {
     console.error(error);
-    return null;
+    return [];
   }
 };

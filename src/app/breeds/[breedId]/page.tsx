@@ -4,15 +4,22 @@ import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
 import { selectBreed } from "@/store/breedSlice/breedSlice";
 import { Badge } from "@/components/ui/badge";
+import useGetAllUsers from "@/utils/hook/useGetAllUsers";
+import { User } from "@prisma/client";
+import Spinner from "@/components/Spinner";
+import { useRouter } from "next/navigation";
 
 export default function Page({ params }: { params: { breedId: string } }) {
+  const router = useRouter();
   const breedId = Number(params.breedId);
   const breed = useAppSelector(selectBreed(breedId));
+  const { users, isPending }: { users: User[]; isPending: boolean } =
+    useGetAllUsers();
 
   if (!breed) return <div>No dog breed found</div>;
 
   return (
-    <section className="mx-6 md:mx-8">
+    <section>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-8">
         <div className="relative mx-4 mt-4 h-[50vh] w-full overflow-hidden">
           <Image
@@ -65,6 +72,7 @@ export default function Page({ params }: { params: { breedId: string } }) {
           </div>
 
           <h3 className="text-lg font-bold">Beagle Breed Information</h3>
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <h4 className="font-semibold">Average Height:</h4>
@@ -119,6 +127,43 @@ export default function Page({ params }: { params: { breedId: string } }) {
               <p>{breed.feedingHabits}</p>
             </div>
           </div>
+        </div>
+
+        <div className="my-4 flex flex-col md:my-12">
+          <h2 className="text-lg font-semibold">{`Owners of ${breed.breedName}`}</h2>
+          <ul>
+            {isPending ? (
+              <div className="grid items-center justify-center">
+                <Spinner />
+              </div>
+            ) : (
+              users.map((user, index) => (
+                <li className="flex flex-col gap-4" key={index}>
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 overflow-hidden rounded-full">
+                      <Image
+                        src={user.image || ""}
+                        alt="Avatar"
+                        height={50}
+                        width={50}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+
+                    <div className="grid gap-1">
+                      <div
+                        onClick={() => router.push(`/profile/${user.id}`)}
+                        className="cursor-pointer font-medium hover:underline hover:underline-offset-4"
+                      >
+                        {user.name}
+                      </div>
+                      <div className="text-muted-foreground">Daisy</div>
+                    </div>
+                  </div>
+                </li>
+              ))
+            )}
+          </ul>
         </div>
       </div>
     </section>

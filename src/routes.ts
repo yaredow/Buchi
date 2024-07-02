@@ -8,7 +8,7 @@ export const publicRoutes = [
   "/my-dogs",
   "/chat",
   "/auth/new-verification",
-  ,
+  "/api/*",
 ];
 
 export const authRoutes = [
