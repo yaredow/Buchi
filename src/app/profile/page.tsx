@@ -111,7 +111,7 @@ export default function Page() {
     if (status === "authenticated" && user) {
       setUserData({
         ...user,
-        userName: userName as string,
+        userName,
       });
     }
   }, [user, status, userName]);
