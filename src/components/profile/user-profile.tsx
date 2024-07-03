@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User } from "@prisma/client";
 import { MessageCircleIcon, XIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 type UserProfileProps = {
@@ -12,8 +13,12 @@ type UserProfileProps = {
 };
 
 export default function UserProfile({ user }: UserProfileProps) {
-  const [showChat, setShowChat] = useState(false);
   const { name, userName, bio, image } = user;
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/chat");
+  };
 
   return (
     <div className="mx-auto w-full max-w-2xl rounded-xl bg-background p-8 shadow-lg">
@@ -29,10 +34,10 @@ export default function UserProfile({ user }: UserProfileProps) {
           </div>
         </div>
         <Button
+          onClick={handleClick}
           variant="ghost"
           size="icon"
           className="rounded-full"
-          onClick={() => setShowChat(!showChat)}
         >
           <MessageCircleIcon className="h-6 w-6" />
           <span className="sr-only">Chat</span>
@@ -47,49 +52,6 @@ export default function UserProfile({ user }: UserProfileProps) {
         lover, I&apos;m excited to connect with other Labrador owners on this
         platform.
       </div>
-      {showChat && (
-        <div className="bg-background/50 fixed inset-0 z-50 flex items-center justify-center">
-          <div className="bg-card w-full max-w-md rounded-xl p-6 shadow-lg">
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-medium">Chat with John Doe</h3>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full"
-                onClick={() => setShowChat(false)}
-              >
-                <XIcon className="h-5 w-5" />
-                <span className="sr-only">Close</span>
-              </Button>
-            </div>
-            <div className="h-[300px] overflow-y-auto">
-              <div className="flex flex-col gap-4">
-                <div className="flex items-start gap-4">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage src="/placeholder-user.jpg" />
-                    <AvatarFallback>JD</AvatarFallback>
-                  </Avatar>
-                  <div className="rounded-lg bg-muted px-4 py-2 text-sm text-muted-foreground">
-                    Hey there! How&apos;s it going?
-                  </div>
-                </div>
-                <div className="flex items-start justify-end gap-4">
-                  <div className="rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground">
-                    I&apos;m doing great, thanks for asking!
-                  </div>
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage src="/placeholder-user.jpg" />
-                    <AvatarFallback>JD</AvatarFallback>
-                  </Avatar>
-                </div>
-              </div>
-            </div>
-            <div className="mt-4">
-              <Input placeholder="Type your message..." className="w-full" />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

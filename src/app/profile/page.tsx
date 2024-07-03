@@ -4,42 +4,36 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import React, { useEffect, useRef, useState, useTransition } from "react";
 import UseProfile from "@/../public/images/Default_pfp.svg";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-
 import { Input } from "@/components/ui/input";
-import { CameraIcon } from "lucide-react";
+import { CameraIcon, PencilIcon, Save } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Spinner from "@/components/Spinner";
 import { toast } from "@/components/ui/use-toast";
-import { User } from "next-auth";
 import _ from "lodash";
-import { DialogDescription } from "@radix-ui/react-dialog";
 import {
   updateUserData,
   uploadUserProfileImage,
 } from "@/server/actions/auth/actions";
-import UpdatePasswordForm from "@/components/form/update-password-form";
+import AccountField from "@/components/profile/account-field";
+import PasswordResetField from "@/components/profile/password-reset-field";
+import { User } from "@prisma/client";
 
 export default function Page() {
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isEditingUsername, setIsEditingUsername] = useState<boolean>(false);
-  const [isEditingFullname, setIsEditingaFullname] = useState<boolean>(false);
-  const [isEditingUserEmail, setIsEditingUserEmail] = useState<boolean>(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [editFields, setEditFields] = useState({
+    username: false,
+    fullname: false,
+    email: false,
+    bio: false,
+  });
   const [isPending, startTransition] = useTransition();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { data: session, status } = useSession();
   const user = session?.user;
   const [userData, setUserData] = useState<User | null>(null);
   const hasNoChange = _.isEqual(user, userData);
-  const userName =
-    user?.userName === "" ? user.email?.split("@")[0] : user?.userName;
+  const userName = user?.userName || user?.email?.split("@")[0];
 
   const handleSignout = async () => {
     await signOut({ callbackUrl: "/auth/login" });
@@ -122,7 +116,13 @@ export default function Page() {
     }
   }, [user, status, userName]);
 
-  if (status === "loading") return <Spinner />;
+  if (status === "loading") {
+    return (
+      <div className="grid min-h-[85vh] items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <main
@@ -149,7 +149,7 @@ export default function Page() {
               style={{ display: "none" }}
             />
 
-            {isEditing ? (
+            {isEditing && (
               <Button
                 onClick={handleButtonClick}
                 className="absolute bottom-0 right-0 -translate-x-1/2 translate-y-1/2 rounded-full border-2 border-white bg-white p-1 transition-colors dark:border-gray-950"
@@ -159,11 +159,37 @@ export default function Page() {
                 <CameraIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                 <span className="sr-only">Upload Avatar</span>
               </Button>
-            ) : null}
+            )}
           </div>
+
           <div>
             <h1 className="text-2xl font-bold md:text-3xl">{user?.name}</h1>
             <p className="text-sm">{`@${userName}`}</p>
+            <div className="flex flex-row items-center justify-center gap-6">
+              <div className="h-12">
+                <h4 className="font-semibold">Email Address</h4>
+                {editFields.bio ? (
+                  <Input
+                    className="mt-2"
+                    type="text"
+                    value={userData?.bio || "Add a bio..."}
+                    onChange={(evt) => handleUserDataChange(evt, "bio")}
+                  />
+                ) : (
+                  <p className="text-sm">{userData?.bio}</p>
+                )}
+              </div>
+              <Button
+                disabled={!isEditing}
+                variant="link"
+                size="icon"
+                onClick={() =>
+                  setEditFields((prev) => ({ ...prev, bio: !prev.bio }))
+                }
+              >
+                {editFields.bio ? <Save size={14} /> : <PencilIcon />}
+              </Button>
+            </div>
           </div>
         </div>
 
@@ -185,106 +211,37 @@ export default function Page() {
 
       <div className="mt-12 flex flex-col gap-8">
         <h1 className="text-3xl font-semibold">Account</h1>
-        <div className="flex items-center justify-between">
-          <div className="h-12">
-            <h4 className="font-semibold">Full Name</h4>
-            {isEditingFullname ? (
-              <Input
-                className="mt-2"
-                type="text"
-                value={userData?.name || ""}
-                onChange={(evt) => handleUserDataChange(evt, "name")}
-              />
-            ) : (
-              <p className="text-sm">{userData?.name}</p>
-            )}
-          </div>
-          <Button
-            className="w-[85px]"
-            disabled={!isEditing}
-            onClick={() => setIsEditingaFullname(!isEditingFullname)}
-            variant="outline"
-          >
-            {isEditingFullname ? "Save" : "Change"}
-          </Button>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <div className="h-12">
-            <h4 className="font-semibold">Username</h4>
-            {isEditingUsername ? (
-              <Input
-                className="mt-2"
-                type="text"
-                value={userData?.userName || ""}
-                onChange={(evt) => handleUserDataChange(evt, "userName")}
-              />
-            ) : (
-              <p className="text-sm">{userName}</p>
-            )}
-          </div>
-          <Button
-            className="w-[85px]"
-            disabled={!isEditing}
-            onClick={() => setIsEditingUsername(!isEditingUsername)}
-            variant="outline"
-          >
-            {isEditingUsername ? "Save" : "Change"}
-          </Button>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <div className="h-12">
-            <h4 className="font-semibold">Email Adress</h4>
-            {isEditingUserEmail ? (
-              <Input
-                className="mt-2"
-                type="text"
-                value={userData?.email || ""}
-                onChange={(evt) => handleUserDataChange(evt, "email")}
-              />
-            ) : (
-              <p className="text-sm">{userData?.email as string}</p>
-            )}
-          </div>
-          <Button
-            className="w-[85px]"
-            disabled={!isEditing}
-            variant="outline"
-            onClick={() => setIsEditingUserEmail(!isEditingUserEmail)}
-          >
-            {isEditingUserEmail ? "Save" : " Change"}
-          </Button>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <div>
-            <h4 className="font-semibold">Password</h4>
-            <p className="text-sm">************</p>
-          </div>
-
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button
-                disabled={!isEditing}
-                variant="outline"
-                className="w-[85px]"
-              >
-                Reset
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="rounded-lg">
-              <DialogHeader>
-                <DialogTitle className="mb-4">Update your password</DialogTitle>
-                <DialogDescription>
-                  You will be logged out once you change your password
-                </DialogDescription>
-              </DialogHeader>
-
-              <UpdatePasswordForm />
-            </DialogContent>
-          </Dialog>
-        </div>
+        <AccountField
+          label="Full Name"
+          value={userData?.name}
+          isEditing={isEditing}
+          isFieldEditing={editFields.fullname}
+          onEditClick={() =>
+            setEditFields((prev) => ({ ...prev, fullname: !prev.fullname }))
+          }
+          onChange={(evt) => handleUserDataChange(evt, "name")}
+        />
+        <AccountField
+          label="Username"
+          value={userName}
+          isEditing={isEditing}
+          isFieldEditing={editFields.username}
+          onEditClick={() =>
+            setEditFields((prev) => ({ ...prev, username: !prev.username }))
+          }
+          onChange={(evt) => handleUserDataChange(evt, "userName")}
+        />
+        <AccountField
+          label="Email Address"
+          value={userData?.email}
+          isEditing={isEditing}
+          isFieldEditing={editFields.email}
+          onEditClick={() =>
+            setEditFields((prev) => ({ ...prev, email: !prev.email }))
+          }
+          onChange={(evt) => handleUserDataChange(evt, "email")}
+        />
+        <PasswordResetField isEditing={isEditing} />
       </div>
 
       <div className="mx-auto mt-8 flex items-center justify-center">
