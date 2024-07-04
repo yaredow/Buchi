@@ -16,6 +16,7 @@ import {
   UpdatePasswordFormSchema,
   forgotPasswordFormSchema,
   SigninFormSchema,
+  UpdateUserDataSchema,
 } from "@/lib/schema";
 import { AuthError } from "next-auth";
 import { z } from "zod";
@@ -340,13 +341,17 @@ export async function updatePasswordAction(
 export async function updateUserData(
   formData: FormData,
 ): Promise<ErrorAndSuccessType> {
-  const validatedFields = UpdateAccountFormSchema.safeParse(formData);
+  const validatedFields = UpdateUserDataSchema.safeParse({
+    ...Object.fromEntries(formData.entries()),
+  });
+
+  console.log(validatedFields.success);
 
   if (!validatedFields.success) {
     return { error: "Invalid data" };
   }
 
-  const name = validatedFields.data.name;
+  const { name, email, userName, bio } = validatedFields.data;
 
   try {
     const session = await auth();
@@ -360,6 +365,9 @@ export async function updateUserData(
       where: { id: userId },
       data: {
         name,
+        email,
+        userName,
+        bio,
       },
     });
 

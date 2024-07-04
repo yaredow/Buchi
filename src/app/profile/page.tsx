@@ -20,7 +20,6 @@ import { User } from "@prisma/client";
 
 export default function Page() {
   const [isEditing, setIsEditing] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [editFields, setEditFields] = useState({
     username: false,
     fullname: false,
@@ -66,22 +65,23 @@ export default function Page() {
       formData.append("image", image);
     }
 
-    const result = await uploadUserProfileImage(formData);
-
-    if (result.success) {
-      toast({
-        description: "profile image uploaded successfully",
+    startTransition(() => {
+      uploadUserProfileImage(formData).then((result) => {
+        if (result.success) {
+          toast({
+            description: "profile image uploaded successfully",
+          });
+        } else {
+          toast({
+            variant: "destructive",
+            description: "Failed to upload profile image",
+          });
+        }
       });
-    } else {
-      toast({
-        variant: "destructive",
-        description: "Failed to upload profile image",
-      });
-    }
+    });
   };
 
   const handleUserDataUPdate = async () => {
-    setIsLoading(true);
     const formData = new FormData();
     if (user) {
       for (const key in userData) {
@@ -126,13 +126,13 @@ export default function Page() {
 
   return (
     <main
-      className={`mx-8 my-8 flex-grow md:mx-40 md:my-8 ${isLoading && "opacity-60"}`}
+      className={`mx-8 my-8 flex-grow md:mx-40 md:my-8 ${isPending && "opacity-60"}`}
     >
       <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
         <div className="flex flex-row items-center gap-4">
           <div key="1" className="relative h-[100px] w-[100px]">
             <Avatar
-              className={`h-full w-full rounded-full ${isLoading && "opacity-80"}`}
+              className={`h-full w-full rounded-full ${isPending && "opacity-80"}`}
             >
               <AvatarImage
                 alt="User Avatar"
@@ -166,8 +166,7 @@ export default function Page() {
             <h1 className="text-2xl font-bold md:text-3xl">{user?.name}</h1>
             <p className="text-sm">{`@${userName}`}</p>
             <div className="flex flex-row items-center justify-center gap-6">
-              <div className="h-12">
-                <h4 className="font-semibold">Email Address</h4>
+              <div className="mt-4 h-12">
                 {editFields.bio ? (
                   <Input
                     className="mt-2"
@@ -179,6 +178,7 @@ export default function Page() {
                   <p className="text-sm">{userData?.bio}</p>
                 )}
               </div>
+
               <Button
                 disabled={!isEditing}
                 variant="link"
@@ -187,7 +187,7 @@ export default function Page() {
                   setEditFields((prev) => ({ ...prev, bio: !prev.bio }))
                 }
               >
-                {editFields.bio ? <Save size={14} /> : <PencilIcon />}
+                {editFields.bio ? <Save size={14} /> : <PencilIcon size={14} />}
               </Button>
             </div>
           </div>

@@ -20,6 +20,26 @@ export const UpdateAccountFormSchema = z.object({
   ),
 });
 
+export const UpdateUserDataSchema = z.object({
+  name: z
+    .string()
+    .refine(
+      (value) => {
+        if (value !== "") {
+          const names = value.trim().split(" ");
+          return names.length === 2 && names.every((name) => name.length > 0);
+        }
+      },
+      {
+        message: "Please enter your full name with both first and last names.",
+      },
+    )
+    .optional(),
+  userName: z.string().trim().optional(),
+  email: z.string().email().trim().optional(),
+  bio: z.string().trim().optional(),
+});
+
 export const UpdatePasswordFormSchema = z
   .object({
     currentPassword: z.string().trim().min(8),
