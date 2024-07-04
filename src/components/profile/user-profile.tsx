@@ -30,7 +30,7 @@ export default function UserProfile({ user }: UserProfileProps) {
           </Avatar>
           <div className="space-y-2 text-center">
             <h2 className="text-3xl font-bold">{name}</h2>
-            <p className="text-muted-foreground">{userName}</p>
+            <p className="text-muted-foreground md:-ml-4">{userName}</p>
           </div>
         </div>
         <Button
@@ -44,13 +44,10 @@ export default function UserProfile({ user }: UserProfileProps) {
         </Button>
       </div>
       <div className="mt-6 rounded-lg bg-muted px-4 py-2 text-sm text-muted-foreground">
-        Proud owner of a Labrador Retriever
+        {user.bio || "Proud owner of a Labrador Retriever"}
       </div>
       <div className="mt-4 text-sm leading-relaxed text-muted-foreground">
-        I love spending time with my furry friend, Buddy. We enjoy long walks in
-        the park, playing fetch, and cuddling on the couch. As an avid dog
-        lover, I&apos;m excited to connect with other Labrador owners on this
-        platform.
+        {user.bio}
       </div>
     </div>
   );
