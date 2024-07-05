@@ -107,12 +107,12 @@ model TwoFactorConfirmation {
 }
 
 model Breed {
-  id                    String         @id @default(auto()) @map("_id") @db.ObjectId
+  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
   breedName             String
   breedShortDescription String
   breedLongDescription  String
   breedCharacteristics  String[]
-  breedImages           BreedsImages[]
+  breedImages           String[]
   traits                String[]
   diseases              String[]
   averageHeight         Int

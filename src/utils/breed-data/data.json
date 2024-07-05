@@ -7,9 +7,9 @@
       "breedLongDescription": "The Labrador Retriever is one of the most popular dog breeds in the United States. They are known for their friendly and outgoing nature. Labs are highly trainable and often used as service dogs. They love to play and need regular exercise. Their coat requires minimal maintenance, but they do shed.",
       "breedCharacteristics": ["friendly", "energetic", "trainable", "loyal"],
       "breedImages": [
-        "labrador-retriever-1",
-        "labrador-retriever-2",
-        "labrador-retriever-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/labrador-retriever-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/labrador-retriever-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/labrador-retriever-3"
       ],
       "traits": ["friendly", "outgoing", "gentle", "energetic", "intelligent"],
       "diseases": [
@@ -46,9 +46,9 @@
         "protective"
       ],
       "breedImages": [
-        "german-shephard-1",
-        "german-shephard-2",
-        "german-shephard-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/german-shephard-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/german-shephard-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/german-shephard-3"
       ],
       "traits": ["intelligent", "versatile", "loyal", "protective"],
       "diseases": [
@@ -85,9 +85,9 @@
         "family-friendly"
       ],
       "breedImages": [
-        "golden-retriever-1",
-        "golden-retriever-2",
-        "golden-retriever-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/golden-retriever-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/golden-retriever-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/golden-retriever-3"
       ],
       "traits": [
         "friendly",
@@ -125,9 +125,9 @@
       "breedLongDescription": "French Bulldogs have gained immense popularity due to their compact size and affectionate nature. They are known for their distinctive bat-like ears and stocky build. While they are playful and friendly, they don't require a lot of exercise, making them suitable for apartment living. Frenchies are great companions and get along well with children and other pets.",
       "breedCharacteristics": ["charming", "playful", "adaptable", "friendly"],
       "breedImages": [
-        "french-bulldog-1",
-        "french-bulldog-2",
-        "french-bulldog-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/french-bulldog-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/french-bulldog-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/french-bulldog-3"
       ],
       "traits": ["playful", "affectionate", "easygoing", "alert", "patient"],
       "diseases": [
@@ -172,7 +172,11 @@
         "Heart Problems",
         "Breathing Issues"
       ],
-      "breedImages": ["bulldog-1", "bulldog-2", "bulldog-3"],
+      "breedImages": [
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/bulldog-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/bulldog-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/bulldog-3"
+      ],
       "averageHeight": 35,
       "averageWeight": 23,
       "lifeExpectancy": 8,
@@ -198,7 +202,11 @@
         "hypoallergenic",
         "friendly"
       ],
-      "breedImages": ["poodle-1", "poodle-2", "poodle-3"],
+      "breedImages": [
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/poodle-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/poodle-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/poodle-3"
+      ],
       "traits": ["Intelligent", "Active", "Alert", "Faithful", "Trainable"],
       "diseases": [
         "Hip Dysplasia",
@@ -228,7 +236,11 @@
       "breedShortDescription": "A small to medium-sized breed, known for its incredible sense of smell and tracking ability.",
       "breedLongDescription": "Beagles are small to medium-sized dogs with a great sense of smell and tracking instincts. They were originally bred for hunting small game due to their keen sense of smell and stamina. Beagles are friendly and curious, making them great companions for families. They have a lot of energy and require regular exercise. Their short coat is easy to care for, but they are known for their tendency to bark and howl.",
       "breedCharacteristics": ["curious", "energetic", "friendly", "vocal"],
-      "breedImages": ["beagle-1", "beagle-2", "beagle-3"],
+      "breedImages": [
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/beagle-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/beagle-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/beagle-3"
+      ],
       "traits": ["friendly", "curious", "merry", "affectionate", "loyal"],
       "diseases": [
         "Hip Dysplasia",
@@ -258,7 +270,11 @@
       "breedShortDescription": "A robust and powerful breed, known for its loyalty and protective nature.",
       "breedLongDescription": "Rottweilers are robust, powerful dogs with a great deal of strength, agility, and endurance. They are known for their loyalty and protective nature, making them excellent guard dogs. Rottweilers require consistent, positive training from an early age and thrive on physical and mental challenges. They are generally good-natured, obedient, and are eager to work. Their coat is easy to maintain, requiring regular brushing.",
       "breedCharacteristics": ["loyal", "protective", "strong", "obedient"],
-      "breedImages": ["rottweiler-1", "rottweiler-2", "rottweiler-3"],
+      "breedImages": [
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/rottweiler-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/rottweiler-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/rottweiler-3"
+      ],
       "traits": [
         "loyal",
         "protective",
@@ -300,9 +316,9 @@
         "pampered"
       ],
       "breedImages": [
-        "yorkshire-terrier-1",
-        "yorkshire-terrier-2",
-        "yorkshire-terrier-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/yorkshire-terrier-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/yorkshire-terrier-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/yorkshire-terrier-3"
       ],
       "traits": [
         "affectionate",
@@ -339,7 +355,11 @@
       "breedShortDescription": "A medium to large-sized breed, known for its playful and energetic nature.",
       "breedLongDescription": "Boxers are medium to large-sized dogs with a strong and muscular build. They are known for their playful and energetic nature, as well as their patience and protective instincts. Boxers are excellent with children and make great family pets. They are intelligent and eager to learn but can be stubborn at times. Regular exercise and consistent training are important for this breed.",
       "breedCharacteristics": ["playful", "energetic", "protective", "patient"],
-      "breedImages": ["boxer-1", "boxer-2", "boxer-3"],
+      "breedImages": [
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/boxer-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/boxer-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/boxer-3"
+      ],
       "traits": ["playful", "loyal", "energetic", "fearless", "devoted"],
       "diseases": [
         "Hip Dysplasia",
@@ -369,7 +389,11 @@
       "breedShortDescription": "A small breed with a distinctive long body and short legs, known for its lively personality.",
       "breedLongDescription": "Dachshunds, also known as 'wiener dogs,' are recognized for their distinctive long bodies and short legs. They have a playful and curious nature, making them charming companions. Dachshunds can be stubborn, requiring patient and consistent training. They are known for their bravery and can be quite vocal. Due to their unique body structure, it's important to monitor their exercise to avoid back problems.",
       "breedCharacteristics": ["lively", "playful", "stubborn", "brave"],
-      "breedImages": ["dachshund-1", "dachshund-2", "dachshund-3"],
+      "breedImages": [
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/dachshund-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/dachshund-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/dachshund-3"
+      ],
       "traits": ["clever", "lively", "courageous", "playful", "tenacious"],
       "diseases": [
         "Intervertebral Disc Disease",
@@ -400,9 +424,9 @@
       "breedLongDescription": "Siberian Huskies are medium to large-sized dogs known for their remarkable endurance and willingness to work. They have a thick double coat, erect triangular ears, and distinctive markings. Huskies are friendly and gentle but also alert and outgoing. They're not the best watchdogs since they tend to be friendly with everyone. Huskies require regular, vigorous exercise and enjoy activities like running and hiking.",
       "breedCharacteristics": ["enduring", "friendly", "gentle", "energetic"],
       "breedImages": [
-        "siberian-husky-1",
-        "siberian-husky-2",
-        "siberian-husky-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/siberian-husky-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/siberian-husky-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/siberian-husky-3"
       ],
       "traits": ["friendly", "outgoing", "alert", "gentle", "intelligent"],
       "diseases": [
@@ -438,7 +462,11 @@
         "graceful",
         "affectionate"
       ],
-      "breedImages": ["great-dane-1", "great-dane-2", "great-dane-3"],
+      "breedImages": [
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/great-dane-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/great-dane-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/great-dane-3"
+      ],
       "traits": ["gentle", "friendly", "patient", "reliable", "protective"],
       "diseases": [
         "Hip Dysplasia",
@@ -469,9 +497,9 @@
       "breedLongDescription": "Doberman Pinschers are powerful and athletic dogs, known for their intelligence and loyalty. They are often used as guard dogs due to their alert and fearless nature. Dobermans are loyal to their owners and can be great family pets when trained and socialized properly. They require regular exercise to stay fit and healthy and thrive on mental stimulation.",
       "breedCharacteristics": ["powerful", "intelligent", "loyal", "alert"],
       "breedImages": [
-        "doberman-pinscher-1",
-        "doberman-pinscher-2",
-        "doberman-pinscher-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/doberman-pinscher-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/doberman-pinscher-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/doberman-pinscher-3"
       ],
       "traits": ["fearless", "alert", "loyal", "energetic", "intelligent"],
       "diseases": [
@@ -508,9 +536,9 @@
         "protective"
       ],
       "breedImages": [
-        "australian-shephard-1",
-        "australian-shephard-2",
-        "australian-shephard-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/australian-shephard-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/australian-shephard-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/australian-shephard-3"
       ],
       "traits": [
         "intelligent",
@@ -548,9 +576,9 @@
       "breedLongDescription": "Cavalier King Charles Spaniels are known for their affectionate nature and elegant appearance. They have a silky, smooth coat and a gentle expression. Cavaliers are adaptable and get along well with children and other pets. They are curious and playful, yet also enjoy relaxing with their owners. Regular grooming is required to maintain their coat, and they should be monitored for health issues typical of the breed.",
       "breedCharacteristics": ["affectionate", "elegant", "playful", "curious"],
       "breedImages": [
-        "cavalier-king-charles-spaniel-1",
-        "cavalier-king-charles-spaniel-2",
-        "cavalier-king-charles-spaniel-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/cavalier-king-charles-spaniel-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/cavalier-king-charles-spaniel-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/cavalier-king-charles-spaniel-3"
       ],
       "traits": [
         "affectionate",
@@ -592,7 +620,11 @@
         "confident",
         "affectionate"
       ],
-      "breedImages": ["shih-tzu-1", "shih-tzu-2", "shih-tzu-3"],
+      "breedImages": [
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/shih-tzu-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/shih-tzu-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/shih-tzu-3"
+      ],
       "traits": ["affectionate", "outgoing", "playful", "gentle", "alert"],
       "diseases": [
         "Hip Dysplasia",
@@ -623,9 +655,9 @@
       "breedLongDescription": "Pembroke Welsh Corgis are small but intelligent and active dogs. They are known for their short legs and long body, which were ideal for herding cattle and sheep. Corgis are friendly and playful, making them great companions. They are also known for their loyalty and alertness. Regular exercise is important for this breed, as well as consistent training to curb any tendency towards bossiness.",
       "breedCharacteristics": ["intelligent", "active", "friendly", "loyal"],
       "breedImages": [
-        "pembroke-welsh-corgi-1",
-        "pembroke-welsh-corgi-2",
-        "pembroke-welsh-corgi-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/pembroke-welsh-corgi-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/pembroke-welsh-corgi-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/pembroke-welsh-corgi-3"
       ],
       "traits": ["friendly", "playful", "affectionate", "intelligent", "alert"],
       "diseases": [
@@ -657,10 +689,10 @@
       "breedLongDescription": "Bichon Frises are small dogs known for their cheerful and affectionate personality. They have a distinctive fluffy white coat that requires regular grooming to keep it in good condition. Bichons are playful and social, getting along well with children and other pets. They are intelligent and respond well to training, although they can be a bit stubborn at times. Bichons thrive on companionship and do well in various living situations.",
       "breedCharacteristics": ["cheerful", "affectionate", "playful", "social"],
       "breedImages": [
-        "bichon-frise-1",
-        "bichon-frise-2",
-        "bichon-frise-3",
-        "bichon-frise-4"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/bichon-frise-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/bichon-frise-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/bichon-frise-3",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/bichon-frise-4"
       ],
       "traits": ["playful", "affectionate", "curious", "gentle", "cheerful"],
       "diseases": [
@@ -697,9 +729,9 @@
         "intelligent"
       ],
       "breedImages": [
-        "boston-terrier-1",
-        "boston-terrier-2",
-        "boston-terrier-3"
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/boston-terrier-1",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/boston-terrier-2",
+        "http://res.cloudinary.com/diqgie9yt/image/upload/v1720179743/breed/boston-terrier-3"
       ],
       "traits": ["friendly", "bright", "amusing", "gentle", "affectionate"],
       "diseases": [
