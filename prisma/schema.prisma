@@ -106,6 +106,30 @@ model TwoFactorConfirmation {
   @@map("two_factor_confirmation")
 }
 
+model Breed {
+  id                    String         @id @default(auto()) @map("_id") @db.ObjectId
+  breedName             String
+  breedShortDescription String
+  breedLongDescription  String
+  breedCharacteristics  String[]
+  breedImages           BreedsImages[]
+  traits                String[]
+  diseases              String[]
+  averageHeight         Int
+  averageWeight         Int
+  lifeExpectancy        Int
+  temperament           String
+  hairShedding          String
+  activity              String
+  sociability           String
+  intelligence          String
+  childFriendly         String
+  careLevel             String
+  healthProblems        String
+  geneticProfile        String
+  feedingHabits         String
+}
+
 model Conversation {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt     DateTime @default(now())
