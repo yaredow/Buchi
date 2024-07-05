@@ -29,6 +29,7 @@ const uploadData = async () => {
     for (const breed of data.breeds) {
       // Generate a slug from the breed name
       const slug = generateSlug(breed.breedName);
+      console.log(slug);
 
       // Include the slug in the breed data
       const breedData = {
