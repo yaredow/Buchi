@@ -1,26 +1,29 @@
 "use client";
 
 import BreedCard from "@/components/breed/breed-card";
-import useDogDirectory from "@/utils/hook/useDogDirectory";
+import { Breed } from "@prisma/client";
 import { nanoid } from "@reduxjs/toolkit";
 
 type BreedProps = {
-  id: number;
+  slug: string;
   breedName: string;
   breedImages: string[];
   breedShortDescription: string;
 };
 
-function BreedGrid() {
-  const { dogBreeds } = useDogDirectory();
-
+function BreedGrid({ breeds }: { breeds: Breed[] }) {
   return (
     <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
-      {dogBreeds.map(
-        ({ id, breedName, breedImages, breedShortDescription }: BreedProps) => (
+      {breeds.map(
+        ({
+          slug,
+          breedName,
+          breedImages,
+          breedShortDescription,
+        }: BreedProps) => (
           <div key={nanoid()} className="w-full">
             <BreedCard
-              breedId={id}
+              slug={slug}
               breedName={breedName}
               breedImages={breedImages}
               breedShortDescription={breedShortDescription}

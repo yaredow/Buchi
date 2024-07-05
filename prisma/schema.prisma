@@ -128,6 +128,7 @@ model Breed {
   healthProblems        String
   geneticProfile        String
   feedingHabits         String
+  slug                  String
 }
 
 model Conversation {

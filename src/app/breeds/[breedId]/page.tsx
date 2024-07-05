@@ -1,21 +1,14 @@
-"use client";
-
-import { useAppSelector } from "@/store/hooks";
 import Image from "next/image";
-import { selectBreed } from "@/store/breedSlice/breedSlice";
 import { Badge } from "@/components/ui/badge";
-import useGetAllUsers from "@/utils/hook/useGetAllUsers";
-import { User } from "@prisma/client";
 import Spinner from "@/components/Spinner";
 import UserProfileDialog from "@/components/user/user-profile-dialog";
+import { getBreedWithSlug } from "@/data/breed";
 
-export default function Page({ params }: { params: { breedId: string } }) {
-  const breedId = Number(params.breedId);
-  const breed = useAppSelector(selectBreed(breedId));
-  const { users, isPending }: { users: User[]; isPending: boolean } =
-    useGetAllUsers();
+export default async function Page({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const breed = await getBreedWithSlug(slug);
 
-  if (!breed) return <div>No dog breed found</div>;
+  if (!breed) return <h1>There is not breed</h1>;
 
   return (
     <section>
@@ -128,7 +121,7 @@ export default function Page({ params }: { params: { breedId: string } }) {
           </div>
         </div>
 
-        <div className="my-4 flex flex-col md:my-12">
+        {/* <div className="my-4 flex flex-col md:my-12">
           <h2 className="text-lg font-semibold">{`Owners of ${breed.breedName}`}</h2>
           <ul>
             {isPending ? (
@@ -143,7 +136,7 @@ export default function Page({ params }: { params: { breedId: string } }) {
               ))
             )}
           </ul>
-        </div>
+        </div> */}
       </div>
     </section>
   );
