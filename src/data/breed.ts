@@ -1,6 +1,6 @@
 import prisma from "@/utils/db/db";
 
-export async function getAllBreeds() {
+export const getAllBreeds = async () => {
   try {
     const breeds = await prisma.breed.findMany();
 
@@ -11,9 +11,9 @@ export async function getAllBreeds() {
     console.error(error);
     return null;
   }
-}
+};
 
-export async function getBreedWithSlug(slug: string) {
+export const getBreedWithSlug = async (slug: string) => {
   try {
     const breed = await prisma.breed.findFirst({ where: { slug: slug } });
 
@@ -24,4 +24,4 @@ export async function getBreedWithSlug(slug: string) {
     console.error(error);
     return null;
   }
-}
+};
