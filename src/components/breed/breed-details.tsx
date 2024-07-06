@@ -4,10 +4,20 @@ import useGetBreed from "@/utils/hook/useGetBreed";
 import { Breed } from "@prisma/client";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
+import Spinner from "../Spinner";
 
 export default function BreedDetails({ slug }: { slug: string }) {
-  const { breed, isPending }: { breed: Breed; isPending: boolean } =
+  const { breed, isFetching }: { breed: Breed; isFetching: boolean } =
     useGetBreed(slug);
+
+  if (isFetching) {
+    return (
+      <div className="grid items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
     <section>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-8">
@@ -16,7 +26,7 @@ export default function BreedDetails({ slug }: { slug: string }) {
             alt={breed?.breedImages[0] as string}
             className="h-full w-full rounded-btn object-cover object-center"
             height={800}
-            src={`/images/breeds/${breed?.breedImages[0] as string}.jpg`}
+            src={breed.breedImages[0]}
             width={1200}
           />
           <h1 className="absolute bottom-4 left-4 rounded bg-black bg-opacity-50 px-4 py-2 text-2xl font-bold text-white">
@@ -33,7 +43,7 @@ export default function BreedDetails({ slug }: { slug: string }) {
                   alt={breed.breedName}
                   className="rounded-btn shadow"
                   height={400}
-                  src={`/images/breeds/${image}.jpg`}
+                  src={image}
                   width={800}
                   unoptimized={true}
                 />

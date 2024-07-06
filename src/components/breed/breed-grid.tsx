@@ -4,11 +4,10 @@ import BreedCard from "@/components/breed/breed-card";
 import useGetBreeds from "@/utils/hook/useGetBreeds";
 import { Breed } from "@prisma/client";
 import { nanoid } from "@reduxjs/toolkit";
-import Spinner from "../Spinner";
 import BreedSkeleton from "../skeletons/breed-skeleton";
 
 type BreedProps = {
-  id: string;
+  slug: string;
   breedName: string;
   breedImages: string[];
   breedShortDescription: string;
@@ -21,10 +20,15 @@ function BreedGrid() {
   return (
     <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
       {breeds.map(
-        ({ id, breedName, breedImages, breedShortDescription }: BreedProps) => (
+        ({
+          slug,
+          breedName,
+          breedImages,
+          breedShortDescription,
+        }: BreedProps) => (
           <div key={nanoid()} className="w-full">
             <BreedCard
-              id={id}
+              slug={slug}
               breedName={breedName}
               breedImages={breedImages}
               breedShortDescription={breedShortDescription}
