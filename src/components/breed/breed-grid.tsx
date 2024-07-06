@@ -5,6 +5,7 @@ import useGetBreeds from "@/utils/hook/useGetBreeds";
 import { Breed } from "@prisma/client";
 import { nanoid } from "@reduxjs/toolkit";
 import Spinner from "../Spinner";
+import BreedSkeleton from "../skeletons/breed-skeleton";
 
 type BreedProps = {
   id: string;
@@ -14,15 +15,8 @@ type BreedProps = {
 };
 
 function BreedGrid() {
-  const { breeds, isFetching }: { breeds: Breed[]; isFetching: boolean } =
+  const { breeds = [], isFetching }: { breeds: Breed[]; isFetching: boolean } =
     useGetBreeds();
-
-  if (isFetching)
-    return (
-      <div className="grid items-center justify-center">
-        <Spinner />
-      </div>
-    );
 
   return (
     <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
@@ -38,6 +32,11 @@ function BreedGrid() {
           </div>
         ),
       )}
+
+      {isFetching &&
+        Array.from({ length: 20 }).map((_, index) => {
+          return <BreedSkeleton key={index} />;
+        })}
     </div>
   );
 }
