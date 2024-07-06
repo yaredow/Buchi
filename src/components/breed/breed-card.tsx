@@ -29,7 +29,7 @@ const BreedCard: FC<BreedCardProps> = ({
       className="mb-4 cursor-pointer rounded-lg text-secondary-body"
     >
       <Image
-        src={`/images/breeds/${breedImages[0]}.jpg`}
+        src={breedImages[0]}
         alt={breedName}
         width={800}
         height={400}
