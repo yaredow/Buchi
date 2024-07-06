@@ -4,8 +4,6 @@ export const getAllBreeds = async () => {
   try {
     const breeds = await prisma.breed.findMany();
 
-    if (!breeds) return null;
-
     return breeds;
   } catch (error) {
     console.error(error);
@@ -15,9 +13,7 @@ export const getAllBreeds = async () => {
 
 export const getBreedWithSlug = async (slug: string) => {
   try {
-    const breed = await prisma.breed.findFirst({ where: { slug: slug } });
-
-    if (!breed) return null;
+    const breed = await prisma.breed.findFirst({ where: { slug } });
 
     return breed;
   } catch (error) {

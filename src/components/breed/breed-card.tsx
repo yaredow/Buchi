@@ -5,14 +5,14 @@ import { useRouter } from "next/navigation";
 import { FC } from "react";
 
 interface BreedCardProps {
-  slug: string;
+  id: string;
   breedName: string;
   breedImages: string[];
   breedShortDescription: string;
 }
 
 const BreedCard: FC<BreedCardProps> = ({
-  slug,
+  id,
   breedName,
   breedImages,
   breedShortDescription,
@@ -20,7 +20,7 @@ const BreedCard: FC<BreedCardProps> = ({
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/breeds/${slug}`);
+    router.push(`/breeds/${id}`);
   };
 
   return (

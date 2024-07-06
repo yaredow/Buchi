@@ -10,9 +10,5 @@ export default async function page() {
     return <div>No breeds found</div>;
   }
 
-  return (
-    <Suspense fallback={<Spinner />}>
-      <BreedGrid breeds={breeds} />;
-    </Suspense>
-  );
+  return <BreedGrid />;
 }

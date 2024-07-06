@@ -1,13 +1,17 @@
-import { selectBreed } from "@/store/breedSlice/breedSlice";
-import { useAppSelector } from "@/store/hooks";
-import { useState } from "react";
-import { DogBreed } from "@/../../types/breed";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
-export default function useGetBreed(id: number) {
-  const breedData = useAppSelector(selectBreed(id)) as DogBreed;
-  console.log(breedData);
+const fetchBreed = async (slug: string) => {
+  const { data } = await axios.get(`http:/localhost:3000/api/breed/${slug}`);
 
-  const [dogBreed, setDogBreed] = useState<DogBreed>(breedData);
+  return data.breed;
+};
 
-  return { dogBreed };
+export default function useGetBreed(slug: string) {
+  const { data: breed, isPending } = useQuery({
+    queryKey: ["breed", slug],
+    queryFn: () => fetchBreed(slug),
+  });
+
+  return { breed, isPending };
 }
