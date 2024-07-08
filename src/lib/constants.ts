@@ -4,7 +4,7 @@ export const navLinks = [
     title: "About",
   },
   {
-    src: "/breeds",
+    src: "/breed",
     title: "Breeds",
   },
   {
