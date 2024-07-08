@@ -4,14 +4,14 @@ describe("Signin page", () => {
 
     cy.contains("Submit");
 
-    cy.get('[data-testId="Submit"]').click();
+    cy.get('[data-testid="Submit"]').click();
   });
 
   it("should redirect user to profile page if the login is successful", () => {
-    cy.get('[data-testId="email"]').type("yaredyilma2023@gmail.com");
-    cy.get('[data-testId="password"]').type("test@1234@");
+    cy.get('[data-testid="email"]').type("yaredyilma2023@gmail.com");
+    cy.get('[data-testid="password"]').type("test@1234@");
 
-    cy.get('[data-testId="Submit"]').click();
+    cy.get('[data-testid="Submit"]').click();
 
     cy.url().should("include", "/profile");
   });
