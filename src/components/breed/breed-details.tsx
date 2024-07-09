@@ -5,6 +5,7 @@ import { Breed } from "@prisma/client";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import Spinner from "../Spinner";
+import DogOwner from "../user/dog-owner";
 
 export default function BreedDetails({ slug }: { slug: string }) {
   const { breed, isFetching }: { breed: Breed; isFetching: boolean } =
@@ -128,23 +129,7 @@ export default function BreedDetails({ slug }: { slug: string }) {
             </div>
           </div>
         </div>
-
-        {/* <div className="my-4 flex flex-col md:my-12">
-        <h2 className="text-lg font-semibold">{`Owners of ${breed.breedName}`}</h2>
-        <ul>
-          {isPending ? (
-            <div className="grid items-center justify-center">
-              <Spinner />
-            </div>
-          ) : (
-            users.map((user, index) => (
-              <li className="flex flex-col gap-4" key={index}>
-                <UserProfileDialog user={user} />
-              </li>
-            ))
-          )}
-        </ul>
-      </div> */}
+        <DogOwner />
       </div>
     </section>
   );
