@@ -4,7 +4,7 @@ export const publicRoutes = [
   "/about",
   "/breed",
   "/breed/:breedId",
-  "/breeds/*",
+  "/breed/*",
   "/my-dogs",
   "/chat",
   "/auth/new-verification",

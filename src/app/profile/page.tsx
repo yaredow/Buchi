@@ -130,7 +130,7 @@ export default function Page() {
     >
       <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
         <div className="flex flex-row items-center gap-4">
-          <div key="1" className="relative h-[100px] w-[100px]">
+          <div key="1" className="relative h-[100px] w-[100px] mr-4">
             <Avatar
               className={`h-full w-full rounded-full ${isPending && "opacity-80"}`}
             >
