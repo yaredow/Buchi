@@ -1,4 +1,5 @@
 import * as React from "react";
+import { cn } from "@/lib/utils";
 
 import { Check, X, ChevronsUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
 
 export type OptionType = {
   label: string;

@@ -107,7 +107,7 @@ export const SignupFormSchema = z
       })
       .trim(),
     passwordConfirm: z.string().trim().min(8),
-    breed: z.string().optional(), // Optional breed ID
+    breed: z.array(z.string()).optional(), // Optional breed ID
   })
   .refine(
     (data) => {

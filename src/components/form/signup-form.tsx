@@ -33,6 +33,7 @@ export default function SignupForm() {
       email: "",
       password: "",
       passwordConfirm: "",
+      breed: [],
     },
   });
 
@@ -166,13 +167,12 @@ export default function SignupForm() {
             name="breed"
             render={({ field }) => (
               <FormItem>
-                <FormControl>
-                  <MultiSelect
-                    selected={field.value}
-                    options={dogBreeds}
-                    onChange={field.onChange}
-                  />
-                </FormControl>
+                <MultiSelect
+                  selected={field.value || []}
+                  options={dogBreeds}
+                  {...field}
+                  onChange={field.onChange}
+                />
                 <FormMessage />
               </FormItem>
             )}
