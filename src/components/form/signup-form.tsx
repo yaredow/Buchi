@@ -8,7 +8,6 @@ import {
   FormItem,
   FormMessage,
 } from "../ui/form";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
@@ -17,13 +16,14 @@ import { FormSuccess } from "../FormSuccess";
 import { FormError } from "../FormError";
 import { registerAction } from "@/server/actions/auth/actions";
 import { SignupFormSchema } from "@/lib/schema";
-import useGetBreeds from "@/utils/hook/useGetBreeds";
+import { dogBreeds } from "@/lib/constants";
+import { MultiSelect } from "../ui/multi-select";
+import { useForm } from "react-hook-form";
 
 export default function SignupForm() {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
-  const { breeds, isFetching } = useGetBreeds();
 
   const form = useForm<z.infer<typeof SignupFormSchema>>({
     resolver: zodResolver(SignupFormSchema),
@@ -160,6 +160,24 @@ export default function SignupForm() {
               );
             }}
           />
+
+          <FormField
+            control={form.control}
+            name="breed"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <MultiSelect
+                    selected={field.value}
+                    options={dogBreeds}
+                    onChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <FormSuccess message={success} />
           <FormError message={error} />
           <SubmitButton isPending={isPending} />
