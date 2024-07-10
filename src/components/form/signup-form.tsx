@@ -17,11 +17,13 @@ import { FormSuccess } from "../FormSuccess";
 import { FormError } from "../FormError";
 import { registerAction } from "@/server/actions/auth/actions";
 import { SignupFormSchema } from "@/lib/schema";
+import useGetBreeds from "@/utils/hook/useGetBreeds";
 
 export default function SignupForm() {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const { breeds, isFetching } = useGetBreeds();
 
   const form = useForm<z.infer<typeof SignupFormSchema>>({
     resolver: zodResolver(SignupFormSchema),
