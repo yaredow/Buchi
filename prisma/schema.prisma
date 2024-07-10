@@ -28,9 +28,10 @@ model User {
   accounts           Account[]
   updatedAt          DateTime  @updatedAt
   isTwoFactorEnabled Boolean   @default(false)
-
   bio      String? @default("")
   userName String? @unique @default("")
+  breedId String? @db.ObjectId
+  breed Breed? @relation(fields: [breedId], references: [id])
 
   createdAt             DateTime                @default(now())
   TwoFactorConfirmation TwoFactorConfirmation[]
@@ -41,6 +42,7 @@ model User {
   seenMessages   Message[] @relation("Seen", fields: [seenMessageIds], references: [id])
 
   messages Message[]
+  
 
   @@map("users")
 }
@@ -129,6 +131,8 @@ model Breed {
   geneticProfile        String
   feedingHabits         String
   slug                  String
+
+  users User[] @relation()
 }
 
 model Conversation {
