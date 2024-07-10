@@ -1,7 +1,5 @@
 import CardWrapper from "@/components/auth/CardWrapper";
 import SignupForm from "@/components/form/signup-form";
-import { getAllBreeds } from "@/data/breed";
-import { Breed } from "@prisma/client";
 
 export const metadata = {
   title: "Sign Up",

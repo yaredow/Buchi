@@ -18,7 +18,6 @@ import { useSearchParams } from "next/navigation";
 import { authenticate } from "@/server/actions/auth/actions";
 import { FormError } from "../FormError";
 import { SigninFormSchema } from "@/lib/schema";
-import { Button } from "../ui/button";
 
 export default function SigninForm() {
   const [showTwoFactor, setShowTwoFactor] = useState<boolean>(false);
@@ -81,7 +80,7 @@ export default function SigninForm() {
                     <FormItem>
                       <FormControl>
                         <Input
-                          data-testId="email"
+                          data-testid="email"
                           disabled={isPending}
                           {...field}
                           placeholder="Email"
@@ -102,7 +101,7 @@ export default function SigninForm() {
                     <FormItem>
                       <FormControl>
                         <Input
-                          data-testId="password"
+                          data-testid="password"
                           disabled={isPending}
                           {...field}
                           placeholder="Password"

@@ -168,10 +168,10 @@ export default function SignupForm() {
             render={({ field }) => (
               <FormItem>
                 <MultiSelect
-                  selected={field.value || []}
+                  selected={field.value}
                   options={dogBreeds}
                   {...field}
-                  onChange={field.onChange}
+                  className="sm:w-[510px]"
                 />
                 <FormMessage />
               </FormItem>
