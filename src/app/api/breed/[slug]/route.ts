@@ -5,7 +5,9 @@ export async function GET(request: NextRequest) {
   const slug = request.url.slice(request.url.lastIndexOf("/") + 1);
 
   try {
-    const breed = await prisma.breed.findFirst({ where: { slug } });
+    const breed = await prisma.breed.findFirst({
+      where: { slug },
+    });
 
     if (!breed) {
       return NextResponse.json({ message: "Breed not found" }, { status: 404 });

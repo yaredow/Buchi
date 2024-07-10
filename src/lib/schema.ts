@@ -91,8 +91,11 @@ export const ResetPasswordFormSchema = z
 
 export const SignupFormSchema = z
   .object({
-    firstName: z.string().nonempty({ message: "First name is required" }),
-    lastName: z.string().nonempty({ message: "Last name is required" }),
+    firstName: z
+      .string()
+      .min(1, { message: "First name is required" })
+      .max(100),
+    lastName: z.string().min(1, { message: "Last name is required" }).max(100),
     email: z.string().email({ message: "Please enter a valid email." }).trim(),
     password: z
       .string()
@@ -104,6 +107,7 @@ export const SignupFormSchema = z
       })
       .trim(),
     passwordConfirm: z.string().trim().min(8),
+    breedId: z.string().optional(), // Optional breed ID
   })
   .refine(
     (data) => {

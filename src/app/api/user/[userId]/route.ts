@@ -6,6 +6,7 @@ export async function GET(request: NextRequest) {
   try {
     const user = await prisma.user.findUnique({
       where: { id },
+      include: { breed: true },
     });
 
     if (!user) {
