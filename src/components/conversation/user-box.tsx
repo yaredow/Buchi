@@ -12,6 +12,7 @@ export default function UserBox() {
 
   const handleClick = async () => {
     setIsLoading(true);
+    chat();
   };
 
   return (

@@ -11,7 +11,7 @@ import UserMenu from "@/components/user-menu";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/../public/images/logo-light.svg";
-import ChatToggle from "../chat/chat-toggle";
+import ChatToggle from "../conversation/chat-toggle";
 import { auth } from "@/auth";
 
 export default async function Header() {

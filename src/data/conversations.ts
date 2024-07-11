@@ -1,37 +1,25 @@
 import prisma from "@/utils/db/db";
 import { getCurrentUser } from "./user";
 
-export async function getConversations() {
-  const currentUser = await getCurrentUser();
-
-  if (!currentUser) {
-    return [];
-  }
-
+export async function getConversationById(conversationId: string) {
   try {
-    const conversations = await prisma.conversation.findMany({
-      orderBy: {
-        lastMessageAt: "desc",
-      },
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser?.email) {
+      return null;
+    }
+
+    const conversation = await prisma.conversation.findUnique({
       where: {
-        userIds: {
-          has: currentUser.id,
-        },
+        id: conversationId,
       },
       include: {
         users: true,
-        messages: {
-          include: {
-            sender: true,
-            seen: true,
-          },
-        },
       },
     });
 
-    return conversations;
-  } catch (error) {
-    console.error(error);
+    return conversation;
+  } catch (error: any) {
     return null;
   }
 }
