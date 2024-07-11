@@ -129,7 +129,7 @@ export default function BreedDetails({ slug }: { slug: string }) {
             </div>
           </div>
         </div>
-        <DogOwner />
+        <DogOwner breedId={breed.id} />
       </div>
     </section>
   );

@@ -12,7 +12,6 @@ import {
   ErrorAndSuccessType,
   ResetPasswordFormSchema,
   SignupFormSchema,
-  UpdateAccountFormSchema,
   UpdatePasswordFormSchema,
   forgotPasswordFormSchema,
   SigninFormSchema,
@@ -36,6 +35,7 @@ import {
   sendWelcomeEmail,
 } from "@/server/actions/email/email";
 import slugify from "slugify";
+import { connect } from "http2";
 
 export async function authenticate(
   values: z.infer<typeof SigninFormSchema>,
@@ -194,6 +194,8 @@ export async function registerAction(
     breedId = breedRecord ? breedRecord.id : null;
   }
 
+  const userName = email.split("@")[0];
+
   const hashedPassword = await bcrypt.hash(password, 10);
   await prisma.user.create({
     data: {
@@ -201,6 +203,7 @@ export async function registerAction(
       email,
       password: hashedPassword,
       breedId,
+      userName,
     },
   });
 
