@@ -1,5 +1,8 @@
+import EmptyState from "@/components/empty-chat";
+import { Input } from "@/components/ui/input";
 import { getConversationById } from "@/data/conversations";
 import { getMessages } from "@/data/message";
+import { MicIcon, PaperclipIcon, SmileIcon } from "lucide-react";
 
 export default async function Page({
   params,
@@ -9,5 +12,8 @@ export default async function Page({
   const { conversationId } = params;
   const conversation = await getConversationById(conversationId);
   const messages = await getMessages(conversationId);
-  return <div>Enter</div>;
+
+  if (!conversation) return <EmptyState />;
+
+  return <div>Chat</div>;
 }

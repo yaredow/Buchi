@@ -23,7 +23,7 @@ export default function UserProfile({ userId }: { userId: string }) {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/chat");
+    router.push("/conversations");
   };
 
   if (isFetching)

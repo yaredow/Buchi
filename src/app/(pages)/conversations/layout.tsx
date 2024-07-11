@@ -7,7 +7,7 @@ export default async function ConversationsLayout({
 }) {
   return (
     <div className="h-full">
-      <div className="flex flex-row items-center justify-center border">
+      <div className="flex flex-row items-center justify-center border md:rounded-md">
         <SideBar />
         {children}
       </div>
