@@ -441,6 +441,6 @@ export async function uploadUserProfileImage(
     },
   });
 
-  revalidatePath("/");
+  revalidatePath("/profile");
   return { success: "Image uploaded successfully" };
 }
