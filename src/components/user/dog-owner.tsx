@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Spinner from "../Spinner";
 import useGetDogOwners from "@/utils/hook/useGetDogOwners";
+import DefaultPfp from "@/../public/images/Default_pfp.svg";
 
 function DogOwnerCard({ user }: { user: User }) {
   const router = useRouter();
@@ -13,7 +14,7 @@ function DogOwnerCard({ user }: { user: User }) {
     <div className="flex items-center gap-4">
       <div className="h-12 w-12 overflow-hidden rounded-full">
         <Image
-          src={user.image || ""}
+          src={user.image || DefaultPfp}
           alt="Avatar"
           height={50}
           width={50}
@@ -37,7 +38,6 @@ function DogOwnerCard({ user }: { user: User }) {
 export default function DogOwner({ breedId }: { breedId: string }) {
   const { dogOwners, isFetching }: { dogOwners: User[]; isFetching: boolean } =
     useGetDogOwners(breedId);
-  console.log(dogOwners);
 
   return (
     <div className="my-4 flex flex-col md:my-12">
