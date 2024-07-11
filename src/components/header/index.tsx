@@ -1,6 +1,6 @@
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import { MenuIcon, MoveRight } from "lucide-react";
+import { MenuIcon, MoveRight, User } from "lucide-react";
 
 import React from "react";
 import { navLinks } from "@/lib/constants";
@@ -12,6 +12,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/../public/images/logo-light.svg";
 import ChatToggle from "../chat/chat-toggle";
+import { auth } from "@/auth";
 
 export default async function Header() {
   return (

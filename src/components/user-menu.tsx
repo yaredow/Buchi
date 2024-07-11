@@ -14,6 +14,7 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Defaultpfp from "@/../public/images/Default_pfp.svg";
+import { User } from "lucide-react";
 
 export default function UserMenu() {
   const { data: session, status } = useSession();
@@ -36,13 +37,17 @@ export default function UserMenu() {
           size="icon"
           className="overflow-hidden rounded-full"
         >
-          <Image
-            src={session?.user.image || Defaultpfp}
-            alt="User profile picture"
-            width={50}
-            height={50}
-            className="aspect-square rounded-full bg-background object-cover"
-          />
+          {session ? (
+            <Image
+              src={session?.user.image || Defaultpfp}
+              alt="User profile picture"
+              width={50}
+              height={50}
+              className="aspect-square rounded-full bg-background object-cover"
+            />
+          ) : (
+            <User size={22} strokeWidth={1.5} />
+          )}
         </Button>
       </DropdownMenuTrigger>
       {status === "authenticated" ? (

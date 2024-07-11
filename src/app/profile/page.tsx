@@ -110,8 +110,7 @@ export default function Page() {
   useEffect(() => {
     if (status === "authenticated" && user) {
       setUserData({
-        ...user,
-        userName,
+        ...(user as User),
       });
     }
   }, [user, status, userName]);
