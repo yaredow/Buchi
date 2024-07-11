@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const fetchBreeds = async () => {
-  const { data } = await axios.get("http://localhost:3000/api/breed");
-  console.log(data);
+  const responsoe = await fetch("/api/breed");
+  const data = await responsoe.json();
 
   return data.breeds;
 };

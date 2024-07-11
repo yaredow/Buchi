@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 
 const fetchBreed = async (slug: string) => {
-  console.log(slug);
-  const { data } = await axios.get(`http://localhost:3000/api/breed/${slug}`);
-  console.log(data);
+  const response = await fetch(`/api/breed/${slug}`);
+  const data = await response.json();
 
   return data.breed;
 };
