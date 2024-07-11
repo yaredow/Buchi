@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
 const fetchDogOwners = async (breedId: string) => {
-  const response = await fetch(`/api/user/dog-owners/${breedId}`);
+  const response = await fetch(`/api/user/-owners/${breedId}`);
   const data = await response.json();
-  return data;
+  return data.dogOwners;
 };
 
 export default function useGetDogOwners(breedId: string) {
