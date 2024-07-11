@@ -41,9 +41,9 @@ export default function UserProfile({ userId }: { userId: string }) {
             <AvatarImage src={user.image || DefaultPfp} />
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>
-          <div className="space-y-2 text-center">
+          <div className="space-y-2 text-start">
             <h2 className="text-3xl font-bold">{user.name}</h2>
-            <p className="text-muted-foreground md:-ml-4">{user.userName}</p>
+            <p className="text-muted-foreground">{user.userName}</p>
           </div>
         </div>
 

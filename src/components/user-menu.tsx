@@ -39,7 +39,7 @@ export default function UserMenu() {
         >
           {session ? (
             <Image
-              src={session?.user.image || Defaultpfp}
+              src={session?.user.image === null && Defaultpfp}
               alt="User profile picture"
               width={50}
               height={50}

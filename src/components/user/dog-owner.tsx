@@ -29,7 +29,7 @@ function DogOwnerCard({ user }: { user: User }) {
         >
           {user.name}
         </div>
-        <div className="text-muted-foreground"></div>
+        <div className="text-muted-foreground">{user.userName}</div>
       </div>
     </div>
   );
