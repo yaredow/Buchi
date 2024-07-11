@@ -44,6 +44,8 @@ export async function POST(request: NextRequest) {
         users: true,
       },
     });
+
+    return NextResponse.json(newConversation);
   } catch (error) {
     console.error(error);
     NextResponse.json({ message: "Internal Server Error" });
