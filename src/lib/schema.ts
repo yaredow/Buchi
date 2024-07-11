@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { dogBreeds } from "./constants";
 
 export type ErrorAndSuccessType = {
   error?: string;
@@ -89,6 +90,11 @@ export const ResetPasswordFormSchema = z
     },
   );
 
+const breedSchema = z.object({
+  value: z.string(),
+  label: z.string(),
+});
+
 export const SignupFormSchema = z
   .object({
     firstName: z
@@ -107,7 +113,9 @@ export const SignupFormSchema = z
       })
       .trim(),
     passwordConfirm: z.string().trim().min(8),
-    breed: z.array(z.string()).optional(), // Optional breed ID
+    breed: z
+      .array(z.object({ value: z.string(), label: z.string() }))
+      .optional(),
   })
   .refine(
     (data) => {

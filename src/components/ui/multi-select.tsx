@@ -106,7 +106,9 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                 </Badge>
               ))}
               {selected.length === 0 && (
-                <span>{props.placeholder ?? "Select ..."}</span>
+                <span className="text-muted-foreground">
+                  {props.placeholder ?? "Select your dog breed (Optional)"}
+                </span>
               )}
             </div>
             <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />

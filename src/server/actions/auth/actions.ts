@@ -35,6 +35,7 @@ import {
   sendVerificationEmail,
   sendWelcomeEmail,
 } from "@/server/actions/email/email";
+import slugify from "slugify";
 
 export async function authenticate(
   values: z.infer<typeof SigninFormSchema>,
@@ -174,12 +175,23 @@ export async function registerAction(
     return { error: "Invalid data" };
   }
 
-  const { firstName, lastName, email, password } = validatedFields.data;
+  const { firstName, lastName, email, password, breed } = validatedFields.data;
 
   const existingUser = await getUserByEmail(email);
 
   if (existingUser) {
     return { error: "User already exists" };
+  }
+
+  let breedId: string | null = null;
+
+  if (breed && breed.length > 0) {
+    const breedSlug = slugify(breed[0].value, { lower: true });
+    const breedRecord = await prisma.breed.findFirst({
+      where: { slug: breedSlug },
+    });
+
+    breedId = breedRecord ? breedRecord.id : null;
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -188,6 +200,7 @@ export async function registerAction(
       name: `${firstName} ${lastName}`,
       email,
       password: hashedPassword,
+      breedId,
     },
   });
 

@@ -43,8 +43,12 @@ export default function SignupForm() {
     startTransition(() => {
       registerAction(values)
         .then((data) => {
-          setSuccess(data.success);
-          setError(data.error);
+          if (data.success) {
+            setSuccess(data.success);
+            form.reset();
+          } else {
+            setError(data.error);
+          }
         })
         .catch((error) => {
           console.error(error);
@@ -168,7 +172,7 @@ export default function SignupForm() {
             render={({ field }) => (
               <FormItem>
                 <MultiSelect
-                  selected={field.value}
+                  selected={field.value || []}
                   options={dogBreeds}
                   {...field}
                   className="sm:w-[510px]"
