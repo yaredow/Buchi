@@ -1,9 +1,7 @@
 import { auth } from "@/auth";
 import EmptyState from "@/components/empty-chat";
-import { Input } from "@/components/ui/input";
 import { getConversationById } from "@/data/conversations";
 import { getMessages } from "@/data/message";
-import { MicIcon, PaperclipIcon, SmileIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 
 export default async function Page({
@@ -20,5 +18,5 @@ export default async function Page({
 
   if (!conversation) return <EmptyState />;
 
-  return <div>Chat</div>;
+  return <div className="md:w-1/4">Chat</div>;
 }

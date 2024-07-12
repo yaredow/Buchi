@@ -22,6 +22,7 @@ export default function Page() {
           </div>
           <span className="text-green-600">ETB 36,000</span>
         </div>
+
         <div className="flex-1 overflow-y-auto bg-slate-100 p-4 dark:bg-slate-300">
           <div className="mb-4 flex justify-center">
             <span className="text-sm text-slate-500 dark:text-slate-700">
@@ -36,6 +37,7 @@ export default function Page() {
               </span>
             </div>
           </div>
+
           <div className="mb-4 flex justify-end">
             <div className="flex max-w-xs flex-col rounded-lg bg-green-200 p-2 shadow dark:bg-green-400">
               <span>Hi Mintu, Ale</span>
