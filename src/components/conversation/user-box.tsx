@@ -8,11 +8,11 @@ import { useState } from "react";
 export default function UserBox() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { chat, isPending } = useStartConversation();
+  const { converse, isPending } = useStartConversation();
 
   const handleClick = async () => {
     setIsLoading(true);
-    chat();
+    converse();
   };
 
   return (
