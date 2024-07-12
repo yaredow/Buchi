@@ -6,11 +6,11 @@ export default async function ConversationsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-full">
-      <div className="flex flex-row items-center justify-center border md:rounded-md">
+    <main className="h-full">
+      <div className="mx-8 flex flex-row items-center justify-center border md:rounded-md">
         <SideBar />
-        <main className="w-3/4">{children}</main>
+        <div className="w-3/4 md:min-h-[80vh]">{children}</div>
       </div>
-    </div>
+    </main>
   );
 }

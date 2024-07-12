@@ -1,0 +1,107 @@
+[
+  {
+    "id": "1",
+    "lastMessageAt": "2024-07-12T12:00:00Z",
+    "lastMessage": "See you at the park tomorrow!",
+    "users": [
+      {
+        "id": "u1",
+        "name": "Alice Johnson",
+        "username": "alicej",
+        "bio": "Dog lover and outdoor enthusiast.",
+        "image": "https://randomuser.me/api/portraits/women/81.jpg"
+      },
+      {
+        "id": "u2",
+        "name": "John Doe",
+        "username": "johnd",
+        "bio": "Enjoying life with my French Bulldog.",
+        "image": "https://randomuser.me/api/portraits/men/82.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "lastMessageAt": "2024-07-12T12:05:00Z",
+    "lastMessage": "Thanks for the tips on training!",
+    "users": [
+      {
+        "id": "u3",
+        "name": "Emma Smith",
+        "username": "emmas",
+        "bio": "Avid hiker and dog trainer.",
+        "image": "https://randomuser.me/api/portraits/women/83.jpg"
+      },
+      {
+        "id": "u4",
+        "name": "Robert Brown",
+        "username": "robertb",
+        "bio": "Passionate about animal welfare.",
+        "image": "https://randomuser.me/api/portraits/men/84.jpg"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "lastMessageAt": "2024-07-12T12:10:00Z",
+    "lastMessage": "Let's meet up this weekend.",
+    "users": [
+      {
+        "id": "u5",
+        "name": "Sophia Lee",
+        "username": "sophial",
+        "bio": "Loves to bake and spend time with dogs.",
+        "image": "https://randomuser.me/api/portraits/women/85.jpg"
+      },
+      {
+        "id": "u6",
+        "name": "David Kim",
+        "username": "davidk",
+        "bio": "Tech enthusiast and dog parent.",
+        "image": "https://randomuser.me/api/portraits/men/86.jpg"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "lastMessageAt": "2024-07-12T12:15:00Z",
+    "lastMessage": "Did you get the new dog toy?",
+    "users": [
+      {
+        "id": "u7",
+        "name": "Linda Martinez",
+        "username": "lindam",
+        "bio": "Enjoying the outdoors with my dog.",
+        "image": "https://randomuser.me/api/portraits/women/87.jpg"
+      },
+      {
+        "id": "u8",
+        "name": "James Wilson",
+        "username": "jamesw",
+        "bio": "Loves traveling with my furry friend.",
+        "image": "https://randomuser.me/api/portraits/men/88.jpg"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "lastMessageAt": "2024-07-12T12:20:00Z",
+    "lastMessage": "Great seeing you and your dog today!",
+    "users": [
+      {
+        "id": "u9",
+        "name": "Olivia Garcia",
+        "username": "oliviag",
+        "bio": "Dog trainer and animal behaviorist.",
+        "image": "https://randomuser.me/api/portraits/women/89.jpg"
+      },
+      {
+        "id": "u10",
+        "name": "Chris Johnson",
+        "username": "chrisj",
+        "bio": "Fitness enthusiast and dog lover.",
+        "image": "https://randomuser.me/api/portraits/men/90.jpg"
+      }
+    ]
+  }
+]
