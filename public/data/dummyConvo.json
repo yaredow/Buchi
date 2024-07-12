@@ -2,7 +2,14 @@
   {
     "id": "1",
     "lastMessageAt": "2024-07-12T12:00:00Z",
-    "lastMessage": "See you at the park tomorrow!",
+    "messages": [
+      {
+        "id": "m1",
+        "body": "See you at the park tomorrow!",
+        "createdAt": "2024-07-12T11:59:00Z",
+        "senderId": "u2"
+      }
+    ],
     "users": [
       {
         "id": "u1",
@@ -23,7 +30,14 @@
   {
     "id": "2",
     "lastMessageAt": "2024-07-12T12:05:00Z",
-    "lastMessage": "Thanks for the tips on training!",
+    "messages": [
+      {
+        "id": "m2",
+        "body": "Thanks for the tips on training!",
+        "createdAt": "2024-07-12T12:04:00Z",
+        "senderId": "u4"
+      }
+    ],
     "users": [
       {
         "id": "u3",
@@ -44,7 +58,14 @@
   {
     "id": "3",
     "lastMessageAt": "2024-07-12T12:10:00Z",
-    "lastMessage": "Let's meet up this weekend.",
+    "messages": [
+      {
+        "id": "m3",
+        "body": "Let's meet up this weekend.",
+        "createdAt": "2024-07-12T12:09:00Z",
+        "senderId": "u5"
+      }
+    ],
     "users": [
       {
         "id": "u5",
@@ -65,7 +86,14 @@
   {
     "id": "4",
     "lastMessageAt": "2024-07-12T12:15:00Z",
-    "lastMessage": "Did you get the new dog toy?",
+    "messages": [
+      {
+        "id": "m4",
+        "body": "Did you get the new dog toy?",
+        "createdAt": "2024-07-12T12:14:00Z",
+        "senderId": "u7"
+      }
+    ],
     "users": [
       {
         "id": "u7",
@@ -86,7 +114,14 @@
   {
     "id": "5",
     "lastMessageAt": "2024-07-12T12:20:00Z",
-    "lastMessage": "Great seeing you and your dog today!",
+    "messages": [
+      {
+        "id": "m5",
+        "body": "Great seeing you and your dog today!",
+        "createdAt": "2024-07-12T12:19:00Z",
+        "senderId": "u9"
+      }
+    ],
     "users": [
       {
         "id": "u9",
