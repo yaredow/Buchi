@@ -37,9 +37,9 @@ export default function UserMenu() {
           size="icon"
           className="overflow-hidden rounded-full"
         >
-          {session ? (
+          {session?.user ? (
             <Image
-              src={session?.user.image === null && Defaultpfp}
+              src={session?.user.image || Defaultpfp}
               alt="User profile picture"
               width={50}
               height={50}

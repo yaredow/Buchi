@@ -11,7 +11,7 @@ export default function Conversation({
 }: {
   conversationId: string;
 }) {
-  const conversation: any = useConversation(conversationId);
+  const { conversation, sendMessage } = useConversation(conversationId);
 
   if (!conversation || conversation.length === 0) return <div>loading...</div>;
 
@@ -37,7 +37,7 @@ export default function Conversation({
           <MessageList messages={messages} />
         </div>
       </div>
-      <MessageInput />
+      <MessageInput sendMessage={sendMessage} senderId={users[0].id} />
     </main>
   );
 }
