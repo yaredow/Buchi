@@ -1,7 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { useRouter } from "next/navigation";
-import { string } from "zod";
 
 const startConversation = async (userId: string) => {
   const response = await fetch("http://localhost:3000/api/conversations", {
@@ -27,7 +25,7 @@ export default function useStartConversation() {
     mutationFn: startConversation,
     mutationKey: ["conversation"],
     onSuccess: (data) => {
-      router.push(`/conversations/${data.conversation.id}`);
+      router.push(`/conversations/${data.id}`);
     },
   });
 

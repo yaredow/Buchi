@@ -361,8 +361,6 @@ export async function updateUserData(
     ...Object.fromEntries(formData.entries()),
   });
 
-  console.log(validatedFields.success);
-
   if (!validatedFields.success) {
     return { error: "Invalid data" };
   }

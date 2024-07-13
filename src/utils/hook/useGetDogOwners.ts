@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 const fetchDogOwners = async (breedId: string) => {
   const response = await fetch(`/api/user/breed-owners/${breedId}`);
   const data = await response.json();
-  console.log(data.dogOwners);
   return data.dogOwners;
 };
 

@@ -4,8 +4,6 @@ import axios from "axios";
 async function fetchAllUsers() {
   const { data } = await axios.get("http://localhost:3000/api/user");
 
-  console.log(data);
-
   return data.users;
 }
 
@@ -14,8 +12,6 @@ export default function useGetAllUsers() {
     queryKey: ["users"],
     queryFn: fetchAllUsers,
   });
-
-  console.log(users);
 
   return { users, isPending };
 }

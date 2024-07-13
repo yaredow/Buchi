@@ -8,6 +8,7 @@ import Spinner from "../Spinner";
 import useGetUser from "@/utils/hook/useGetUser";
 import { Breed, User } from "@prisma/client";
 import { MessageCircleIcon } from "lucide-react";
+import { getInitials } from "@/lib/formatName";
 
 type UseGetUserType = {
   user: User & {
@@ -37,7 +38,7 @@ export default function UserProfile({ userId }: { userId: string }) {
         <div className="flex items-center gap-6">
           <Avatar className="h-32 w-32">
             <AvatarImage src={user.image || DefaultPfp} />
-            <AvatarFallback>{user.name}</AvatarFallback>
+            <AvatarFallback>{getInitials(user.name as string)}</AvatarFallback>
           </Avatar>
           <div className="space-y-2 text-start">
             <h2 className="text-3xl font-bold">{user.name}</h2>
