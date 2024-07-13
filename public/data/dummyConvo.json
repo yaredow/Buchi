@@ -8,6 +8,12 @@
         "body": "See you at the park tomorrow!",
         "createdAt": "2024-07-12T11:59:00Z",
         "senderId": "u2"
+      },
+      {
+        "id": "m6",
+        "body": "Sure, looking forward to it!",
+        "createdAt": "2024-07-12T11:58:00Z",
+        "senderId": "u1"
       }
     ],
     "users": [
@@ -36,6 +42,12 @@
         "body": "Thanks for the tips on training!",
         "createdAt": "2024-07-12T12:04:00Z",
         "senderId": "u4"
+      },
+      {
+        "id": "m7",
+        "body": "No problem, happy to help!",
+        "createdAt": "2024-07-12T12:03:00Z",
+        "senderId": "u3"
       }
     ],
     "users": [
@@ -64,6 +76,12 @@
         "body": "Let's meet up this weekend.",
         "createdAt": "2024-07-12T12:09:00Z",
         "senderId": "u5"
+      },
+      {
+        "id": "m8",
+        "body": "Sounds good, I'm free on Sunday.",
+        "createdAt": "2024-07-12T12:08:00Z",
+        "senderId": "u6"
       }
     ],
     "users": [
@@ -92,6 +110,12 @@
         "body": "Did you get the new dog toy?",
         "createdAt": "2024-07-12T12:14:00Z",
         "senderId": "u7"
+      },
+      {
+        "id": "m9",
+        "body": "Yes, my dog loves it!",
+        "createdAt": "2024-07-12T12:13:00Z",
+        "senderId": "u8"
       }
     ],
     "users": [
@@ -120,6 +144,12 @@
         "body": "Great seeing you and your dog today!",
         "createdAt": "2024-07-12T12:19:00Z",
         "senderId": "u9"
+      },
+      {
+        "id": "m10",
+        "body": "Same here! Let's do it again soon.",
+        "createdAt": "2024-07-12T12:18:00Z",
+        "senderId": "u10"
       }
     ],
     "users": [
