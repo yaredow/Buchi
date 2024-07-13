@@ -8,6 +8,13 @@ export async function POST(request: NextRequest) {
     const { userId } = body;
     const currentUser = await getCurrentUser();
 
+    if (!currentUser || !userId) {
+      return NextResponse.json(
+        { message: "Invalid user data" },
+        { status: 400 },
+      );
+    }
+
     const existingConversations = await prisma.conversation.findMany({
       where: {
         OR: [

@@ -2,11 +2,9 @@ import { getCurrentUser } from "@/data/user";
 import prisma from "@/utils/db/db";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { conversationId: string } },
-) {
-  const { conversationId } = params;
+export async function DELETE(request: NextRequest) {
+  const conversationId = request.url.slice(request.url.lastIndexOf("/") + 1);
+
   const currentUser = await getCurrentUser();
 
   if (!currentUser?.id) {
