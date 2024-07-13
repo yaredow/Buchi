@@ -1,11 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import MessageList from "./message-list";
 import MessageInput from "./message-input";
 import useConversation from "@/utils/hook/useConversation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Conversation as ConvoType } from "../../../types/conversation";
 import { getInitials } from "@/lib/formatName";
 
 export default function Conversation({
@@ -21,7 +19,7 @@ export default function Conversation({
 
   return (
     <main className="flex h-full w-full flex-grow flex-col">
-      <div className="h-[70vh]">
+      <div className="h-[70vh] w-full">
         <div className="flex w-full items-center border-b px-4 py-2">
           <div className="flex items-center">
             <Avatar className="mr-4">

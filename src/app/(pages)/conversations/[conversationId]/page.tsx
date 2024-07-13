@@ -10,7 +10,7 @@ export default function Page({
   const { conversationId } = params;
 
   return (
-    <div className="md:w-2/3">
+    <div className="w-full">
       <Conversation conversationId={conversationId} />
     </div>
   );

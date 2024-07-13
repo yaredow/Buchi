@@ -9,7 +9,7 @@ export default async function ConversationsLayout({
     <main className="h-full">
       <div className="mx-8 flex flex-row items-center justify-center border md:rounded-md">
         <SideBar />
-        <div className="w-3/4 md:min-h-[80vh]">{children}</div>
+        <div className="w-2/3 md:min-h-[80vh]">{children}</div>
       </div>
     </main>
   );

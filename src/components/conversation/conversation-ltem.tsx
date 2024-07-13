@@ -23,7 +23,7 @@ export default function ConversationItem({
               <div className="font-medium group-hover:text-slate-800">
                 {users[0].name}
               </div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-m text-muted-foreground">
                 {`@${users[0].username}`}
               </div>
             </div>
@@ -33,7 +33,7 @@ export default function ConversationItem({
             </div>
           </div>
           <div className="line-clamp-1 text-sm text-muted-foreground">
-            {lastMessage}
+            {messages[0].body}
           </div>
         </div>
       </div>
