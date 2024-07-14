@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
@@ -9,6 +8,8 @@ import useGetUser from "@/utils/hook/useGetUser";
 import { Breed, User } from "@prisma/client";
 import { MessageCircleIcon } from "lucide-react";
 import { getInitials } from "@/lib/formatName";
+import { UseMutateFunction } from "@tanstack/react-query";
+import useStartConversation from "@/utils/hook/useStartConversation";
 
 type UseGetUserType = {
   user: User & {
@@ -17,12 +18,19 @@ type UseGetUserType = {
   isFetching: boolean;
 };
 
+type StartConversationType = {
+  converse: UseMutateFunction<any, Error, string, unknown>;
+  isPending: boolean;
+};
+
 export default function UserProfile({ userId }: { userId: string }) {
   const { user, isFetching }: UseGetUserType = useGetUser(userId);
-  const router = useRouter();
+  const { converse, isPending }: StartConversationType = useStartConversation();
 
-  const handleClick = () => {
-    router.push("/conversations");
+  const handleChatClick = async () => {
+    try {
+      await converse(user.id);
+    } catch (error) {}
   };
 
   if (isFetching)
@@ -40,12 +48,14 @@ export default function UserProfile({ userId }: { userId: string }) {
             <AvatarImage src={user.image || DefaultPfp} />
             <AvatarFallback>{getInitials(user.name as string)}</AvatarFallback>
           </Avatar>
-          <div className="space-y-2 text-start">
-            <h2 className="text-3xl font-bold">{user.name}</h2>
-            <p className="text-muted-foreground">@{user.userName}</p>
+          <div className="flex flex-row justify-between space-y-2 text-start">
+            <div className="flex flex-col gap-2">
+              <h2 className="text-3xl font-bold">{user.name}</h2>
+              <p className="text-muted-foreground">@{user.userName}</p>
+            </div>
             <div className="mt-4 flex space-x-4">
               <Button
-                onClick={handleClick}
+                onClick={handleChatClick}
                 variant="ghost"
                 size="sm"
                 className="rounded-full"

@@ -6,23 +6,9 @@ import { useRouter } from "next/navigation";
 import Spinner from "../Spinner";
 import useGetDogOwners from "@/utils/hook/useGetDogOwners";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
-import useStartConversation from "@/utils/hook/useStartConversation";
-import { UseMutateFunction } from "@tanstack/react-query";
-
-type StartConversationType = {
-  converse: UseMutateFunction<any, Error, string, unknown>;
-  isPending: boolean;
-};
 
 function DogOwnerCard({ user }: { user: User }) {
   const router = useRouter();
-  const { converse, isPending }: StartConversationType = useStartConversation();
-
-  const handleUserClick = async () => {
-    try {
-      await converse(user.id);
-    } catch (error) {}
-  };
 
   return (
     <div className="flex items-center gap-4">
