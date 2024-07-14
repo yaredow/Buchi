@@ -2,21 +2,8 @@ import React, { useState } from "react";
 import { MicIcon, PaperclipIcon, SmileIcon } from "lucide-react";
 import { Input } from "../ui/input";
 
-const MessageInput = ({
-  sendMessage,
-  senderId,
-}: {
-  sendMessage: any;
-  senderId: string;
-}) => {
+const MessageInput = () => {
   const [message, setMessage] = useState("");
-
-  const handleSendMessage = () => {
-    if (message.trim()) {
-      sendMessage(message, senderId);
-      setMessage("");
-    }
-  };
 
   return (
     <div className="flex w-full items-center justify-center border-t p-4">

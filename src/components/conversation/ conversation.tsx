@@ -6,17 +6,39 @@ import useConversation from "@/utils/hook/useConversation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { getInitials } from "@/lib/formatName";
 import ConversationHeader from "./conversation-header";
+import useGetConversation from "@/utils/hook/useGetConversation";
+import {
+  Conversation as ConversationType,
+  Message,
+  User,
+} from "@prisma/client";
+import Spinner from "../Spinner";
+
+type UseGetConversationType = {
+  conversation: ConversationType & {
+    users: User[];
+    messages: Message[];
+  };
+  isFetching: boolean;
+};
 
 export default function Conversation({
   conversationId,
 }: {
   conversationId: string;
 }) {
-  const { conversation, sendMessage } = useConversation(conversationId);
-
-  if (!conversation || conversation.length === 0) return <div>loading...</div>;
+  const { conversation, isFetching }: UseGetConversationType =
+    useGetConversation(conversationId);
 
   const { users, messages } = conversation;
+
+  if (isFetching) {
+    return (
+      <div className="grid items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <main className="flex h-full w-full flex-grow flex-col">
@@ -28,7 +50,7 @@ export default function Conversation({
         </div>
       </div>
 
-      <MessageInput sendMessage={sendMessage} senderId={users[0].id} />
+      <MessageInput />
     </main>
   );
 }

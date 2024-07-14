@@ -7,6 +7,7 @@ export async function GET(request: NextRequest) {
   try {
     const conversation = await prisma.conversation.findUnique({
       where: { id: conversationId },
+      include: { users: true, messages: true },
     });
 
     if (!conversation) {
