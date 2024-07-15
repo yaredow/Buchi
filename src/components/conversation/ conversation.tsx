@@ -19,11 +19,15 @@ type UseGetConversationType = {
   isFetching: boolean;
 };
 
+type ConversationProps = {
+  conversationId: string;
+  currentUserId: string;
+};
+
 export default function Conversation({
   conversationId,
-}: {
-  conversationId: string;
-}) {
+  currentUserId,
+}: ConversationProps) {
   const { conversation, isFetching }: UseGetConversationType =
     useGetConversation(conversationId);
 
@@ -38,7 +42,10 @@ export default function Conversation({
   return (
     <main className="flex h-full w-full flex-grow flex-col">
       <div className="min-h-[75vh] w-full">
-        <ConversationHeader users={conversation.users} />
+        <ConversationHeader
+          currentUserId={currentUserId}
+          users={conversation.users}
+        />
 
         <div className="flex-1 overflow-y-auto p-4">
           <MessageList messages={conversation.messages} />

@@ -1,18 +1,21 @@
-"use client";
-
 import Conversation from "@/components/conversation/ conversation";
+import { getCurrentUser } from "@/data/user";
 
-export default function Page({
+export default async function Page({
   params,
 }: {
   params: { conversationId: string };
 }) {
   const { conversationId } = params;
-  console.log(conversationId);
+  const currentUser = await getCurrentUser();
+  const currentUserId = currentUser?.id as string;
 
   return (
     <div className="w-full">
-      <Conversation conversationId={conversationId} />
+      <Conversation
+        currentUserId={currentUserId}
+        conversationId={conversationId}
+      />
     </div>
   );
 }

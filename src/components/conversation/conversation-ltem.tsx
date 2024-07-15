@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { formatDate } from "@/lib/helpers";
 import { Conversation, User } from "@prisma/client";
 import { getMessages } from "@/data/message";
+import { getInitials } from "@/lib/formatName";
 
 type ConversationItemProps = {
   conversation: Conversation & {
@@ -29,14 +30,14 @@ export default async function ConversationItem({
             src={otherUser?.image}
             alt={otherUser?.name || "user image"}
           />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback>{getInitials(otherUser?.name || "")}</AvatarFallback>
         </Avatar>
 
         <div className="grid flex-1 gap-1">
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
               <div className="font-medium group-hover:text-slate-800">
-                {users[0].name}
+                {otherUser?.name}
               </div>
               <div className="text-m text-muted-foreground">
                 {`@${otherUser?.userName}`}
