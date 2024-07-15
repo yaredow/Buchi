@@ -23,3 +23,25 @@ export async function getConversationById(conversationId: string) {
     return null;
   }
 }
+
+export async function getConversations() {
+  try {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser?.email) {
+      return null;
+    }
+
+    const conversations = await prisma.conversation.findMany({
+      include: { users: true, messages: true },
+    });
+
+    if (!conversations) {
+      return null;
+    }
+
+    return conversations;
+  } catch (error: any) {
+    return null;
+  }
+}

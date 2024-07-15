@@ -6,8 +6,6 @@ const fetchConversation = async (conversationId: string) => {
   );
   const data = await response.json();
 
-  console.log(data);
-
   return data;
 };
 
@@ -16,8 +14,6 @@ export default function useGetBreed(conversationId: string) {
     queryKey: ["conversation", conversationId],
     queryFn: () => fetchConversation(conversationId),
   });
-
-  console.log(conversation);
 
   return { conversation, isFetching };
 }
