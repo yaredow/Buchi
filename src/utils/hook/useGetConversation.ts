@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-const fetchConveration = async (conversationId: string) => {
+const fetchConversation = async (conversationId: string) => {
   const response = await fetch(
     `/api/conversations/conversation/${conversationId}`,
   );
@@ -11,11 +11,13 @@ const fetchConveration = async (conversationId: string) => {
   return data;
 };
 
-export default function useGetConversation(conversationId: string) {
+export default function useGetBreed(conversationId: string) {
   const { data: conversation, isFetching } = useQuery({
-    queryKey: ["conversation"],
-    queryFn: () => fetchConveration(conversationId),
+    queryKey: ["conversation", conversationId],
+    queryFn: () => fetchConversation(conversationId),
   });
+
+  console.log(conversation);
 
   return { conversation, isFetching };
 }

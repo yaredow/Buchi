@@ -8,6 +8,7 @@ export default function Page({
   params: { conversationId: string };
 }) {
   const { conversationId } = params;
+  console.log(conversationId);
 
   return (
     <div className="w-full">

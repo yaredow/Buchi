@@ -27,10 +27,6 @@ export default function Conversation({
   const { conversation, isFetching }: UseGetConversationType =
     useGetConversation(conversationId);
 
-  console.log(conversation);
-
-  const { users, messages } = conversation;
-
   if (isFetching) {
     return (
       <div className="grid items-center justify-center">
@@ -42,10 +38,10 @@ export default function Conversation({
   return (
     <main className="flex h-full w-full flex-grow flex-col">
       <div className="min-h-[75vh] w-full">
-        <ConversationHeader users={users} />
+        <ConversationHeader users={conversation.users} />
 
         <div className="flex-1 overflow-y-auto p-4">
-          <MessageList messages={messages} />
+          <MessageList messages={conversation.messages} />
         </div>
       </div>
 
