@@ -10,6 +10,7 @@ import { MessageCircleIcon } from "lucide-react";
 import { getInitials } from "@/lib/formatName";
 import { UseMutateFunction } from "@tanstack/react-query";
 import useStartConversation from "@/utils/hook/useStartConversation";
+import { cn } from "@/lib/utils";
 
 type UseGetUserType = {
   user: User & {
@@ -41,7 +42,12 @@ export default function UserProfile({ userId }: { userId: string }) {
     );
 
   return (
-    <div className="mx-auto w-full max-w-4xl rounded-xl bg-background p-8 shadow-lg">
+    <div
+      className={cn(
+        "mx-auto w-full max-w-4xl rounded-xl bg-background p-8 shadow-lg",
+        { "opacity-60": isPending },
+      )}
+    >
       <div className="flex items-center justify-between gap-6">
         <div className="flex items-center gap-6">
           <Avatar className="h-32 w-32">

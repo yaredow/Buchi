@@ -2,19 +2,24 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 const startConversation = async (userId: string) => {
-  const response = await fetch("http://localhost:3000/api/conversations", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+  const response = await fetch(
+    "http://localhost:3000/api/conversations/start-conversation",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId }),
     },
-    body: JSON.stringify({ userId }),
-  });
+  );
 
   if (!response.ok) {
     throw new Error("Failed to start conversation");
   }
 
   const data = await response.json();
+
+  console.log(data);
 
   return data;
 };

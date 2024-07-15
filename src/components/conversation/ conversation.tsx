@@ -2,9 +2,6 @@
 
 import MessageList from "./message-list";
 import MessageInput from "./message-input";
-import useConversation from "@/utils/hook/useConversation";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { getInitials } from "@/lib/formatName";
 import ConversationHeader from "./conversation-header";
 import useGetConversation from "@/utils/hook/useGetConversation";
 import {
@@ -29,6 +26,8 @@ export default function Conversation({
 }) {
   const { conversation, isFetching }: UseGetConversationType =
     useGetConversation(conversationId);
+
+  console.log(conversation);
 
   const { users, messages } = conversation;
 

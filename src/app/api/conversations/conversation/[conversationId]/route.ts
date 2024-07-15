@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const conversationId = request.url.slice(request.url.lastIndexOf("/") + 1);
+  console.log(conversationId);
 
   try {
     const conversation = await prisma.conversation.findUnique({

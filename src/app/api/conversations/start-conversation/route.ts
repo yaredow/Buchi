@@ -26,6 +26,9 @@ export async function POST(request: NextRequest) {
           },
         ],
       },
+      include: {
+        users: true,
+      },
     });
 
     const singleConversation = existingConversations[0];
