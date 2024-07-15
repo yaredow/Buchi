@@ -1,6 +1,8 @@
 import { MenuIcon } from "lucide-react";
 import ConversationList from "./ conversation-list";
 import { Input } from "../ui/input";
+import { Suspense } from "react";
+import ConversationItemSkeleton from "../skeletons/conversation-item-skeleton";
 
 export default function SideBar() {
   return (
@@ -12,7 +14,9 @@ export default function SideBar() {
       <div className="border-b p-4">
         <Input placeholder="Search messages..." className="w-full" />
       </div>
-      <ConversationList />
+      <Suspense fallback={<ConversationItemSkeleton />}>
+        <ConversationList />
+      </Suspense>
     </aside>
   );
 }
