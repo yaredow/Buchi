@@ -1,7 +1,6 @@
 import { getCurrentUser } from "@/data/user";
 import ConversationItem from "./conversation-ltem";
 import { getConversations } from "@/data/conversations";
-import { getMessages } from "@/data/message";
 
 export default async function ConversationList() {
   const conversations = await getConversations();
