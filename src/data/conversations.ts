@@ -33,7 +33,7 @@ export async function getConversations() {
     }
 
     const conversations = await prisma.conversation.findMany({
-      include: { users: true, messages: true },
+      include: { users: true },
     });
 
     if (!conversations) {

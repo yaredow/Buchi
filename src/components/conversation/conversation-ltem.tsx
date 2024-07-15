@@ -2,22 +2,24 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { formatDate } from "@/lib/helpers";
 import { Conversation, Message, User } from "@prisma/client";
+import { getMessages } from "@/data/message";
 
 type ConversationItemProps = {
   conversation: Conversation & {
-    messages: Message[];
     users: User[];
   };
   currentUserId: string;
 };
 
-export default function ConversationItem({
+export default async function ConversationItem({
   conversation,
   currentUserId,
 }: ConversationItemProps) {
-  const { messages, users, lastMessageAt } = conversation;
+  const { users, lastMessageAt } = conversation;
   const otherUser = users.find((user) => user.id !== currentUserId);
-  console.log(messages);
+  const messages = await getMessages(conversation.id);
+  const lastMessage =
+    messages.length > 0 ? messages[messages.length - 1] : null;
 
   return (
     <Link href={`/conversations/${conversation.id}`}>
@@ -46,7 +48,7 @@ export default function ConversationItem({
             </div>
           </div>
           <div className="line-clamp-1 text-sm text-muted-foreground">
-            {messages[0].body || "Start a conversation"}
+            {lastMessage ? lastMessage.body : "Start a conversation"}
           </div>
         </div>
       </div>
