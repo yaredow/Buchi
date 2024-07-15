@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { formatDate } from "@/lib/helpers";
-import { Conversation, Message, User } from "@prisma/client";
+import { Conversation, User } from "@prisma/client";
 import { getMessages } from "@/data/message";
 
 type ConversationItemProps = {
