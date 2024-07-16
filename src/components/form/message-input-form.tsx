@@ -6,12 +6,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Button } from "../ui/button";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
+import ImageUploader from "../image-uploader";
 
 export default function MessageInputForm({
   conversationId,
 }: {
   conversationId: string;
 }) {
+  const [files, setFiles] = useState<File[] | null>(null);
   const form = useForm<z.infer<typeof MessageInputSchema>>({
     resolver: zodResolver(MessageInputSchema),
     defaultValues: {
@@ -37,24 +40,26 @@ export default function MessageInputForm({
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex w-full flex-row gap-2"
+          className="flex w-full flex-row items-center gap-4"
         >
+          <div>
+            <ImageUploader files={files} setFiles={setFiles} />
+          </div>
           <FormField
             control={form.control}
             name="body"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="Type your message here"
-                      type="text"
-                    />
-                  </FormControl>
-                </FormItem>
-              );
-            }}
+            render={({ field }) => (
+              <FormItem className="flex-grow">
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Type your message here"
+                    type="text"
+                    className="w-full"
+                  />
+                </FormControl>
+              </FormItem>
+            )}
           />
           <Button type="submit">
             <PaperPlaneIcon />

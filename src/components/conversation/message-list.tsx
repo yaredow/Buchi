@@ -1,5 +1,5 @@
 import { Message } from "@prisma/client";
-import MessageItem from "./ message-item";
+import MessageItem from "@/components/conversation/ message-item";
 
 type MessageListProps = {
   messages: Message[];
