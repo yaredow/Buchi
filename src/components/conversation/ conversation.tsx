@@ -18,7 +18,7 @@ export default async function Conversation({
 
   return (
     <main className="flex h-full w-full flex-grow flex-col">
-      <div className="min-h-[75vh] w-full">
+      <div className="flex h-full flex-col">
         <ConversationHeader
           currentUserId={currentUserId}
           users={conversation?.users}
@@ -27,9 +27,9 @@ export default async function Conversation({
         <div className="flex-1 overflow-y-auto p-4">
           <MessageList messages={conversation?.messages} />
         </div>
-      </div>
 
-      <MessageInput conversationId={conversationId} />
+        <MessageInput conversationId={conversationId} />
+      </div>
     </main>
   );
 }
