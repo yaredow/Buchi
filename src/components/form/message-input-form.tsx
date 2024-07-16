@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "../ui/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -6,15 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Button } from "../ui/button";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
-import ImageUploader from "../image-uploader";
+import { CldUploadWidget } from "next-cloudinary";
+import { ImageUp } from "lucide-react";
 
 export default function MessageInputForm({
   conversationId,
 }: {
   conversationId: string;
 }) {
-  const [files, setFiles] = useState<File[] | null>(null);
   const form = useForm<z.infer<typeof MessageInputSchema>>({
     resolver: zodResolver(MessageInputSchema),
     defaultValues: {
@@ -25,7 +26,10 @@ export default function MessageInputForm({
   const onSubmit = async (values: z.infer<typeof MessageInputSchema>) => {
     const response = await fetch("/api/messages", {
       method: "POST",
-      body: JSON.stringify({ body: values.body, conversationId }),
+      body: JSON.stringify({
+        body: values.body,
+        conversationId,
+      }),
     });
 
     if (!response.ok) {
@@ -35,6 +39,14 @@ export default function MessageInputForm({
     form.reset();
   };
 
+  const handleUpload = async (result: any) => {
+    console.log(result);
+    await fetch("/api/messages", {
+      method: "POST",
+      body: JSON.stringify({ image: result?.info?.url, conversationId }),
+    });
+  };
+
   return (
     <div className="flex w-full items-center justify-center border-t p-4">
       <Form {...form}>
@@ -42,9 +54,20 @@ export default function MessageInputForm({
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex w-full flex-row items-center gap-4"
         >
-          <div>
-            <ImageUploader files={files} setFiles={setFiles} />
-          </div>
+          <CldUploadWidget
+            options={{ maxFiles: 6 }}
+            onSuccess={handleUpload}
+            uploadPreset="doggo-chat"
+          >
+            {({ open }) => {
+              return (
+                <button className="gap-2 border-2" onClick={() => open()}>
+                  <ImageUp />
+                </button>
+              );
+            }}
+          </CldUploadWidget>
+
           <FormField
             control={form.control}
             name="body"
