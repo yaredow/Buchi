@@ -3,6 +3,7 @@ import ConversationList from "./ conversation-list";
 import { Input } from "../ui/input";
 import { Suspense } from "react";
 import ConversationItemSkeleton from "../skeletons/conversation-item-skeleton";
+import SkeletonLoader from "../skeletons/skeleton-loader";
 
 export default function SideBar() {
   return (
@@ -14,7 +15,14 @@ export default function SideBar() {
       <div className="border-b p-4">
         <Input placeholder="Search messages..." className="w-full" />
       </div>
-      <Suspense fallback={<ConversationItemSkeleton />}>
+      <Suspense
+        fallback={
+          <SkeletonLoader
+            count={4}
+            SkeletonComponent={ConversationItemSkeleton}
+          />
+        }
+      >
         <ConversationList />
       </Suspense>
     </aside>
