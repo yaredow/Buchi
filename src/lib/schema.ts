@@ -211,3 +211,7 @@ export const newsLetterFormSchema = z.object({
   ),
   email: z.string().email(),
 });
+
+export const MessageInputSchema = z.object({
+  body: z.string().min(1, "Message body cannot be empty"),
+});
