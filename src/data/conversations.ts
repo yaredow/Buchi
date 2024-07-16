@@ -42,7 +42,11 @@ export async function getConversations() {
     }
 
     const conversations = await prisma.conversation.findMany({
-      include: { users: true },
+      where: { users: { some: { id: currentUser.id } } },
+      include: { users: true, messages: true },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     if (!conversations) {

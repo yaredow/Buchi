@@ -3,7 +3,12 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const conversations = await prisma.conversation.findMany();
+    const conversations = await prisma.conversation.findMany({
+      include: {
+        messages: true,
+        users: true,
+      },
+    });
 
     if (!conversations) {
       return new Response("No conversations found", { status: 404 });
