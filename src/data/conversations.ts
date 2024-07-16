@@ -1,7 +1,15 @@
 import prisma from "@/utils/db/db";
 import { getCurrentUser } from "./user";
+import { Conversation, Message, User } from "@prisma/client";
 
-export async function getConversationById(conversationId: string) {
+type ConversationExtendedType = Conversation & {
+  messages: Message[];
+  users: User[];
+};
+
+export async function getConversationById(
+  conversationId: string,
+): Promise<ConversationExtendedType | null> {
   try {
     const currentUser = await getCurrentUser();
 
@@ -15,10 +23,11 @@ export async function getConversationById(conversationId: string) {
       },
       include: {
         users: true,
+        messages: true,
       },
     });
 
-    return conversation;
+    return conversation as ConversationExtendedType;
   } catch (error: any) {
     return null;
   }

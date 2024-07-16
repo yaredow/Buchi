@@ -3,17 +3,10 @@ import { MicIcon, PaperclipIcon, SmileIcon } from "lucide-react";
 import { Input } from "../ui/input";
 
 const MessageInput = () => {
-  const [message, setMessage] = useState("");
-
   return (
     <div className="flex w-full items-center justify-center border-t p-4">
       <SmileIcon className="mr-4 h-6 w-6" />
-      <Input
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Write your message here"
-        className="w-full flex-1"
-      />
+      <Input placeholder="Write your message here" className="w-full flex-1" />
       <PaperclipIcon className="mx-4 h-6 w-6" />
       <MicIcon className="h-6 w-6" />
     </div>
