@@ -13,6 +13,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { Button } from "../ui/button";
 
 export default function MessageInput() {
   const [isPending, startTransition] = useTransition();
@@ -30,7 +31,10 @@ export default function MessageInput() {
   return (
     <div className="flex w-full items-center justify-center border-t p-4">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex w-full flex-row gap-2"
+        >
           <FormField
             control={form.control}
             name="body"
@@ -45,11 +49,11 @@ export default function MessageInput() {
                       type="text"
                     />
                   </FormControl>
-                  <FormMessage className="mx-2" />
                 </FormItem>
               );
             }}
           />
+          <Button type="submit">Send</Button>
         </form>
       </Form>
     </div>
