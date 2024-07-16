@@ -1,12 +1,13 @@
 import { getCurrentUser } from "@/data/user";
 import prisma from "@/utils/db/db";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(reques: NextRequest) {
   try {
     const body = await reques.json();
     const currentUser = await getCurrentUser();
-    const { message, conversationId, image } = body;
+    const { body: message, conversationId, image } = body;
 
     if (!currentUser?.id || !currentUser?.email) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
@@ -60,7 +61,8 @@ export async function POST(reques: NextRequest) {
       },
     });
 
-    return NextResponse.json(updatedConversation, { status: 200 });
+    revalidatePath(`/conversations/${conversationId}`);
+    return NextResponse.json(newMessage, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

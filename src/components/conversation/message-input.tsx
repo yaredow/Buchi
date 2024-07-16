@@ -6,17 +6,14 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { MessageInputSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Button } from "../ui/button";
 
-export default function MessageInput() {
-  const [isPending, startTransition] = useTransition();
+export default function MessageInput({
+  conversationId,
+}: {
+  conversationId: string;
+}) {
   const form = useForm<z.infer<typeof MessageInputSchema>>({
     resolver: zodResolver(MessageInputSchema),
     defaultValues: {
@@ -24,8 +21,18 @@ export default function MessageInput() {
     },
   });
 
-  const onSubmit = () => {
-    startTransition(() => {});
+  const onSubmit = async (values: z.infer<typeof MessageInputSchema>) => {
+    const response = await fetch("/api/messages", {
+      method: "POST",
+      body: JSON.stringify({ body: values.body, conversationId }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to send message");
+    }
+
+    const message = await response.json();
+    console.log(message);
   };
 
   return (
@@ -43,7 +50,6 @@ export default function MessageInput() {
                 <FormItem>
                   <FormControl>
                     <Input
-                      disabled={isPending}
                       {...field}
                       placeholder="Type your message here"
                       type="text"

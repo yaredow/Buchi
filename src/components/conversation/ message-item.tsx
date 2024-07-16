@@ -1,6 +1,11 @@
 import { formatDate } from "@/lib/helpers";
+import { Message } from "@prisma/client";
 
-export default function MessageItem({ message }: { message: any }) {
+type MessageItemProps = {
+  message: Message;
+};
+
+export default function MessageItem({ message }: MessageItemProps) {
   const { body, createdAt } = message;
 
   return (

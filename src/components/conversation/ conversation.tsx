@@ -29,7 +29,7 @@ export default async function Conversation({
         </div>
       </div>
 
-      <MessageInput />
+      <MessageInput conversationId={conversationId} />
     </main>
   );
 }
