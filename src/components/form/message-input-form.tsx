@@ -40,7 +40,6 @@ export default function MessageInputForm({
   };
 
   const handleUpload = async (result: any) => {
-    console.log(result);
     await fetch("/api/messages", {
       method: "POST",
       body: JSON.stringify({ image: result?.info?.url, conversationId }),

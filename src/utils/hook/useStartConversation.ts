@@ -19,8 +19,6 @@ const startConversation = async (userId: string) => {
 
   const data = await response.json();
 
-  console.log(data);
-
   return data;
 };
 
