@@ -18,18 +18,18 @@ export default async function Conversation({
 
   return (
     <main className="flex h-full w-full flex-grow flex-col">
-      <div className="flex h-full flex-col">
+      <div className="w-full">
         <ConversationHeader
           currentUserId={currentUserId}
           users={conversation?.users}
         />
 
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 p-4">
           <MessageList messages={conversation?.messages} />
         </div>
-
-        <MessageInput conversationId={conversationId} />
       </div>
+
+      <MessageInput conversationId={conversationId} />
     </main>
   );
 }
