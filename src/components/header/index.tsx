@@ -11,8 +11,7 @@ import UserMenu from "@/components/user-menu";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/../public/images/logo-light.svg";
-import { auth } from "@/auth";
-import ChatToggle from "../conversation/chat-toggle";
+import ConversationToggle from "@/components/conversations/conversation-toggle";
 
 export default async function Header() {
   return (
@@ -33,7 +32,7 @@ export default async function Header() {
             </ul>
           </div>
 
-          <ChatToggle />
+          <ConversationToggle />
 
           <ModeToggle />
 
