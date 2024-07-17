@@ -26,7 +26,7 @@ const BreedCard: FC<BreedCardProps> = ({
   return (
     <article
       onClick={handleClick}
-      className="mb-4 cursor-pointer rounded-lg text-secondary-body"
+      className="text-secondary-body mb-4 cursor-pointer rounded-lg"
     >
       <Image
         src={breedImages[0]}

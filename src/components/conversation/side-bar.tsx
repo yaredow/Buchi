@@ -51,35 +51,7 @@ export default function SideBar({ links, isMobile }: SidebarProps) {
 
       <nav className="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
         {links.map((link, index) => (
-          <Link
-            key={index}
-            href="#"
-            className={cn(
-              buttonVariants({ variant: link.variant, size: "lg" }),
-              link.variant === "grey" &&
-                "shrink dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
-              "justify-start gap-4",
-            )}
-          >
-            <Avatar className="flex items-center justify-center">
-              <AvatarImage
-                src={link.avatar}
-                alt={link.avatar}
-                width={6}
-                height={6}
-                className="h-10 w-10"
-              />
-            </Avatar>
-            <div className="flex max-w-28 flex-col">
-              <span>{link.name}</span>
-              {link.messages.length > 0 && (
-                <span className="truncate text-xs text-zinc-300">
-                  {link.messages[link.messages.length - 1].name.split(" ")[0]}:{" "}
-                  {link.messages[link.messages.length - 1].message}
-                </span>
-              )}
-            </div>
-          </Link>
+          
         ))}
       </nav>
     </div>

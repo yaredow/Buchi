@@ -7,7 +7,7 @@ import { Input } from "./ui/input";
 const Footer = () => {
   return (
     <footer className="border-t bg-background">
-      <div className="max-w-screen-xl sm:px-6 mx-auto px-4 py-16 md:px-8">
+      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 md:px-8">
         <div className="md:flex md:items-start md:gap-8">
           <div className="text-teal-600">
             <Image src={logo} alt="logo" height={70} width={70} quality={90} />
@@ -31,22 +31,22 @@ const Footer = () => {
                   Email
                 </label>
 
-                <div className="sm:items-center flex flex-col gap-4 border border-gray-100 p-2 focus-within:ring">
+                <div className="flex flex-col gap-4 border border-gray-100 p-2 focus-within:ring sm:items-center">
                   <Input
                     type="email"
                     id="UserEmail"
                     placeholder="john@rhcp.com"
-                    className="sm:text-sm w-full border-none focus:border-transparent focus:ring-transparent"
+                    className="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm"
                   />
 
-                  <Button className="sm:mt-0 sm:w-auto sm:shrink-0 mt-1 w-full px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-none">
+                  <Button className="mt-1 w-full px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-none sm:mt-0 sm:w-auto sm:shrink-0">
                     Sign Up
                   </Button>
                 </div>
               </form>
             </div>
 
-            <div className="sm:col-span-1 col-span-2">
+            <div className="col-span-2 sm:col-span-1">
               <p className="font-medium">Services</p>
 
               <ul className="mt-6 space-y-4 text-sm text-slate-300">
@@ -82,7 +82,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div className="sm:col-span-1 col-span-2">
+            <div className="col-span-2 sm:col-span-1">
               <p className="font-medium">Company</p>
 
               <ul className="mt-6 space-y-4 text-sm text-slate-300">

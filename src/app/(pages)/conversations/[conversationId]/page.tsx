@@ -1,3 +1,4 @@
+import { ChatLayout } from "@/components/chat/chat-layout";
 import Conversation from "@/components/conversation/ conversation";
 import { getCurrentUser } from "@/data/user";
 
@@ -12,10 +13,7 @@ export default async function Page({
 
   return (
     <div className="w-full">
-      <Conversation
-        currentUserId={currentUserId}
-        conversationId={conversationId}
-      />
+      <ChatLayout />
     </div>
   );
 }

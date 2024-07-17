@@ -25,20 +25,20 @@ function Hero() {
             src={HeroImgMob}
             alt="an image of dog running in a field with joy"
             fill
-            className="w-screen rounded-btn object-cover shadow-lg"
+            className="rounded-btn w-screen object-cover shadow-lg"
             sizes={"100%"}
             unoptimized={true}
           />
-          <h2 className="tracking-regular font-regular absolute bottom-2 p-2 font-main text-4xl leading-none text-white shadow">
+          <h2 className="tracking-regular font-regular font-main absolute bottom-2 p-2 text-4xl leading-none text-white shadow">
             Find your perfect <br /> dog breed
           </h2>
         </div>
 
         <div className="flex flex-col items-center justify-center md:items-start md:pl-6">
-          <h2 className="tracking-regular hidden font-main text-[40px] font-bold leading-none text-secondary-body md:block md:leading-tight">
+          <h2 className="tracking-regular font-main text-secondary-body hidden text-[40px] font-bold leading-none md:block md:leading-tight">
             Doggo. Find your perfect dog breed
           </h2>
-          <p className="font-regular px-10 py-6 text-center font-sans text-3xl leading-8 text-secondary-body md:px-0 md:py-0 md:text-left md:text-sm">
+          <p className="font-regular text-secondary-body px-10 py-6 text-center font-sans text-3xl leading-8 md:px-0 md:py-0 md:text-left md:text-sm">
             Discover the ideal companion for your lifestyle
           </p>
           <div className="w-full pt-4">

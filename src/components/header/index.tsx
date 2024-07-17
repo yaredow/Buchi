@@ -16,7 +16,7 @@ import ChatToggle from "../conversation/chat-toggle";
 
 export default async function Header() {
   return (
-    <header className="sticky inset-0 inset-y-0 right-0 z-10 w-full border-b bg-background px-4 py-3 text-secondary-body dark:text-white md:px-12">
+    <header className="text-secondary-body sticky inset-0 inset-y-0 right-0 z-10 w-full border-b bg-background px-4 py-3 dark:text-white md:px-12">
       <nav className="flex items-center justify-between">
         <Link href="/" className="flex items-center justify-center gap-2">
           <Image src={Logo} height={40} width={40} alt="An image of a dog" />
@@ -24,7 +24,7 @@ export default async function Header() {
         </Link>
         <div className="flex flex-row items-center justify-center gap-8">
           <div className="hidden md:flex">
-            <ul className="flex gap-[1.2rem] font-main">
+            <ul className="font-main flex gap-[1.2rem]">
               {navLinks.map((navLink, index) => (
                 <li key={index}>
                   <NavLink href={navLink.src}>{navLink.title}</NavLink>
@@ -67,7 +67,7 @@ export default async function Header() {
 
               <div className="mt-8 flex flex-col gap-6">
                 <div className="flex">
-                  <ul className="-mx-2 flex flex-col gap-[1.2rem] font-main">
+                  <ul className="font-main -mx-2 flex flex-col gap-[1.2rem]">
                     {navLinks.map((navLink, index) => (
                       <li key={index}>
                         <NavLink href={navLink.src}>{navLink.title}</NavLink>

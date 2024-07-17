@@ -2,21 +2,10 @@
 
 import { userData } from "@/app/data";
 import React, { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 import SideBar from "../conversation/side-bar";
-import { Chat } from "./chat";
+import Chat from "./chat";
 
-interface ChatLayoutProps {
-  defaultLayout: number[] | undefined;
-  defaultCollapsed?: boolean;
-  navCollapsedSize: number;
-}
-
-export function ChatLayout({
-  defaultLayout = [480, 560],
-  defaultCollapsed = false,
-  navCollapsedSize,
-}: ChatLayoutProps) {
+export function ChatLayout() {
   const [selectedUser, setSelectedUser] = React.useState(userData[0]);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -38,7 +27,7 @@ export function ChatLayout({
   }, []);
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-full w-full">
       <div className="">
         <SideBar
           links={userData.map((user) => ({

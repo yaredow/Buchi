@@ -25,7 +25,7 @@ export default function BreedDetails({ slug }: { slug: string }) {
         <div className="relative mx-4 mt-4 h-[50vh] w-full overflow-hidden">
           <Image
             alt={breed?.breedImages[0] as string}
-            className="h-full w-full rounded-btn object-cover object-center"
+            className="rounded-btn h-full w-full object-cover object-center"
             height={800}
             src={breed.breedImages[0]}
             width={1200}
