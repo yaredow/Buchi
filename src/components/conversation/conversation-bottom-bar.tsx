@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Message, loggedInUserData } from "@/app/data";
 import { Textarea } from "../ui/textarea";
-import { EmojiPicker } from "../emoji-picker";
+import { EmojiPicker } from "@/components/emoji-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 interface ChatBottombarProps {
