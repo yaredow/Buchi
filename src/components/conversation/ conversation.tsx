@@ -1,7 +1,7 @@
 import MessageList from "./message-list";
 import MessageInput from "./message-input";
-import ConversationHeader from "./conversation-header";
 import { getConversationById } from "@/data/conversations";
+import ConversationTopbar from "./conversation-header";
 
 type ConversationProps = {
   conversationId: string;
@@ -19,9 +19,9 @@ export default async function Conversation({
   return (
     <main className="flex h-full w-full flex-grow flex-col">
       <div className="w-full">
-        <ConversationHeader
+        <ConversationTopbar
+          selectedUser={conversation.users}
           currentUserId={currentUserId}
-          users={conversation?.users}
         />
 
         <div className="flex-1 p-4">
