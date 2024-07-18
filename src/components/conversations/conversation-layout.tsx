@@ -41,8 +41,6 @@ export default function ConversationLayout({
   const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const { conversations, isPending }: UseConversationsType =
-    useGetConversations();
 
   useEffect(() => {
     const checkScreenWidth = () => {
@@ -60,8 +58,6 @@ export default function ConversationLayout({
       window.removeEventListener("resize", checkScreenWidth);
     };
   }, []);
-
-  if (isPending) return <div>Loading...</div>;
 
   return (
     <ResizablePanelGroup
@@ -98,7 +94,6 @@ export default function ConversationLayout({
       >
         <ConversationSidebar
           isCollapsed={isCollapsed || isMobile}
-          conversations={conversations}
           onSelectUser={setSelectedUser}
           isMobile={isMobile}
         />

@@ -14,26 +14,35 @@ import {
 } from "./ui/tooltip";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { useSession } from "next-auth/react";
+import DefaultPfp from "@/../public/images/Default_pfp.svg";
+import useGetConversations from "@/utils/hook/useGetConversations";
 
 interface SidebarProps {
   isMobile: boolean;
   isCollapsed: boolean;
+  onSelectUser: React.Dispatch<SetStateAction<User | null>>;
+}
+
+type UseConversationsType = {
   conversations: Conversation &
     {
       users: User[];
       messages: Message[];
     }[];
-  onSelectUser: React.Dispatch<SetStateAction<User | null>>;
-}
+  isPending: boolean;
+};
 
 export default function ConversationSidebar({
-  conversations,
   isCollapsed,
   onSelectUser,
   isMobile,
 }: SidebarProps) {
   const { data: session } = useSession();
   const currentLoggedInUserId = session?.user?.id;
+  const { conversations, isPending }: UseConversationsType =
+    useGetConversations();
+
+  if (isPending) return <div>Loading...</div>;
 
   return (
     <div
@@ -85,7 +94,7 @@ export default function ConversationSidebar({
           if (!otherUser) return null;
 
           return (
-            <div key={index}>
+            <div key={index} onClick={() => onSelectUser(otherUser)}>
               {isCollapsed ? (
                 <TooltipProvider>
                   <Tooltip key={index} delayDuration={0}>
@@ -96,11 +105,10 @@ export default function ConversationSidebar({
                           buttonVariants({ variant: "grey", size: "lg" }), // Adjust variant based on your design
                           "justify-start gap-4",
                         )}
-                        onClick={() => onSelectUser(otherUser)}
                       >
                         <Avatar className="flex items-center justify-center">
                           <AvatarImage
-                            src={otherUser.image}
+                            src={otherUser.image || DefaultPfp}
                             alt={otherUser.name || ""}
                             width={40} // Adjust size based on your design
                             height={40} // Adjust size based on your design
@@ -144,7 +152,7 @@ export default function ConversationSidebar({
                 >
                   <Avatar className="flex items-center justify-center">
                     <AvatarImage
-                      src={otherUser.image}
+                      src={otherUser.image || DefaultPfp}
                       alt={otherUser.name || ""}
                       width={6}
                       height={6}
