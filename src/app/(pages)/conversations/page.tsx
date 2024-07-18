@@ -1,3 +1,18 @@
+import ConversationLayout from "@/components/conversations/conversation-layout";
+import { cookies } from "next/headers";
+
 export default function Page() {
-  return <div>Enter</div>;
+  const layout = cookies().get("react-resizable-panels:layout");
+  const defaultLayout = layout ? JSON.parse(layout.value) : undefined;
+
+  return (
+    <main className="flex h-[calc(100dvh)] flex-col items-center justify-center gap-4 p-4 py-16 md:px-12">
+      <div className="min-w-5xl z-10 h-full w-full rounded-lg border text-sm lg:flex">
+        <ConversationLayout
+          defaultLayout={defaultLayout}
+          navCollapsedSize={8}
+        />
+      </div>
+    </main>
+  );
 }
