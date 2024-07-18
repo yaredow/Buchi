@@ -12,7 +12,7 @@ interface ChatListProps {
   isMobile: boolean;
 }
 
-export default function ChatList({
+export default function ConversationList({
   messages,
   selectedUser,
   sendMessage,

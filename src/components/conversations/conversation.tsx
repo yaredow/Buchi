@@ -1,7 +1,7 @@
 import { Message, UserData } from "@/app/data";
 import React from "react";
-import ConversationTopbar from "./conversation-top-bar";
-import ChatList from "./chat-list";
+import ConversationTopbar from "@/components/conversations/conversation-top-bar";
+import ConversationList from "@/components/conversations/conversation-list";
 
 interface ChatProps {
   messages?: Message[];
@@ -26,7 +26,7 @@ export default function Conversation({
     <div className="flex h-full w-full flex-col justify-between">
       <ConversationTopbar selectedUser={selectedUser} />
 
-      <ChatList
+      <ConversationList
         messages={messagesState}
         selectedUser={selectedUser}
         sendMessage={sendMessage}
