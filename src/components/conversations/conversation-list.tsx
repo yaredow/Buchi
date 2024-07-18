@@ -1,21 +1,19 @@
-import { Message, UserData } from "@/app/data";
 import { cn } from "@/lib/utils";
 import React, { useRef } from "react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { AnimatePresence, motion } from "framer-motion";
 import ConversationBottombar from "./conversation-bottom-bar";
+import { Message, User } from "@prisma/client";
 
 interface ChatListProps {
   messages?: Message[];
-  selectedUser: UserData;
-  sendMessage: (newMessage: Message) => void;
+  selectedUser: User;
   isMobile: boolean;
 }
 
 export default function ConversationList({
   messages,
   selectedUser,
-  sendMessage,
   isMobile,
 }: ChatListProps) {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -89,7 +87,7 @@ export default function ConversationList({
           ))}
         </AnimatePresence>
       </div>
-      <ConversationBottombar sendMessage={sendMessage} isMobile={isMobile} />
+      <ConversationBottombar isMobile={isMobile} />
     </div>
   );
 }

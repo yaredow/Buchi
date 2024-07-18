@@ -18,14 +18,12 @@ import { EmojiPicker } from "../emoji-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 interface ChatBottombarProps {
-  sendMessage: (newMessage: Message) => void;
   isMobile: boolean;
 }
 
 export const BottombarIcons = [{ icon: FileImage }, { icon: Paperclip }];
 
 export default function ConversationBottombar({
-  sendMessage,
   isMobile,
 }: ChatBottombarProps) {
   const [message, setMessage] = useState("");
@@ -35,38 +33,37 @@ export default function ConversationBottombar({
     setMessage(event.target.value);
   };
 
-  const handleThumbsUp = () => {
-    const newMessage: Message = {
-      id: message.length + 1,
-      name: loggedInUserData.name,
-      avatar: loggedInUserData.avatar,
-      message: "👍",
-    };
-    sendMessage(newMessage);
-    setMessage("");
-  };
+  // const handleThumbsUp = () => {
+  //   const newMessage: Message = {
+  //     id: message.length + 1,
+  //     name: loggedInUserData.name,
+  //     avatar: loggedInUserData.avatar,
+  //     message: "👍",
+  //   };
+  //   sendMessage(newMessage);
+  //   setMessage("");
+  // };
 
-  const handleSend = () => {
-    if (message.trim()) {
-      const newMessage: Message = {
-        id: message.length + 1,
-        name: loggedInUserData.name,
-        avatar: loggedInUserData.avatar,
-        message: message.trim(),
-      };
-      sendMessage(newMessage);
-      setMessage("");
+  // const handleSend = () => {
+  //   if (message.trim()) {
+  //     const newMessage: Message = {
+  //       id: message.length + 1,
+  //       name: loggedInUserData.name,
+  //       avatar: loggedInUserData.avatar,
+  //       message: message.trim(),
+  //     };
+  //     sendMessage(newMessage);
+  //     setMessage("");
 
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
-    }
-  };
+  //     if (inputRef.current) {
+  //       inputRef.current.focus();
+  //     }
+  //   }
+  // };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
-      handleSend();
     }
 
     if (event.key === "Enter" && event.shiftKey) {
@@ -197,7 +194,6 @@ export default function ConversationBottombar({
               "h-9 w-9",
               "shrink-0 dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
             )}
-            onClick={handleSend}
           >
             <SendHorizontal size={20} className="text-muted-foreground" />
           </Link>
@@ -209,7 +205,6 @@ export default function ConversationBottombar({
               "h-9 w-9",
               "shrink-0 dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
             )}
-            onClick={handleThumbsUp}
           >
             <ThumbsUp size={20} className="text-muted-foreground" />
           </Link>

@@ -1,35 +1,31 @@
-import { Message, UserData } from "@/app/data";
 import React from "react";
 import ConversationTopbar from "@/components/conversations/conversation-top-bar";
 import ConversationList from "@/components/conversations/conversation-list";
+import { Message, User } from "@prisma/client";
+import useGetMessages from "@/utils/hook/useGetMessages";
 
 interface ChatProps {
-  messages?: Message[];
-  selectedUser: UserData;
+  conversationId: string;
+  selectedUser: User;
   isMobile: boolean;
 }
 
 export default function Conversation({
-  messages,
+  conversationId,
   selectedUser,
   isMobile,
 }: ChatProps) {
-  const [messagesState, setMessages] = React.useState<Message[]>(
-    messages ?? [],
-  );
+  const { messages, isFetching } = useGetMessages(conversationId);
 
-  const sendMessage = (newMessage: Message) => {
-    setMessages([...messagesState, newMessage]);
-  };
-
+  if (isFetching)
+    return <div className="grid items-center justify-center">Loading...</div>;
   return (
     <div className="flex h-full w-full flex-col justify-between">
       <ConversationTopbar selectedUser={selectedUser} />
 
       <ConversationList
-        messages={messagesState}
+        messages={messages}
         selectedUser={selectedUser}
-        sendMessage={sendMessage}
         isMobile={isMobile}
       />
     </div>

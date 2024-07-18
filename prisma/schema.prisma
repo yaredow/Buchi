@@ -23,7 +23,7 @@ model User {
   email                String?      @unique
   emailVerified        DateTime?
   password             String?
-  image                String       @default("")
+  image                String?      
   role                 UserRole     @default(USER)
   accounts             Account[]
   updatedAt            DateTime     @updatedAt

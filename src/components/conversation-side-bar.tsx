@@ -14,7 +14,6 @@ import {
 } from "./ui/tooltip";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { useSession } from "next-auth/react";
-import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import useGetConversations from "@/utils/hook/useGetConversations";
 
 interface SidebarProps {
@@ -108,7 +107,7 @@ export default function ConversationSidebar({
                       >
                         <Avatar className="flex items-center justify-center">
                           <AvatarImage
-                            src={otherUser.image || DefaultPfp}
+                            src={otherUser.image}
                             alt={otherUser.name || ""}
                             width={40} // Adjust size based on your design
                             height={40} // Adjust size based on your design
@@ -152,7 +151,7 @@ export default function ConversationSidebar({
                 >
                   <Avatar className="flex items-center justify-center">
                     <AvatarImage
-                      src={otherUser.image || DefaultPfp}
+                      src={otherUser.image}
                       alt={otherUser.name || ""}
                       width={6}
                       height={6}

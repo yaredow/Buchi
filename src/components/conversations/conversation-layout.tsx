@@ -86,11 +86,7 @@ export default function ConversationLayout({
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
         {selectedUser ? (
-          <Conversation
-            messages={selectedUser.messages}
-            selectedUser={selectedUser}
-            isMobile={isMobile}
-          />
+          <Conversation selectedUser={selectedUser} isMobile={isMobile} />
         ) : (
           <EmptyState />
         )}
