@@ -1,9 +1,12 @@
+import { getCurrentUser } from "@/data/user";
 import prisma from "@/utils/db/db";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
+    const currentUser = await getCurrentUser();
     const conversations = await prisma.conversation.findMany({
+      where: { users: { some: { id: currentUser?.id } } },
       include: {
         messages: true,
         users: true,

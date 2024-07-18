@@ -162,11 +162,13 @@ export default function ConversationSidebar({
                   <div className="flex max-w-28 flex-col">
                     <span>{otherUser.name}</span>
                     {conversation.messages.length > 0 ? (
-                      <span className="truncate text-xs text-zinc-300">
+                      <span className="truncate text-xs text-muted-foreground">
                         {lastMessage.body}
                       </span>
                     ) : (
-                      "Start a conversation"
+                      <span className="truncate text-xs text-muted-foreground">
+                        Start a conversation
+                      </span>
                     )}
                   </div>
                 </Link>

@@ -9,29 +9,14 @@ import {
 import { cn } from "@/lib/utils";
 import ConversationSidebar from "../conversation-side-bar";
 import Conversation from "./conversation";
-import useGetConversations from "@/utils/hook/useGetConversations";
-import {
-  Conversation as Conversationtype,
-  Message,
-  User,
-} from "@prisma/client";
+import { User } from "@prisma/client";
 import EmptyState from "../empty-chat";
-import { useSession } from "next-auth/react";
 
 interface ChatLayoutProps {
   defaultLayout: number[] | undefined;
   defaultCollapsed?: boolean;
   navCollapsedSize: number;
 }
-
-type UseConversationsType = {
-  conversations: Conversationtype &
-    {
-      users: User[];
-      messages: Message[];
-    }[];
-  isPending: boolean;
-};
 
 export default function ConversationLayout({
   defaultLayout = [320, 480],
