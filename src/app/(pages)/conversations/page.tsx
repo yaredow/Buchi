@@ -6,7 +6,7 @@ export default function Page() {
   const defaultLayout = layout ? JSON.parse(layout.value) : undefined;
 
   return (
-    <main className="flex h-[calc(100dvh)] flex-col items-center justify-center gap-4 p-4 py-16 md:px-12">
+    <main className="flex h-[80vh] w-full flex-col items-center justify-center overflow-hidden p-4 md:px-12">
       <div className="min-w-5xl z-10 h-full w-full rounded-lg border text-sm lg:flex">
         <ConversationLayout
           defaultLayout={defaultLayout}
