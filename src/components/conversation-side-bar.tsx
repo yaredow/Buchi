@@ -4,32 +4,37 @@ import Link from "next/link";
 import { MoreHorizontal, SquarePen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import { Conversation, Message, User } from "@prisma/client";
+import { SetStateAction } from "react";
 import {
   Tooltip,
   TooltipContent,
-  TooltipTrigger,
   TooltipProvider,
-} from "@/components/ui/tooltip";
+  TooltipTrigger,
+} from "./ui/tooltip";
 import { Avatar, AvatarImage } from "./ui/avatar";
-import { Message } from "@/app/data";
+import { useSession } from "next-auth/react";
 
 interface SidebarProps {
-  isCollapsed: boolean;
-  links: {
-    name: string;
-    messages: Message[];
-    avatar: string;
-    variant: "grey" | "ghost";
-  }[];
-  onClick?: () => void;
   isMobile: boolean;
+  isCollapsed: boolean;
+  conversations: Conversation &
+    {
+      users: User[];
+      messages: Message[];
+    }[];
+  onSelectUser: React.Dispatch<SetStateAction<User | null>>;
 }
 
 export default function ConversationSidebar({
-  links,
+  conversations,
   isCollapsed,
+  onSelectUser,
   isMobile,
 }: SidebarProps) {
+  const { data: session } = useSession();
+  const currentLoggedInUserId = session?.user?.id;
+
   return (
     <div
       data-collapsed={isCollapsed}
@@ -39,7 +44,7 @@ export default function ConversationSidebar({
         <div className="flex items-center justify-between p-2">
           <div className="flex items-center gap-2 text-2xl">
             <p className="font-medium">Chats</p>
-            <span className="text-zinc-300">({links.length})</span>
+            <span className="text-zinc-300">({conversations.length})</span>
           </div>
 
           <div>
@@ -67,72 +72,100 @@ export default function ConversationSidebar({
       )}
 
       <nav className="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
-        {links.map((link, index) =>
-          isCollapsed ? (
-            <TooltipProvider key={index}>
-              <Tooltip key={index} delayDuration={0}>
-                <TooltipTrigger asChild>
-                  <Link
-                    href="#"
-                    className={cn(
-                      buttonVariants({ variant: link.variant, size: "icon" }),
-                      "h-11 w-11 md:h-16 md:w-16",
-                      link.variant === "grey" &&
-                        "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
+        {conversations.map((conversation, index) => {
+          // Find the other user in the conversation
+          const lastMessage =
+            conversation.messages[conversation.messages.length - 1];
+          const otherUser = conversation.users.find(
+            (user) => user.id !== currentLoggedInUserId,
+          );
+
+          const variant = otherUser ? "grey" : "ghost";
+
+          if (!otherUser) return null;
+
+          return (
+            <div key={index}>
+              {isCollapsed ? (
+                <TooltipProvider>
+                  <Tooltip key={index} delayDuration={0}>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href="#"
+                        className={cn(
+                          buttonVariants({ variant: "grey", size: "lg" }), // Adjust variant based on your design
+                          "justify-start gap-4",
+                        )}
+                        onClick={() => onSelectUser(otherUser)}
+                      >
+                        <Avatar className="flex items-center justify-center">
+                          <AvatarImage
+                            src={otherUser.image}
+                            alt={otherUser.name || ""}
+                            width={40} // Adjust size based on your design
+                            height={40} // Adjust size based on your design
+                            className="h-10 w-10"
+                          />
+                        </Avatar>
+                        {!isCollapsed && (
+                          <div className="flex max-w-28 flex-col">
+                            <span>{otherUser.name}</span>
+                            {conversation.messages.length > 0 ? (
+                              <span className="truncate text-xs text-zinc-300">
+                                {lastMessage.body}
+                              </span>
+                            ) : (
+                              "Start a conversation"
+                            )}
+                          </div>
+                        )}
+                      </Link>
+                    </TooltipTrigger>
+                    {!isCollapsed && (
+                      <TooltipContent
+                        side="right"
+                        className="flex items-center gap-4"
+                      >
+                        {otherUser.name}
+                      </TooltipContent>
                     )}
-                  >
-                    <Avatar className="flex items-center justify-center">
-                      <AvatarImage
-                        src={link.avatar}
-                        alt={link.avatar}
-                        width={6}
-                        height={6}
-                        className="h-10 w-10"
-                      />
-                    </Avatar>{" "}
-                    <span className="sr-only">{link.name}</span>
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent
-                  side="right"
-                  className="flex items-center gap-4"
+                  </Tooltip>
+                </TooltipProvider>
+              ) : (
+                <Link
+                  key={index}
+                  href="#"
+                  className={cn(
+                    buttonVariants({ variant, size: "xl" }),
+                    variant === "grey" &&
+                      "shrink dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+                    "justify-start gap-4",
+                  )}
                 >
-                  {link.name}
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          ) : (
-            <Link
-              key={index}
-              href="#"
-              className={cn(
-                buttonVariants({ variant: link.variant, size: "xl" }),
-                link.variant === "grey" &&
-                  "shrink dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
-                "justify-start gap-4",
+                  <Avatar className="flex items-center justify-center">
+                    <AvatarImage
+                      src={otherUser.image}
+                      alt={otherUser.name || ""}
+                      width={6}
+                      height={6}
+                      className="h-10 w-10"
+                    />
+                  </Avatar>
+                  <div className="flex max-w-28 flex-col">
+                    <span>{otherUser.name}</span>
+                    {conversation.messages.length > 0 ? (
+                      <span className="truncate text-xs text-zinc-300">
+                        {lastMessage.body}
+                      </span>
+                    ) : (
+                      "Start a conversation"
+                    )}
+                  </div>
+                </Link>
               )}
-            >
-              <Avatar className="flex items-center justify-center">
-                <AvatarImage
-                  src={link.avatar}
-                  alt={link.avatar}
-                  width={6}
-                  height={6}
-                  className="h-10 w-10"
-                />
-              </Avatar>
-              <div className="flex max-w-28 flex-col">
-                <span>{link.name}</span>
-                {link.messages.length > 0 && (
-                  <span className="truncate text-xs text-zinc-300">
-                    {link.messages[link.messages.length - 1].name.split(" ")[0]}
-                    : {link.messages[link.messages.length - 1].message}
-                  </span>
-                )}
-              </div>
-            </Link>
-          ),
-        )}
+            </div>
+          );
+        })}
       </nav>
     </div>
   );

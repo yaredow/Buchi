@@ -1,6 +1,5 @@
 "use client";
 
-import { userData } from "@/app/data";
 import React, { useEffect, useState } from "react";
 import {
   ResizableHandle,
@@ -10,6 +9,14 @@ import {
 import { cn } from "@/lib/utils";
 import ConversationSidebar from "../conversation-side-bar";
 import Conversation from "./conversation";
+import useGetConversations from "@/utils/hook/useGetConversations";
+import {
+  Conversation as Conversationtype,
+  Message,
+  User,
+} from "@prisma/client";
+import EmptyState from "../empty-chat";
+import { useSession } from "next-auth/react";
 
 interface ChatLayoutProps {
   defaultLayout: number[] | undefined;
@@ -17,14 +24,25 @@ interface ChatLayoutProps {
   navCollapsedSize: number;
 }
 
+type UseConversationsType = {
+  conversations: Conversationtype &
+    {
+      users: User[];
+      messages: Message[];
+    }[];
+  isPending: boolean;
+};
+
 export default function ConversationLayout({
   defaultLayout = [320, 480],
   defaultCollapsed = false,
   navCollapsedSize,
 }: ChatLayoutProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
-  const [selectedUser, setSelectedUser] = React.useState(userData[0]);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const { conversations, isPending }: UseConversationsType =
+    useGetConversations();
 
   useEffect(() => {
     const checkScreenWidth = () => {
@@ -42,6 +60,8 @@ export default function ConversationLayout({
       window.removeEventListener("resize", checkScreenWidth);
     };
   }, []);
+
+  if (isPending) return <div>Loading...</div>;
 
   return (
     <ResizablePanelGroup
@@ -78,22 +98,22 @@ export default function ConversationLayout({
       >
         <ConversationSidebar
           isCollapsed={isCollapsed || isMobile}
-          links={userData.map((user) => ({
-            name: user.name,
-            messages: user.messages ?? [],
-            avatar: user.avatar,
-            variant: selectedUser.name === user.name ? "grey" : "ghost",
-          }))}
+          conversations={conversations}
+          onSelectUser={setSelectedUser}
           isMobile={isMobile}
         />
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
-        <Conversation
-          messages={selectedUser.messages}
-          selectedUser={selectedUser}
-          isMobile={isMobile}
-        />
+        {selectedUser ? (
+          <Conversation
+            messages={selectedUser.messages}
+            selectedUser={selectedUser}
+            isMobile={isMobile}
+          />
+        ) : (
+          <EmptyState />
+        )}
       </ResizablePanel>
     </ResizablePanelGroup>
   );
