@@ -5,84 +5,62 @@ import { MoreHorizontal, SquarePen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Conversation, Message, User } from "@prisma/client";
-import { SetStateAction } from "react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
 import { Avatar, AvatarImage } from "./ui/avatar";
-import { useSession } from "next-auth/react";
-import useGetConversations from "@/utils/hook/useGetConversations";
-
-type SidebarProps = {
-  isMobile: boolean;
-  isCollapsed: boolean;
-  onSelectUser: React.Dispatch<SetStateAction<User | null>>;
-  onSelectConversation: React.Dispatch<
-    React.SetStateAction<ConversationWithDetails | null>
-  >;
-};
+import { useRouter } from "next/navigation";
+import DefaultPf from "@/../public/images/Default_pfp.svg";
 
 type ConversationWithDetails = Conversation & {
   users: User[];
   messages: Message[];
 };
 
-type UseConversationsType = {
+type SidebarProps = {
   conversations: ConversationWithDetails[];
-  isPending: boolean;
+  currentLoggedInUserId: string;
 };
 
 export default function ConversationSidebar({
-  isCollapsed,
-  onSelectUser,
-  onSelectConversation,
-  isMobile,
+  conversations,
+  currentLoggedInUserId,
 }: SidebarProps) {
-  const { data: session } = useSession();
-  const currentLoggedInUserId = session?.user?.id;
-  const { conversations, isPending }: UseConversationsType =
-    useGetConversations();
+  const router = useRouter();
 
-  if (isPending) return <div>Loading...</div>;
+  const handleConversationClick = async (conversationId: string) => {
+    router.push(`/conversations/${conversationId}`);
+  };
+
+  if (!conversations || !currentLoggedInUserId) return null;
 
   return (
-    <div
-      data-collapsed={isCollapsed}
-      className="group relative flex h-full flex-col gap-4 p-2 data-[collapsed=true]:p-2"
-    >
-      {!isCollapsed && (
-        <div className="flex items-center justify-between p-2">
-          <div className="flex items-center gap-2 text-2xl">
-            <p className="font-medium">Chats</p>
-            <span className="text-zinc-300">({conversations.length})</span>
-          </div>
-
-          <div>
-            <Link
-              href="#"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "h-9 w-9",
-              )}
-            >
-              <MoreHorizontal size={20} />
-            </Link>
-
-            <Link
-              href="#"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "h-9 w-9",
-              )}
-            >
-              <SquarePen size={20} />
-            </Link>
-          </div>
+    <div className="group relative flex h-full flex-col gap-4 p-2 data-[collapsed=true]:p-2">
+      <div className="flex items-center justify-between p-2">
+        <div className="flex items-center gap-2 text-2xl">
+          <p className="font-medium">Chats</p>
+          <span className="text-zinc-300">({conversations.length})</span>
         </div>
-      )}
+
+        <div>
+          <Link
+            href="#"
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "h-9 w-9",
+            )}
+          >
+            <MoreHorizontal size={20} />
+          </Link>
+
+          <Link
+            href="#"
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "h-9 w-9",
+            )}
+          >
+            <SquarePen size={20} />
+          </Link>
+        </div>
+      </div>
 
       <nav className="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
         {conversations.map((conversation, index) => {
@@ -101,88 +79,41 @@ export default function ConversationSidebar({
             <div
               key={index}
               onClick={() => {
-                onSelectUser(otherUser);
-                onSelectConversation(conversation);
+                handleConversationClick(conversation.id);
               }}
             >
-              {isCollapsed ? (
-                <TooltipProvider>
-                  <Tooltip key={index} delayDuration={0}>
-                    <TooltipTrigger asChild>
-                      <Link
-                        href="#"
-                        className={cn(
-                          buttonVariants({ variant: "grey", size: "lg" }), // Adjust variant based on your design
-                          "justify-start gap-4",
-                        )}
-                      >
-                        <Avatar className="flex items-center justify-center">
-                          <AvatarImage
-                            src={otherUser.image}
-                            alt={otherUser.name || ""}
-                            width={40} // Adjust size based on your design
-                            height={40} // Adjust size based on your design
-                            className="h-10 w-10"
-                          />
-                        </Avatar>
-                        {!isCollapsed && (
-                          <div className="flex max-w-28 flex-col">
-                            <span>{otherUser.name}</span>
-                            {conversation.messages.length > 0 ? (
-                              <span className="truncate text-xs text-zinc-300">
-                                {lastMessage.body}
-                              </span>
-                            ) : (
-                              "Start a conversation"
-                            )}
-                          </div>
-                        )}
-                      </Link>
-                    </TooltipTrigger>
-                    {!isCollapsed && (
-                      <TooltipContent
-                        side="right"
-                        className="flex items-center gap-4"
-                      >
-                        {otherUser.name}
-                      </TooltipContent>
-                    )}
-                  </Tooltip>
-                </TooltipProvider>
-              ) : (
-                <Link
-                  key={index}
-                  href="#"
-                  className={cn(
-                    buttonVariants({ variant, size: "xl" }),
-                    variant === "grey" &&
-                      "shrink dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
-                    "justify-start gap-4",
+              <Link
+                key={index}
+                href="#"
+                className={cn(
+                  buttonVariants({ variant, size: "xl" }),
+                  variant === "grey" &&
+                    "shrink dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+                  "justify-start gap-4",
+                )}
+              >
+                <Avatar className="flex items-center justify-center">
+                  <AvatarImage
+                    src={otherUser.image || DefaultPf}
+                    alt={otherUser.name || ""}
+                    width={6}
+                    height={6}
+                    className="h-10 w-10"
+                  />
+                </Avatar>
+                <div className="flex max-w-28 flex-col">
+                  <span>{otherUser.name}</span>
+                  {conversation.messages.length > 0 ? (
+                    <span className="truncate text-xs text-muted-foreground">
+                      {lastMessage.body}
+                    </span>
+                  ) : (
+                    <span className="truncate text-xs text-muted-foreground">
+                      Start a conversation
+                    </span>
                   )}
-                >
-                  <Avatar className="flex items-center justify-center">
-                    <AvatarImage
-                      src={otherUser.image}
-                      alt={otherUser.name || ""}
-                      width={6}
-                      height={6}
-                      className="h-10 w-10"
-                    />
-                  </Avatar>
-                  <div className="flex max-w-28 flex-col">
-                    <span>{otherUser.name}</span>
-                    {conversation.messages.length > 0 ? (
-                      <span className="truncate text-xs text-muted-foreground">
-                        {lastMessage.body}
-                      </span>
-                    ) : (
-                      <span className="truncate text-xs text-muted-foreground">
-                        Start a conversation
-                      </span>
-                    )}
-                  </div>
-                </Link>
-              )}
+                </div>
+              </Link>
             </div>
           );
         })}
