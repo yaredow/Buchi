@@ -14,7 +14,7 @@ export default async function ConversationLayout({
   if (!conversations) return null;
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-full rounded-lg border md:mx-12">
       <ConversationSidebar
         currentLoggedInUserId={curentLoggedInUserId}
         conversations={conversations}
