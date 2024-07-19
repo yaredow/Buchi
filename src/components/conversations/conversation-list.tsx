@@ -11,13 +11,11 @@ import DefaultPfp from "@/../public/images/Default_pfp.svg";
 interface ChatListProps {
   messages?: Message[];
   selectedUser: User;
-  isMobile: boolean;
 }
 
 export default function ConversationList({
   messages,
   selectedUser,
-  isMobile,
 }: ChatListProps) {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
@@ -90,7 +88,8 @@ export default function ConversationList({
           ))}
         </AnimatePresence>
       </div>
-      <ConversationBottombar isMobile={isMobile} />
+
+      <ConversationBottombar />
     </div>
   );
 }
