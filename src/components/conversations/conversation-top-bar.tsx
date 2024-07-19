@@ -5,6 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/button";
 import { User } from "@prisma/client";
+import DefaultPfp from "@/../public/images/Default_pfp.svg";
 
 interface ChatTopbarProps {
   selectedUser: User;
@@ -18,7 +19,7 @@ export default function ConversationTopbar({ selectedUser }: ChatTopbarProps) {
       <div className="flex items-center gap-2">
         <Avatar className="flex items-center justify-center">
           <AvatarImage
-            src={selectedUser.image}
+            src={selectedUser.image || DefaultPfp.src}
             alt={selectedUser.name || ""}
             width={6}
             height={6}

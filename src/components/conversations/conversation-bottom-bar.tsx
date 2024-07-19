@@ -17,15 +17,9 @@ import { Textarea } from "../ui/textarea";
 import { EmojiPicker } from "../emoji-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
-interface ChatBottombarProps {
-  isMobile: boolean;
-}
-
 export const BottombarIcons = [{ icon: FileImage }, { icon: Paperclip }];
 
-export default function ConversationBottombar({
-  isMobile,
-}: ChatBottombarProps) {
+export default function ConversationBottombar() {
   const [message, setMessage] = useState("");
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -73,7 +67,7 @@ export default function ConversationBottombar({
   };
 
   return (
-    <div className="flex w-full items-center justify-between gap-2 p-2">
+    <div className="flex w-full items-center justify-between gap-2 border-t p-2">
       <div className="flex">
         <Popover>
           <PopoverTrigger asChild>
@@ -89,7 +83,7 @@ export default function ConversationBottombar({
             </Link>
           </PopoverTrigger>
           <PopoverContent side="top" className="w-full p-2">
-            {message.trim() || isMobile ? (
+            {message.trim() ? (
               <div className="flex gap-2">
                 <Link
                   href="#"
@@ -129,7 +123,7 @@ export default function ConversationBottombar({
             )}
           </PopoverContent>
         </Popover>
-        {!message.trim() && !isMobile && (
+        {!message.trim() && (
           <div className="flex">
             {BottombarIcons.map((icon, index) => (
               <Link
