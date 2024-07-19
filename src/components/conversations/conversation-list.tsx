@@ -1,9 +1,12 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React, { useRef } from "react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { AnimatePresence, motion } from "framer-motion";
 import ConversationBottombar from "./conversation-bottom-bar";
 import { Message, User } from "@prisma/client";
+import DefaultPfp from "@/../public/images/Default_pfp.svg";
 
 interface ChatListProps {
   messages?: Message[];
@@ -53,30 +56,30 @@ export default function ConversationList({
               }}
               className={cn(
                 "flex flex-col gap-2 whitespace-pre-wrap p-4",
-                message.name !== selectedUser.name
+                message.senderId !== selectedUser.id
                   ? "items-end"
                   : "items-start",
               )}
             >
               <div className="flex items-center gap-3">
-                {message.name === selectedUser.name && (
+                {message.senderId === selectedUser.id && (
                   <Avatar className="flex items-center justify-center">
                     <AvatarImage
-                      src={message.avatar}
-                      alt={message.name}
+                      src={selectedUser.image || DefaultPfp}
+                      alt={selectedUser.name || ""}
                       width={6}
                       height={6}
                     />
                   </Avatar>
                 )}
                 <span className="max-w-xs rounded-md bg-accent p-3">
-                  {message.message}
+                  {message.body}
                 </span>
-                {message.name !== selectedUser.name && (
+                {message.senderId !== selectedUser.id && (
                   <Avatar className="flex items-center justify-center">
                     <AvatarImage
-                      src={message.avatar}
-                      alt={message.name}
+                      src={selectedUser.image || DefaultPfp}
+                      alt={selectedUser.name || ""}
                       width={6}
                       height={6}
                     />

@@ -16,24 +16,29 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { useSession } from "next-auth/react";
 import useGetConversations from "@/utils/hook/useGetConversations";
 
-interface SidebarProps {
+type SidebarProps = {
   isMobile: boolean;
   isCollapsed: boolean;
   onSelectUser: React.Dispatch<SetStateAction<User | null>>;
-}
+  onSelectConversation: React.Dispatch<
+    React.SetStateAction<ConversationWithDetails | null>
+  >;
+};
+
+type ConversationWithDetails = Conversation & {
+  users: User[];
+  messages: Message[];
+};
 
 type UseConversationsType = {
-  conversations: Conversation &
-    {
-      users: User[];
-      messages: Message[];
-    }[];
+  conversations: ConversationWithDetails[];
   isPending: boolean;
 };
 
 export default function ConversationSidebar({
   isCollapsed,
   onSelectUser,
+  onSelectConversation,
   isMobile,
 }: SidebarProps) {
   const { data: session } = useSession();
@@ -93,7 +98,13 @@ export default function ConversationSidebar({
           if (!otherUser) return null;
 
           return (
-            <div key={index} onClick={() => onSelectUser(otherUser)}>
+            <div
+              key={index}
+              onClick={() => {
+                onSelectUser(otherUser);
+                onSelectConversation(conversation);
+              }}
+            >
               {isCollapsed ? (
                 <TooltipProvider>
                   <Tooltip key={index} delayDuration={0}>

@@ -9,7 +9,11 @@ import {
 import { cn } from "@/lib/utils";
 import ConversationSidebar from "../conversation-side-bar";
 import Conversation from "./conversation";
-import { User } from "@prisma/client";
+import {
+  Conversation as ConversationType,
+  Message,
+  User,
+} from "@prisma/client";
 import EmptyState from "../empty-chat";
 
 interface ChatLayoutProps {
@@ -18,6 +22,11 @@ interface ChatLayoutProps {
   navCollapsedSize: number;
 }
 
+type ConversationWithDetails = ConversationType & {
+  users: User[];
+  messages: Message[];
+};
+
 export default function ConversationLayout({
   defaultLayout = [320, 480],
   defaultCollapsed = false,
@@ -25,6 +34,8 @@ export default function ConversationLayout({
 }: ChatLayoutProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [currentConversation, setCurrentConversation] =
+    useState<ConversationWithDetails | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -80,13 +91,18 @@ export default function ConversationLayout({
         <ConversationSidebar
           isCollapsed={isCollapsed || isMobile}
           onSelectUser={setSelectedUser}
+          onSelectConversation={setCurrentConversation}
           isMobile={isMobile}
         />
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
         {selectedUser ? (
-          <Conversation selectedUser={selectedUser} isMobile={isMobile} />
+          <Conversation
+            conversation={currentConversation}
+            selectedUser={selectedUser}
+            isMobile={isMobile}
+          />
         ) : (
           <EmptyState />
         )}
