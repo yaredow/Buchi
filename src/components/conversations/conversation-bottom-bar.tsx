@@ -75,7 +75,7 @@ export default function ConversationBottombar() {
               href="#"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "h-9 w-9",
+                "h-9 w-9 rounded-full",
                 "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
               )}
             >
@@ -89,7 +89,7 @@ export default function ConversationBottombar() {
                   href="#"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "h-9 w-9",
+                    "h-9 w-9 rounded-full",
                     "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
                   )}
                 >
@@ -101,7 +101,7 @@ export default function ConversationBottombar() {
                     href="#"
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "h-9 w-9",
+                      "h-9 w-9 rounded-full",
                       "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
                     )}
                   >
@@ -114,7 +114,7 @@ export default function ConversationBottombar() {
                 href="#"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
-                  "h-9 w-9",
+                  "h-9 w-9 rounded-full",
                   "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
                 )}
               >
@@ -131,7 +131,7 @@ export default function ConversationBottombar() {
                 href="#"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
-                  "h-9 w-9",
+                  "h-9 w-9 rounded-full",
                   "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
                 )}
               >
@@ -185,7 +185,7 @@ export default function ConversationBottombar() {
             href="#"
             className={cn(
               buttonVariants({ variant: "ghost", size: "icon" }),
-              "h-9 w-9",
+              "h-9 w-9 rounded-full",
               "shrink-0 dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
             )}
           >
@@ -196,7 +196,7 @@ export default function ConversationBottombar() {
             href="#"
             className={cn(
               buttonVariants({ variant: "ghost", size: "icon" }),
-              "h-9 w-9",
+              "h-9 w-9 rounded-full",
               "shrink-0 dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
             )}
           >

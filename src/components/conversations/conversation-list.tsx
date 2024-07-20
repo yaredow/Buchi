@@ -26,7 +26,6 @@ export default function ConversationList({
         messagesContainerRef.current.scrollHeight;
     }
   }, [messages]);
-  console.log(messages);
 
   return (
     <div className="flex h-full w-full flex-col overflow-y-auto overflow-x-hidden">
@@ -65,7 +64,7 @@ export default function ConversationList({
                 {message.senderId === selectedUser.id && (
                   <Avatar className="flex items-center justify-center">
                     <AvatarImage
-                      src={selectedUser.image || DefaultPfp}
+                      src={selectedUser.image || DefaultPfp.src}
                       alt={selectedUser.name || ""}
                       width={6}
                       height={6}
@@ -78,12 +77,14 @@ export default function ConversationList({
                   </span>
                 ) : (
                   message.image && (
-                    <div className="">
+                    <div className="relative w-full">
                       <Image
                         src={message.image}
                         alt="User sent image"
-                        fill
-                        className="max-w-xs rounded-md"
+                        height={200}
+                        width={200}
+                        objectFit="cover"
+                        className="rounded-md object-cover"
                       />
                     </div>
                   )
@@ -91,7 +92,7 @@ export default function ConversationList({
                 {message.senderId !== selectedUser.id && (
                   <Avatar className="flex items-center justify-center">
                     <AvatarImage
-                      src={selectedUser.image || DefaultPfp}
+                      src={selectedUser.image || DefaultPfp.src}
                       alt={selectedUser.name || ""}
                       width={6}
                       height={6}
