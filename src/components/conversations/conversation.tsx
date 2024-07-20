@@ -33,7 +33,6 @@ export default function Conversation({
       <ConversationList
         messages={conversation.messages}
         selectedUser={selectedUser}
-        isMobile={isMobile}
       />
     </div>
   );

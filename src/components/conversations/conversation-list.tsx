@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 import React, { useRef } from "react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { AnimatePresence, motion } from "framer-motion";
-import ConversationBottombar from "./conversation-bottom-bar";
+import ConversationBottombar from "@/components/conversations/conversation-bottom-bar";
 import { Message, User } from "@prisma/client";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
+import Image from "next/image";
 
 interface ChatListProps {
   messages?: Message[];
@@ -25,6 +26,7 @@ export default function ConversationList({
         messagesContainerRef.current.scrollHeight;
     }
   }, [messages]);
+  console.log(messages);
 
   return (
     <div className="flex h-full w-full flex-col overflow-y-auto overflow-x-hidden">
@@ -70,9 +72,22 @@ export default function ConversationList({
                     />
                   </Avatar>
                 )}
-                <span className="max-w-xs rounded-md bg-accent p-3">
-                  {message.body}
-                </span>
+                {message.body ? (
+                  <span className="max-w-xs rounded-md bg-accent p-3">
+                    {message.body}
+                  </span>
+                ) : (
+                  message.image && (
+                    <div className="">
+                      <Image
+                        src={message.image}
+                        alt="User sent image"
+                        fill
+                        className="max-w-xs rounded-md"
+                      />
+                    </div>
+                  )
+                )}
                 {message.senderId !== selectedUser.id && (
                   <Avatar className="flex items-center justify-center">
                     <AvatarImage
