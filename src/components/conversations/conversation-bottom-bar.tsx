@@ -1,3 +1,5 @@
+"use client";
+
 import {
   FileImage,
   Mic,
@@ -25,10 +27,27 @@ export default function ConversationBottombar({
 }: ConversationBottombarProps) {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState<File | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  console.log(image);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
+  };
+
+  const handleFileInputClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = event.target.files;
+    console.log(file);
+    if (file) {
+      setImage(file[0]);
+    }
   };
 
   const handleThumbsUp = async () => {
@@ -106,7 +125,16 @@ export default function ConversationBottombar({
               {message.trim() ? (
                 <div className="flex flex-row space-x-2 rounded-full border">
                   {BottombarIcons.map((icon, index) => (
-                    <Button key={index} variant="ghost" size="icon">
+                    <Button
+                      onClick={
+                        icon.icon === FileImage
+                          ? handleFileInputClick
+                          : undefined
+                      }
+                      key={index}
+                      variant="ghost"
+                      size="icon"
+                    >
                       <icon.icon size={20} className="text-muted-foreground" />
                     </Button>
                   ))}
@@ -117,16 +145,35 @@ export default function ConversationBottombar({
                 </Button>
               )}
             </PopoverContent>
+            <input
+              type="file"
+              ref={fileInputRef}
+              className="hidden"
+              onChange={handleFileInputChange}
+            />
           </Popover>
         ) : (
           <div className="flex">
             {BottombarIcons.map((icon, index) => (
-              <Button variant="ghost" size="icon" key={index}>
+              <Button
+                onClick={
+                  icon.icon === FileImage ? handleFileInputClick : undefined
+                }
+                variant="ghost"
+                size="icon"
+                key={index}
+              >
                 <icon.icon size={20} className="text-muted-foreground" />
               </Button>
             ))}
           </div>
         )}
+        <input
+          type="file"
+          ref={fileInputRef}
+          className="hidden"
+          onChange={handleFileInputChange}
+        />
       </div>
 
       <AnimatePresence initial={false}>
