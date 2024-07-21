@@ -26,6 +26,7 @@ export default async function Page({ params }: Iparam) {
         messages={conversation.messages}
         selectedUser={selectedUser}
         conversationId={conversation.id}
+        currentUser={currentLoggedInUser}
       />
     </div>
   );

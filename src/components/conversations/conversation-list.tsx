@@ -5,15 +5,15 @@ import React, { useRef } from "react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { AnimatePresence, motion } from "framer-motion";
 import ConversationBottombar from "./conversation-bottom-bar";
-import { Conversation, Message, User } from "@prisma/client";
+import { Message, User } from "@prisma/client";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import Image from "next/image";
 import { formatDate } from "@/lib/helpers";
-import { measureMemory } from "vm";
 
 interface ChatListProps {
   messages: Message[];
   selectedUser: User;
+  currentUser: User;
   conversationId: string;
 }
 
@@ -21,9 +21,9 @@ export default function ConversationList({
   messages,
   conversationId,
   selectedUser,
+  currentUser,
 }: ChatListProps) {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
-  console.log(conversationId);
 
   React.useEffect(() => {
     if (messagesContainerRef.current) {
@@ -100,8 +100,8 @@ export default function ConversationList({
                 {message.senderId !== selectedUser.id && (
                   <Avatar className="flex items-center justify-center">
                     <AvatarImage
-                      src={selectedUser.image || DefaultPfp.src}
-                      alt={selectedUser.name || ""}
+                      src={currentUser.image || DefaultPfp.src}
+                      alt={currentUser.name || ""}
                       width={6}
                       height={6}
                     />

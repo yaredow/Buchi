@@ -8,13 +8,14 @@ import {
   ThumbsUp,
 } from "lucide-react";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useTransition } from "react";
 import { Button } from "../ui/button";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Textarea } from "../ui/textarea";
 import { EmojiPicker } from "../emoji-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { uploadChatImage } from "@/server/actions/conversation/actions";
 
 type ConversationBottombarProps = {
   conversationId: string;
@@ -30,7 +31,7 @@ export default function ConversationBottombar({
   const [image, setImage] = useState<File | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  console.log(image);
+  const [isPending, startTransition] = useTransition();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
@@ -44,7 +45,6 @@ export default function ConversationBottombar({
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files;
-    console.log(file);
     if (file) {
       setImage(file[0]);
     }
