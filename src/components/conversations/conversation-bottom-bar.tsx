@@ -27,22 +27,23 @@ export default function ConversationBottombar({
 }: ConversationBottombarProps) {
   const [message, setMessage] = useState("");
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  console.log(conversationId);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
   };
 
-  // const handleThumbsUp = () => {
-  //   const newMessage: Message = {
-  //     id: message.length + 1,
-  //     name: loggedInUserData.name,
-  //     avatar: loggedInUserData.avatar,
-  //     message: "👍",
-  //   };
-  //   sendMessage(newMessage);
-  //   setMessage("");
-  // };
+  const handleThumbsUp = async () => {
+    await fetch("/api/messages", {
+      method: "POST",
+      body: JSON.stringify({
+        body: "👍",
+        conversationId,
+        image: null,
+      }),
+    });
+
+    setMessage("");
+  };
 
   const handleSend = async () => {
     if (message.trim()) {
@@ -54,6 +55,7 @@ export default function ConversationBottombar({
           image: null,
         }),
       });
+      setMessage("");
 
       if (inputRef.current) {
         inputRef.current.focus();
@@ -206,6 +208,7 @@ export default function ConversationBottombar({
               "h-9 w-9 rounded-full",
               "shrink-0 dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
             )}
+            onClick={handleThumbsUp}
           >
             <ThumbsUp size={20} className="text-muted-foreground" />
           </Link>
