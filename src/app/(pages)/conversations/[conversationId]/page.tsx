@@ -16,12 +16,10 @@ export default async function Page({ params }: Iparam) {
     (user) => user.id !== currentLoggedInUser?.id,
   ) as User;
 
-  console.log(conversation?.id);
-
   if (!conversation || !currentLoggedInUser) return null;
 
   return (
-    <div className="my-auto flex h-[80vh] w-full flex-col justify-between">
+    <div className="flex h-[80vh] w-full flex-col justify-between">
       <ConversationTopbar selectedUser={selectedUser} />
 
       <ConversationList

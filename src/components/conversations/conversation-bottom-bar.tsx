@@ -1,15 +1,13 @@
 import {
   FileImage,
   Mic,
-  Paperclip,
   PlusCircle,
   SendHorizontal,
-  Smile,
   ThumbsUp,
 } from "lucide-react";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
-import { buttonVariants } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Textarea } from "../ui/textarea";
@@ -20,7 +18,7 @@ type ConversationBottombarProps = {
   conversationId: string;
 };
 
-export const BottombarIcons = [{ icon: FileImage }, { icon: Paperclip }];
+export const BottombarIcons = [{ icon: FileImage }, { icon: Mic }];
 
 export default function ConversationBottombar({
   conversationId,
@@ -77,74 +75,36 @@ export default function ConversationBottombar({
   return (
     <div className="flex w-full items-center justify-between gap-2 p-2">
       <div className="flex">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Link
-              href="#"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "h-9 w-9 rounded-full",
-                "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
-              )}
-            >
-              <PlusCircle size={20} className="text-muted-foreground" />
-            </Link>
-          </PopoverTrigger>
-          <PopoverContent side="top" className="w-full p-2">
-            {message.trim() ? (
-              <div className="flex gap-2">
-                <Link
-                  href="#"
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "h-9 w-9 rounded-full",
-                    "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
-                  )}
-                >
+        {message.trim() ? (
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <PlusCircle size={20} className="text-muted-foreground" />
+              </Button>
+            </PopoverTrigger>
+
+            <PopoverContent side="top" className="w-full p-2">
+              {message.trim() ? (
+                <div className="flex flex-row space-x-2 rounded-full border">
+                  {BottombarIcons.map((icon, index) => (
+                    <Button key={index} variant="ghost" size="icon">
+                      <icon.icon size={20} className="text-muted-foreground" />
+                    </Button>
+                  ))}
+                </div>
+              ) : (
+                <Button variant="ghost" size="icon" className="h-g w-9">
                   <Mic size={20} className="text-muted-foreground" />
-                </Link>
-                {BottombarIcons.map((icon, index) => (
-                  <Link
-                    key={index}
-                    href="#"
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "h-9 w-9 rounded-full",
-                      "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
-                    )}
-                  >
-                    <icon.icon size={20} className="text-muted-foreground" />
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <Link
-                href="#"
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "icon" }),
-                  "h-9 w-9 rounded-full",
-                  "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
-                )}
-              >
-                <Mic size={20} className="text-muted-foreground" />
-              </Link>
-            )}
-          </PopoverContent>
-        </Popover>
-        {!message.trim() && (
+                </Button>
+              )}
+            </PopoverContent>
+          </Popover>
+        ) : (
           <div className="flex">
             {BottombarIcons.map((icon, index) => (
-              <Link
-                key={index}
-                href="#"
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "icon" }),
-                  "h-9 w-9 rounded-full",
-                  "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
-                )}
-              >
+              <Button variant="ghost" size="icon" key={index}>
                 <icon.icon size={20} className="text-muted-foreground" />
-              </Link>
+              </Button>
             ))}
           </div>
         )}
