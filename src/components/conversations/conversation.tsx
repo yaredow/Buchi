@@ -32,6 +32,7 @@ export default function Conversation({
 
       <ConversationList
         messages={conversation.messages}
+        conversationId={conversation.id}
         selectedUser={selectedUser}
       />
     </div>

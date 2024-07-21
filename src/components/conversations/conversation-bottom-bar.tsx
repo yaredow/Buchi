@@ -12,16 +12,22 @@ import React, { useRef, useState } from "react";
 import { buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { Message, loggedInUserData } from "@/app/data";
 import { Textarea } from "../ui/textarea";
 import { EmojiPicker } from "../emoji-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
+type ConversationBottombarProps = {
+  conversationId: string;
+};
+
 export const BottombarIcons = [{ icon: FileImage }, { icon: Paperclip }];
 
-export default function ConversationBottombar() {
+export default function ConversationBottombar({
+  conversationId,
+}: ConversationBottombarProps) {
   const [message, setMessage] = useState("");
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  console.log(conversationId);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
@@ -38,22 +44,22 @@ export default function ConversationBottombar() {
   //   setMessage("");
   // };
 
-  // const handleSend = () => {
-  //   if (message.trim()) {
-  //     const newMessage: Message = {
-  //       id: message.length + 1,
-  //       name: loggedInUserData.name,
-  //       avatar: loggedInUserData.avatar,
-  //       message: message.trim(),
-  //     };
-  //     sendMessage(newMessage);
-  //     setMessage("");
+  const handleSend = async () => {
+    if (message.trim()) {
+      await fetch("/api/messages", {
+        method: "POST",
+        body: JSON.stringify({
+          body: message.trim(),
+          conversationId,
+          image: null,
+        }),
+      });
 
-  //     if (inputRef.current) {
-  //       inputRef.current.focus();
-  //     }
-  //   }
-  // };
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }
+  };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey) {
@@ -188,6 +194,7 @@ export default function ConversationBottombar() {
               "h-9 w-9 rounded-full",
               "shrink-0 dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
             )}
+            onClick={handleSend}
           >
             <SendHorizontal size={20} className="text-muted-foreground" />
           </Link>

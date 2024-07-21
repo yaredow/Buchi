@@ -16,6 +16,8 @@ export default async function Page({ params }: Iparam) {
     (user) => user.id !== currentLoggedInUser?.id,
   ) as User;
 
+  console.log(conversation?.id);
+
   if (!conversation || !currentLoggedInUser) return null;
 
   return (
@@ -25,6 +27,7 @@ export default async function Page({ params }: Iparam) {
       <ConversationList
         messages={conversation.messages}
         selectedUser={selectedUser}
+        conversationId={conversation.id}
       />
     </div>
   );

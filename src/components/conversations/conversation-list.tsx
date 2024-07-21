@@ -5,20 +5,25 @@ import React, { useRef } from "react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { AnimatePresence, motion } from "framer-motion";
 import ConversationBottombar from "./conversation-bottom-bar";
-import { Message, User } from "@prisma/client";
+import { Conversation, Message, User } from "@prisma/client";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import Image from "next/image";
+import { formatDate } from "@/lib/helpers";
+import { measureMemory } from "vm";
 
 interface ChatListProps {
-  messages?: Message[];
+  messages: Message[];
   selectedUser: User;
+  conversationId: string;
 }
 
 export default function ConversationList({
   messages,
+  conversationId,
   selectedUser,
 }: ChatListProps) {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+  console.log(conversationId);
 
   React.useEffect(() => {
     if (messagesContainerRef.current) {
@@ -72,9 +77,14 @@ export default function ConversationList({
                   </Avatar>
                 )}
                 {message.body ? (
-                  <span className="max-w-xs rounded-md bg-accent p-3">
-                    {message.body}
-                  </span>
+                  <div className="flex flex-col gap-2">
+                    <span className="max-w-xs rounded-md bg-accent p-3">
+                      {message.body}
+                    </span>
+                    <span className="text-xs">
+                      {formatDate(message.createdAt).split(",")[1]}
+                    </span>
+                  </div>
                 ) : (
                   message.image && (
                     <div className="relative aspect-square h-48">
@@ -90,7 +100,7 @@ export default function ConversationList({
                 {message.senderId !== selectedUser.id && (
                   <Avatar className="flex items-center justify-center">
                     <AvatarImage
-                      src={selectedUser.image || DefaultPfp}
+                      src={selectedUser.image || DefaultPfp.src}
                       alt={selectedUser.name || ""}
                       width={6}
                       height={6}
@@ -102,7 +112,7 @@ export default function ConversationList({
           ))}
         </AnimatePresence>
       </div>
-      <ConversationBottombar />
+      <ConversationBottombar conversationId={conversationId} />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(reques: NextRequest) {
   try {
     const body = await reques.json();
+    console.log(body);
     const currentUser = await getCurrentUser();
     const { body: message, conversationId, image } = body;
 
