@@ -5,10 +5,10 @@ import {
   SendHorizontal,
   ThumbsUp,
 } from "lucide-react";
-import Link from "next/link";
+
 import React, { useRef, useState } from "react";
-import { Button, buttonVariants } from "../ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { Textarea } from "../ui/textarea";
 import { EmojiPicker } from "../emoji-picker";
@@ -24,6 +24,7 @@ export default function ConversationBottombar({
   conversationId,
 }: ConversationBottombarProps) {
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -31,33 +32,51 @@ export default function ConversationBottombar({
   };
 
   const handleThumbsUp = async () => {
-    await fetch("/api/messages", {
-      method: "POST",
-      body: JSON.stringify({
-        body: "👍",
-        conversationId,
-        image: null,
-      }),
-    });
-
-    setMessage("");
-  };
-
-  const handleSend = async () => {
-    if (message.trim()) {
-      await fetch("/api/messages", {
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/messages", {
         method: "POST",
         body: JSON.stringify({
-          body: message.trim(),
+          body: "👍",
           conversationId,
           image: null,
         }),
       });
-      setMessage("");
-
-      if (inputRef.current) {
-        inputRef.current.focus();
+      if (response.ok) {
+        setMessage("");
       }
+    } catch (error) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSend = async () => {
+    setIsLoading(true);
+    try {
+      if (message.trim()) {
+        const response = await fetch("/api/messages", {
+          method: "POST",
+          body: JSON.stringify({
+            body: message.trim(),
+            conversationId,
+            image: null,
+          }),
+        });
+
+        if (response.ok) {
+          setMessage("");
+        }
+
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }
+    } catch (error) {
+      throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -129,6 +148,7 @@ export default function ConversationBottombar({
           <Textarea
             autoComplete="off"
             value={message}
+            disabled={isLoading}
             ref={inputRef}
             onKeyDown={handleKeyPress}
             onChange={handleInputChange}
@@ -149,29 +169,13 @@ export default function ConversationBottombar({
         </motion.div>
 
         {message.trim() ? (
-          <Link
-            href="#"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "h-9 w-9 rounded-full",
-              "shrink-0 dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
-            )}
-            onClick={handleSend}
-          >
+          <Button variant="ghost" size="icon" onClick={handleSend}>
             <SendHorizontal size={20} className="text-muted-foreground" />
-          </Link>
+          </Button>
         ) : (
-          <Link
-            href="#"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "h-9 w-9 rounded-full",
-              "shrink-0 dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
-            )}
-            onClick={handleThumbsUp}
-          >
+          <Button variant="ghost" size="icon" onClick={handleThumbsUp}>
             <ThumbsUp size={20} className="text-muted-foreground" />
-          </Link>
+          </Button>
         )}
       </AnimatePresence>
     </div>
