@@ -12,8 +12,8 @@ export async function uploadChatImage(image: File) {
         cloudinary.uploader
           .upload_stream(
             {
-              tags: ["konjo-habesha-next-js"],
-              upload_preset: "konjo-habesha",
+              tags: ["doggo-chat"],
+              upload_preset: "doggo-chat",
             },
             function (err, result) {
               if (err) {

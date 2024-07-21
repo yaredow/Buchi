@@ -15,7 +15,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Textarea } from "../ui/textarea";
 import { EmojiPicker } from "../emoji-picker";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { uploadChatImage } from "@/server/actions/conversation/actions";
 
 type ConversationBottombarProps = {
   conversationId: string;
@@ -28,10 +27,8 @@ export default function ConversationBottombar({
 }: ConversationBottombarProps) {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [image, setImage] = useState<File | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [isPending, startTransition] = useTransition();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
@@ -41,12 +38,20 @@ export default function ConversationBottombar({
     fileInputRef.current?.click();
   };
 
-  const handleFileInputChange = (
+  const handleFileInputChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    const file = event.target.files;
-    if (file) {
-      setImage(file[0]);
+    const image = event.target.files?.[0];
+
+    if (image) {
+      const formdata = new FormData();
+      formdata.append("image", image);
+      formdata.append("conversationId", conversationId);
+
+      await fetch("/api/messages", {
+        method: "POST",
+        body: formdata,
+      });
     }
   };
 
@@ -73,15 +78,15 @@ export default function ConversationBottombar({
 
   const handleSend = async () => {
     setIsLoading(true);
+    const formData = new FormData();
+    formData.append("body", message.trim());
+    formData.append("conversationId", conversationId);
+
     try {
       if (message.trim()) {
         const response = await fetch("/api/messages", {
           method: "POST",
-          body: JSON.stringify({
-            body: message.trim(),
-            conversationId,
-            image: null,
-          }),
+          body: formData,
         });
 
         if (response.ok) {
