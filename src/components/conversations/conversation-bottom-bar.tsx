@@ -8,7 +8,7 @@ import {
   ThumbsUp,
 } from "lucide-react";
 
-import React, { useRef, useState, useTransition } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "../ui/button";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -69,7 +69,7 @@ export default function ConversationBottombar({
   const handleThumbsUp = async () => {
     setIsLoading(true);
     const formData = new FormData();
-    formData.append("body", message.trim());
+    formData.append("body", "👍");
     formData.append("conversationId", conversationId);
     try {
       const response = await fetch("/api/messages", {

@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/data/user";
 import { uploadChatImage } from "@/server/actions/conversation/actions";
 import prisma from "@/utils/db/db";
-import { revalidatePath } from "next/cache";
+import { pusherServer } from "@/utils/pusher";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(reques: NextRequest) {
@@ -16,10 +16,18 @@ export async function POST(reques: NextRequest) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    let uploadedImage;
+    let uploadedImage = "";
     if (image) {
       const result = await uploadChatImage(image);
-      uploadedImage = result?.url as string;
+      if (result?.url) {
+        uploadedImage = result.url;
+      } else {
+        console.error("Image upload failed", result);
+        return NextResponse.json(
+          { message: "Image upload failed" },
+          { status: 500 },
+        );
+      }
     }
 
     const newMessage = await prisma.message.create({
@@ -70,7 +78,17 @@ export async function POST(reques: NextRequest) {
       },
     });
 
-    revalidatePath(`/conversations/${conversationId}`);
+    await pusherServer.trigger(conversationId, "message:new", newMessage);
+    const lastMessage =
+      updatedConversation.messages[updatedConversation.messages.length - 1];
+
+    updatedConversation.users.map((user) => {
+      pusherServer.trigger(user.email!, "conversation:update", {
+        id: conversationId,
+        messages: [lastMessage],
+      });
+    });
+
     return NextResponse.json(newMessage, { status: 200 });
   } catch (error) {
     console.error(error);
