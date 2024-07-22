@@ -30,6 +30,17 @@ export default function ConversationBottombar({
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+    }
+
+    if (event.key === "Enter" && event.shiftKey) {
+      event.preventDefault();
+      setMessage((prev) => prev + "\n");
+    }
+  };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
   };
@@ -57,14 +68,13 @@ export default function ConversationBottombar({
 
   const handleThumbsUp = async () => {
     setIsLoading(true);
+    const formData = new FormData();
+    formData.append("body", message.trim());
+    formData.append("conversationId", conversationId);
     try {
       const response = await fetch("/api/messages", {
         method: "POST",
-        body: JSON.stringify({
-          body: "👍",
-          conversationId,
-          image: null,
-        }),
+        body: formData,
       });
       if (response.ok) {
         setMessage("");
@@ -101,17 +111,6 @@ export default function ConversationBottombar({
       throw error;
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault();
-    }
-
-    if (event.key === "Enter" && event.shiftKey) {
-      event.preventDefault();
-      setMessage((prev) => prev + "\n");
     }
   };
 

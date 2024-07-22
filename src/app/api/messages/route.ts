@@ -22,8 +22,6 @@ export async function POST(reques: NextRequest) {
       uploadedImage = result?.url as string;
     }
 
-    console.log(uploadedImage);
-
     const newMessage = await prisma.message.create({
       data: {
         image: uploadedImage,
