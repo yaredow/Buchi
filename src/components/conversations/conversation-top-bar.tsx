@@ -1,17 +1,18 @@
 import React from "react";
 import { Avatar, AvatarImage } from "../ui/avatar";
-import { Info } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "../ui/button";
 import { User } from "@prisma/client";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
+import ConversationDrawer from "./conversation-drawer";
 
 interface ChatTopbarProps {
   selectedUser: User;
+  conversationId: string;
 }
 
-export default function ConversationTopbar({ selectedUser }: ChatTopbarProps) {
+export default function ConversationTopbar({
+  selectedUser,
+  conversationId,
+}: ChatTopbarProps) {
   return (
     <div className="flex h-20 w-full items-center justify-between border-b p-4">
       <div className="flex items-center gap-2">
@@ -30,7 +31,9 @@ export default function ConversationTopbar({ selectedUser }: ChatTopbarProps) {
         </div>
       </div>
 
-      <div></div>
+      <div>
+        <ConversationDrawer conversationId={conversationId} />
+      </div>
     </div>
   );
 }

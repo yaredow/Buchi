@@ -12,11 +12,7 @@ import { formatDate } from "@/lib/helpers";
 import { pusherClient } from "@/utils/pusher";
 import { find } from "lodash";
 import { CheckCheck } from "lucide-react";
-
-type FullMessageType = Message & {
-  sender: User;
-  seen: User;
-};
+import { FullMessageType } from "@/../../types/conversation";
 
 interface ChatListProps {
   messages: FullMessageType[];

@@ -20,7 +20,10 @@ export default async function Page({ params }: Iparam) {
 
   return (
     <div className="flex h-[80vh] w-full flex-col justify-between">
-      <ConversationTopbar selectedUser={selectedUser} />
+      <ConversationTopbar
+        selectedUser={selectedUser}
+        conversationId={conversationId}
+      />
 
       <ConversationList
         messages={conversation.messages}
