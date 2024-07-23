@@ -95,6 +95,8 @@ export default function ConversationList({
               selectedUser.id,
             );
 
+            console.log(isMessageSeenByOtherUser);
+
             return (
               <motion.div
                 key={index}
@@ -144,7 +146,7 @@ export default function ConversationList({
                         {isLast &&
                           isMessageFromCurrentUser &&
                           isMessageSeenByOtherUser && (
-                            <span className="text-primary-500 text-xs">
+                            <span className="text-xs">
                               <CheckCheck size={16} />
                             </span>
                           )}

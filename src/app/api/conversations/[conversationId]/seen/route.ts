@@ -3,10 +3,18 @@ import prisma from "@/utils/db/db";
 import { pusherServer } from "@/utils/pusher";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
-  const conversationId = request.url.slice(request.url.lastIndexOf("/") + 1);
+interface IParams {
+  conversationId?: string;
+}
+
+export async function POST(
+  request: NextRequest,
+  { params }: { params: IParams },
+) {
   try {
     const currentUser = await getCurrentUser();
+    const { conversationId } = params;
+    console.log(conversationId);
 
     if (!currentUser?.id || !currentUser?.email) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -48,7 +56,7 @@ export async function POST(request: NextRequest) {
     }
 
     await pusherServer.trigger(
-      conversationId,
+      conversationId!,
       "message:update",
       updatedMessage,
     );

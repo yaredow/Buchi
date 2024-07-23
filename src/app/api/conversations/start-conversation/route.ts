@@ -1,5 +1,6 @@
 import { getCurrentUser } from "@/data/user";
 import prisma from "@/utils/db/db";
+import { pusherServer } from "@/utils/pusher";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -53,6 +54,10 @@ export async function POST(request: NextRequest) {
       include: {
         users: true,
       },
+    });
+
+    newConversation.users.map((user) => {
+      pusherServer.trigger(user.email!, "conversation:new", newConversation);
     });
 
     return NextResponse.json(newConversation);

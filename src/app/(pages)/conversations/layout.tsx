@@ -8,17 +8,12 @@ export default async function ConversationLayout({
   children: React.ReactNode;
 }) {
   const conversations = await getConversations();
-  const currentLoggedInUser = await getCurrentUser();
-  const curentLoggedInUserId = currentLoggedInUser?.id as string;
 
   if (!conversations) return null;
 
   return (
     <div className="flex h-full rounded-lg border md:mx-6">
-      <ConversationSidebar
-        currentLoggedInUserId={curentLoggedInUserId}
-        conversations={conversations}
-      />
+      <ConversationSidebar conversations={conversations} />
       <div className="flex-grow">{children}</div>
     </div>
   );

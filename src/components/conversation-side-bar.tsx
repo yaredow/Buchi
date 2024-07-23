@@ -6,6 +6,10 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Conversation, Message, User } from "@prisma/client";
 import ConversationItem from "./conversations/conversation-item";
+import { useEffect, useMemo, useState } from "react";
+import { useSession } from "next-auth/react";
+import { pusherClient } from "@/utils/pusher";
+import { find } from "lodash";
 
 type ConversationWithDetails = Conversation & {
   users: User[];
@@ -14,14 +18,50 @@ type ConversationWithDetails = Conversation & {
 
 type SidebarProps = {
   conversations: ConversationWithDetails[];
-  currentLoggedInUserId: string;
 };
 
 export default function ConversationSidebar({
-  conversations,
-  currentLoggedInUserId,
+  conversations: initialConversations,
 }: SidebarProps) {
-  if (!conversations || !currentLoggedInUserId) return null;
+  const [conversations, setConversations] =
+    useState<ConversationWithDetails[]>(initialConversations);
+  const { data: session } = useSession();
+
+  const { pusherkey, currentLoggedInUserId } = useMemo(() => {
+    return {
+      pusherkey: session?.user?.email,
+      currentLoggedInUserId: session?.user?.id,
+    };
+  }, [session?.user?.email, session?.user?.id]);
+
+  useEffect(() => {
+    if (!pusherkey) return;
+
+    const newHandler = (newConversation: ConversationWithDetails) => {
+      setConversations((prevConversations) => {
+        if (find(prevConversations, { id: newConversation.id })) {
+          return prevConversations;
+        } else {
+          return [...prevConversations, newConversation];
+        }
+      });
+    };
+
+    const updateHandler = () => {};
+    const deleteHandler = () => {};
+
+    pusherClient.subscribe(pusherkey);
+
+    pusherClient.bind("converstion:new", newHandler);
+    pusherClient.bind("conversation:update", updateHandler);
+    pusherClient.bind("conversation:delete", deleteHandler);
+
+    return () => {
+      pusherClient.unbind("converstion:new", newHandler);
+      pusherClient.unbind("converstion:update", updateHandler);
+      pusherClient.unbind("converstion:delete", deleteHandler);
+    };
+  });
 
   return (
     <div className="group relative flex min-h-[80vh] w-[28%] flex-col gap-4 border-r p-2">
@@ -56,11 +96,11 @@ export default function ConversationSidebar({
 
       <div className="grid gap-1 px-2">
         <ul className="flex flex-col gap-6">
-          {conversations.map((conversations, index) => (
+          {conversations.map((conversation, index) => (
             <li key={index}>
               <ConversationItem
-                currentLoggedInUserId={currentLoggedInUserId}
-                conversation={conversations}
+                currentLoggedInUserId={currentLoggedInUserId!}
+                conversation={conversation}
               />
             </li>
           ))}
