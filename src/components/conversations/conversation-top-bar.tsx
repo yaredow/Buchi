@@ -30,18 +30,7 @@ export default function ConversationTopbar({ selectedUser }: ChatTopbarProps) {
         </div>
       </div>
 
-      <div>
-        <Link
-          href="#"
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "icon" }),
-            "h-9 w-9 items-center gap-2 rounded-full",
-            "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
-          )}
-        >
-          <Info size={20} className="text-muted-foreground" />
-        </Link>
-      </div>
+      <div></div>
     </div>
   );
 }

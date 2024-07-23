@@ -10,6 +10,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
 import { pusherClient } from "@/utils/pusher";
 import { find } from "lodash";
+import useConversation from "@/utils/hook/useConversation";
+import { useRouter } from "next/navigation";
 
 type ConversationWithDetails = Conversation & {
   users: User[];
@@ -26,6 +28,8 @@ export default function ConversationSidebar({
   const [conversations, setConversations] =
     useState<ConversationWithDetails[]>(initialConversations);
   const { data: session } = useSession();
+  const { conversationId } = useConversation();
+  const router = useRouter();
 
   const { pusherkey, currentLoggedInUserId } = useMemo(() => {
     return {
@@ -37,18 +41,42 @@ export default function ConversationSidebar({
   useEffect(() => {
     if (!pusherkey) return;
 
-    const newHandler = (newConversation: ConversationWithDetails) => {
+    const newHandler = (conversation: ConversationWithDetails) => {
       setConversations((prevConversations) => {
-        if (find(prevConversations, { id: newConversation.id })) {
+        if (find(prevConversations, { id: conversation.id })) {
           return prevConversations;
         } else {
-          return [...prevConversations, newConversation];
+          return [...prevConversations, conversation];
         }
       });
     };
 
-    const updateHandler = () => {};
-    const deleteHandler = () => {};
+    const updateHandler = (conversation: ConversationWithDetails) => {
+      setConversations((prev) =>
+        prev.map((prevConversation) => {
+          if (prevConversation.id === conversation.id) {
+            return {
+              ...prevConversation,
+              messages: conversation.messages,
+            };
+          }
+
+          return prevConversation;
+        }),
+      );
+    };
+
+    const deleteHandler = (conversation: ConversationWithDetails) => {
+      setConversations((prev) => {
+        return [
+          ...prev.filter((conversation) => conversation.id !== conversation.id),
+        ];
+      });
+
+      if (conversationId === conversation.id) {
+        router.push("/conversations");
+      }
+    };
 
     pusherClient.subscribe(pusherkey);
 
@@ -61,7 +89,7 @@ export default function ConversationSidebar({
       pusherClient.unbind("converstion:update", updateHandler);
       pusherClient.unbind("converstion:delete", deleteHandler);
     };
-  });
+  }, [pusherkey, conversationId, router]);
 
   return (
     <div className="group relative flex min-h-[80vh] w-[28%] flex-col gap-4 border-r p-2">
