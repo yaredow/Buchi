@@ -43,6 +43,8 @@ export default function ConversationSidebar({
   useEffect(() => {
     if (!pusherkey) return;
 
+    pusherClient.subscribe(pusherkey);
+
     const newHandler = (conversation: ConversationWithDetails) => {
       setConversations((prevConversations) => {
         if (find(prevConversations, { id: conversation.id })) {
@@ -80,8 +82,6 @@ export default function ConversationSidebar({
       }
     };
 
-    pusherClient.subscribe(pusherkey);
-
     pusherClient.bind("converstion:new", newHandler);
     pusherClient.bind("conversation:update", updateHandler);
     pusherClient.bind("conversation:delete", deleteHandler);
@@ -98,8 +98,10 @@ export default function ConversationSidebar({
       <div className="mb-4 flex items-center justify-between p-2">
         <div className="flex items-center gap-2 text-2xl">
           <p className="font-medium">Messages</p>
-          <span className="text-zinc-300">
-            {conversations.length > 0 ? `${conversations.length}` : null}
+          <span className="text-slate-300">
+            {conversations && conversations.length > 0
+              ? `(${conversations.length})`
+              : null}
           </span>
         </div>
 
@@ -125,6 +127,7 @@ export default function ConversationSidebar({
           </Link>
         </div>
       </div>
+
       {conversations.length > 0 ? (
         <div className="grid gap-1 px-2">
           <ul className="flex flex-col gap-6">

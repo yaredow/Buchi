@@ -1,6 +1,5 @@
 import ConversationSidebar from "@/components/conversation-side-bar";
 import { getConversations } from "@/data/conversations";
-import { getCurrentUser } from "@/data/user";
 
 export default async function ConversationLayout({
   children,
