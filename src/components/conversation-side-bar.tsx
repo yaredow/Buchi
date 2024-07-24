@@ -12,6 +12,8 @@ import { pusherClient } from "@/utils/pusher";
 import { find } from "lodash";
 import useConversation from "@/utils/hook/useConversation";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import EmptyDoggo from "@/../public/images/EmptyDog2.png";
 
 type ConversationWithDetails = Conversation & {
   users: User[];
@@ -121,19 +123,29 @@ export default function ConversationSidebar({
           </Link>
         </div>
       </div>
-
-      <div className="grid gap-1 px-2">
-        <ul className="flex flex-col gap-6">
-          {conversations.map((conversation, index) => (
-            <li key={index}>
-              <ConversationItem
-                currentLoggedInUserId={currentLoggedInUserId!}
-                conversation={conversation}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
+      {conversations.length > 0 ? (
+        <div className="grid gap-1 px-2">
+          <ul className="flex flex-col gap-6">
+            {conversations.map((conversation, index) => (
+              <li key={index}>
+                <ConversationItem
+                  currentLoggedInUserId={currentLoggedInUserId!}
+                  conversation={conversation}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div className="my-auto flex items-center justify-center">
+          <Image
+            src={EmptyDoggo}
+            width={250}
+            height={500}
+            alt="a woman with a dog image"
+          />
+        </div>
+      )}
     </div>
   );
 }
