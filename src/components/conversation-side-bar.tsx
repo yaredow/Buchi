@@ -97,8 +97,10 @@ export default function ConversationSidebar({
     <div className="group relative flex min-h-[80vh] w-[28%] flex-col gap-4 border-r p-2">
       <div className="mb-4 flex items-center justify-between p-2">
         <div className="flex items-center gap-2 text-2xl">
-          <p className="font-medium">Chats</p>
-          <span className="text-zinc-300">({conversations.length})</span>
+          <p className="font-medium">Messages</p>
+          <span className="text-zinc-300">
+            {conversations.length > 0 ? `${conversations.length}` : null}
+          </span>
         </div>
 
         <div>
