@@ -29,12 +29,16 @@ export default function ConversationItem({
   return (
     <Link
       href={`/conversations/${conversation.id}`}
-      className="max-w-28 shrink rounded-lg p-2 dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white" // Added padding and rounded corners for better visibility
+      className="max-w-28 shrink rounded-lg dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white" // Added padding and rounded corners for better visibility
     >
       <div
-        className={cn("group flex flex-row items-center justify-between p-4", {
-          "w-full rounded-sm bg-slate-100": isSelectedConversation,
-        })}
+        className={cn(
+          "group flex flex-row items-center justify-between p-4 hover:bg-slate-100 dark:hover:bg-muted",
+          {
+            "w-full rounded-sm bg-slate-100 dark:bg-muted":
+              isSelectedConversation,
+          },
+        )}
       >
         <div className="flex flex-row items-center gap-4">
           <Avatar className="flex items-center justify-center">
@@ -48,9 +52,7 @@ export default function ConversationItem({
           </Avatar>
 
           <div className="flex w-full flex-col">
-            <span className="group-hover:text-slate-800">
-              {otherUser?.name}
-            </span>
+            <span>{otherUser?.name}</span>
             {conversation.messages.length > 0 ? (
               <span className="max-w-28 truncate text-ellipsis whitespace-nowrap text-xs text-muted-foreground">
                 {lastMessage.body}

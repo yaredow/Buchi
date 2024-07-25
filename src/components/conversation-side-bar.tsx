@@ -130,7 +130,7 @@ export default function ConversationSidebar({
 
       {conversations.length > 0 ? (
         <div className="grid gap-1 px-2">
-          <ul className="flex flex-col">
+          <ul className="flex flex-col gap-1">
             {conversations.map((conversation, index) => (
               <li key={index} className="w-full">
                 <ConversationItem
