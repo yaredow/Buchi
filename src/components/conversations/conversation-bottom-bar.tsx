@@ -136,7 +136,8 @@ export default function ConversationBottombar({
                           : undefined
                       }
                       key={index}
-                      variant="ghost"
+                      variant="outline"
+                      className="rounded-full"
                       size="icon"
                     >
                       <icon.icon size={20} className="text-muted-foreground" />
@@ -163,8 +164,9 @@ export default function ConversationBottombar({
                 onClick={
                   icon.icon === FileImage ? handleFileInputClick : undefined
                 }
-                variant="ghost"
+                variant="outline"
                 size="icon"
+                className="ml-2 rounded-full"
                 key={index}
               >
                 <icon.icon size={20} className="text-muted-foreground" />
@@ -220,8 +222,13 @@ export default function ConversationBottombar({
         </motion.div>
 
         {message.trim() ? (
-          <Button variant="ghost" size="icon" onClick={handleSend}>
-            <SendHorizontal size={20} className="text-muted-foreground" />
+          <Button
+            variant="outline"
+            size="icon"
+            className="rounded-full"
+            onClick={handleSend}
+          >
+            <SendHorizontal size={18} className="text-muted-foreground" />
           </Button>
         ) : (
           <Button variant="ghost" size="icon" onClick={handleThumbsUp}>

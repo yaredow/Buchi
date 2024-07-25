@@ -19,7 +19,6 @@ export default function ConversationDropdownMenu({
   conversationId,
 }: ConversationDropdownMenuProps) {
   const handleConversationDelete = async () => {
-    console.log("deleting conversation");
     await fetch(`/api/conversations/${conversationId}`, {
       method: "DELETE",
     });
