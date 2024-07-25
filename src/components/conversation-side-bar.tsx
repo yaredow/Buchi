@@ -50,7 +50,7 @@ export default function ConversationSidebar({
         if (find(prevConversations, { id: conversation.id })) {
           return prevConversations;
         } else {
-          return [...prevConversations, conversation];
+          return [conversation, ...prevConversations];
         }
       });
     };
