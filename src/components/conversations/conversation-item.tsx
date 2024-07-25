@@ -26,7 +26,7 @@ export default function ConversationItem({
   return (
     <Link
       href={`/conversations/${conversation.id}`}
-      className="shrink dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white"
+      className="max-w-28 shrink dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white"
     >
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-4">
@@ -40,15 +40,15 @@ export default function ConversationItem({
             />
           </Avatar>
 
-          <div className="flex flex-col">
+          <div className="flex w-full flex-col">
             <span>{otherUser?.name}</span>
             {conversation.messages.length > 0 ? (
-              <span className="truncate text-xs text-muted-foreground">
+              <span className="max-w-28 truncate text-ellipsis whitespace-nowrap text-xs text-muted-foreground">
                 {lastMessage.body}
               </span>
             ) : (
               <span className="truncate text-xs text-muted-foreground">
-                Start a conversation
+                Started a conversation
               </span>
             )}
           </div>
