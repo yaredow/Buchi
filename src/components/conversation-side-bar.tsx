@@ -136,6 +136,7 @@ export default function ConversationSidebar({
                 <ConversationItem
                   currentLoggedInUserId={currentLoggedInUserId!}
                   conversation={conversation}
+                  isSelectedConversation={conversationId === conversation.id}
                 />
               </li>
             ))}

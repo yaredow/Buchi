@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Conversation, Message, User } from "@prisma/client";
 import DefaultPf from "@/../public/images/Default_pfp.svg";
 import { formatDate } from "@/lib/helpers";
+import { cn } from "@/lib/utils";
 
 type ConversationWithDetails = Conversation & {
   users: User[];
@@ -12,11 +13,13 @@ type ConversationWithDetails = Conversation & {
 type ConversationItemProps = {
   conversation: ConversationWithDetails;
   currentLoggedInUserId: string;
+  isSelectedConversation: boolean;
 };
 
 export default function ConversationItem({
   conversation,
   currentLoggedInUserId,
+  isSelectedConversation,
 }: ConversationItemProps) {
   const otherUser = conversation.users.find(
     (user) => user.id !== currentLoggedInUserId,
@@ -26,7 +29,12 @@ export default function ConversationItem({
   return (
     <Link
       href={`/conversations/${conversation.id}`}
-      className="max-w-28 shrink dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white"
+      className={cn(
+        "max-w-28 shrink rounded-lg p-2 dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white", // Added padding and rounded corners for better visibility
+        {
+          "bg-slate-200": isSelectedConversation,
+        },
+      )}
     >
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-4">
