@@ -94,8 +94,8 @@ export default function ConversationSidebar({
   }, [pusherkey, conversationId, router]);
 
   return (
-    <div className="group relative flex min-h-[80vh] w-[28%] flex-col gap-4 border-r p-2">
-      <div className="mb-4 flex items-center justify-between p-2">
+    <div className="group relative flex min-h-[80vh] w-[28%] flex-col gap-4 border-r">
+      <div className="mb-4 flex items-center justify-between border-b md:py-[18.8px]">
         <div className="flex items-center gap-2 text-2xl">
           <p className="font-medium">Messages</p>
           <span className="text-slate-300">
@@ -130,9 +130,9 @@ export default function ConversationSidebar({
 
       {conversations.length > 0 ? (
         <div className="grid gap-1 px-2">
-          <ul className="flex flex-col gap-6">
+          <ul className="flex flex-col">
             {conversations.map((conversation, index) => (
-              <li key={index}>
+              <li key={index} className="w-full">
                 <ConversationItem
                   currentLoggedInUserId={currentLoggedInUserId!}
                   conversation={conversation}
