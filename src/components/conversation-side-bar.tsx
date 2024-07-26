@@ -57,15 +57,15 @@ export default function ConversationSidebar({
 
     const updateHandler = (conversation: ConversationWithDetails) => {
       setConversations((prev) =>
-        prev.map((prevConversation) => {
-          if (prevConversation.id === conversation.id) {
+        prev.map((prevConversations) => {
+          if (prevConversations.id === conversation.id) {
             return {
-              ...prevConversation,
+              ...prevConversations,
               messages: conversation.messages,
             };
           }
 
-          return prevConversation;
+          return prevConversations;
         }),
       );
     };
