@@ -73,7 +73,9 @@ export default function ConversationSidebar({
     const deleteHandler = (conversation: ConversationWithDetails) => {
       setConversations((prev) => {
         return [
-          ...prev.filter((conversation) => conversation.id !== conversation.id),
+          ...prev.filter(
+            (preConversation) => preConversation.id !== conversation.id,
+          ),
         ];
       });
 
@@ -82,14 +84,15 @@ export default function ConversationSidebar({
       }
     };
 
-    pusherClient.bind("converstion:new", newHandler);
+    pusherClient.bind("conversation:new", newHandler);
     pusherClient.bind("conversation:update", updateHandler);
     pusherClient.bind("conversation:delete", deleteHandler);
 
     return () => {
-      pusherClient.unbind("converstion:new", newHandler);
-      pusherClient.unbind("converstion:update", updateHandler);
-      pusherClient.unbind("converstion:delete", deleteHandler);
+      pusherClient.unsubscribe(pusherkey);
+      pusherClient.unbind("conversation:new", newHandler);
+      pusherClient.unbind("conversation:update", updateHandler);
+      pusherClient.unbind("conversation:delete", deleteHandler);
     };
   }, [pusherkey, conversationId, router]);
 
