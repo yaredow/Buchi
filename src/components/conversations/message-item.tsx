@@ -15,7 +15,7 @@ type MessageItemProps = {
   isLast: boolean;
 };
 
-function MessageItem({
+export default function MessageItem({
   message,
   currentUser,
   selectedUser,
@@ -105,5 +105,3 @@ function MessageItem({
     </motion.div>
   );
 }
-
-export default MessageItem;
