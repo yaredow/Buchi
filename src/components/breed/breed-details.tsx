@@ -7,18 +7,12 @@ import { Badge } from "../ui/badge";
 import Spinner from "../Spinner";
 import DogOwner from "../user/dog-owner";
 
-export default function BreedDetails({ slug }: { slug: string }) {
-  const { breed, isFetching }: { breed: Breed; isFetching: boolean } =
-    useGetBreed(slug);
+type BreedDetailsProps = {
+  breed: Breed;
+};
 
-  if (isFetching) {
-    return (
-      <div className="grid items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
-
+export default function BreedDetails({ breed }: BreedDetailsProps) {
+  if (!breed) return <div>No breed available</div>;
   return (
     <section>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-8">

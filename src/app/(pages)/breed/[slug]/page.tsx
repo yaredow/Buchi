@@ -24,6 +24,7 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
+  const breed = await getBreedWithSlug(slug);
 
-  return <BreedDetails slug={slug} />;
+  return <BreedDetails breed={breed} />;
 }
