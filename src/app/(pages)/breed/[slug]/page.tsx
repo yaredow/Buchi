@@ -21,9 +21,12 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   const breeds = await getAllBreeds();
 
-  const slugs = breeds?.map((breed) => ({
-    slug: breed.slug,
-  }));
+  const slugs = breeds?.map(
+    (breed) =>
+      ({
+        slug: breed.slug,
+      }) || [],
+  );
 
   return slugs;
 }
