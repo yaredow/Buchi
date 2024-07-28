@@ -3,6 +3,7 @@ import { getConversationById } from "@/data/conversations";
 import { getCurrentUser } from "@/data/user";
 import { User } from "@prisma/client";
 import MessageList from "@/components/conversations/message-list";
+import { FullConversationType } from "../../../../../types/conversation";
 
 type Iparam = {
   params: { conversationId: string };
@@ -10,7 +11,9 @@ type Iparam = {
 
 export default async function Page({ params }: Iparam) {
   const { conversationId } = params;
-  const conversation = await getConversationById(conversationId);
+  const conversation = (await getConversationById(
+    conversationId,
+  )) as FullConversationType;
   const currentLoggedInUser = await getCurrentUser();
   const selectedUser = conversation?.users.find(
     (user) => user.id !== currentLoggedInUser?.id,
