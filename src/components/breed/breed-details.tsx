@@ -4,7 +4,6 @@ import useGetBreed from "@/utils/hook/useGetBreed";
 import { Breed } from "@prisma/client";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
-import Spinner from "../Spinner";
 import DogOwner from "../user/dog-owner";
 
 type BreedDetailsProps = {
