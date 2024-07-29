@@ -97,7 +97,7 @@ export default function ConversationSidebar({
   }, [pusherkey, conversationId, router]);
 
   return (
-    <div className="group relative flex min-h-[80vh] w-[28%] flex-col gap-4 border-r">
+    <div className="group relative hidden min-h-[80vh] flex-col gap-4 border-r md:flex md:w-[28%]">
       <div className="mb-4 flex items-center justify-between border-b px-2 md:py-[18.8px]">
         <div className="flex items-center gap-2 text-2xl">
           <p className="font-medium">Messages</p>

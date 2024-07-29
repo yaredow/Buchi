@@ -33,7 +33,7 @@ export default function ConversationItem({
     >
       <div
         className={cn(
-          "group flex flex-row items-center justify-between p-4 hover:bg-slate-100 dark:hover:bg-muted",
+          "flex flex-row items-center justify-between p-4 hover:bg-slate-100 dark:hover:bg-muted",
           {
             "w-full rounded-sm bg-slate-100 dark:bg-muted":
               isSelectedConversation,
