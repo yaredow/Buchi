@@ -32,7 +32,10 @@ export default function ConversationTopbar({
       </div>
 
       <div>
-        <ConversationDrawer conversationId={conversationId} />
+        <ConversationDrawer
+          conversationId={conversationId}
+          selectedUser={selectedUser}
+        />
       </div>
     </div>
   );
