@@ -4,21 +4,12 @@ import { Button } from "@/components/ui/button";
 import { CalendarIcon, ClockIcon, Ellipsis, Trash, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useEffect, useRef, useState } from "react";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "../ui/alert-dialog";
+
 import { User } from "@prisma/client";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import { getInitials } from "@/lib/formatName";
 import { formatDate } from "@/lib/helpers";
+import AlertDialogComp from "../alert-dialog";
 
 type ConversationDropdownMenuProps = {
   selectedUser: User;
@@ -104,28 +95,10 @@ export default function ConversationDropdownMenu({
             </div>
           </div>
           <div className="mt-6 flex justify-center">
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button variant="ghost">
-                  <Trash size={20} />
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    the conversation and remove all messages from our servers.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleConversationDelete}>
-                    Continue
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+            <AlertDialogComp
+              onClick={handleConversationDelete}
+              message="This action cannot be undone. This will permanently delete the conversation and remove all messages from our servers."
+            />
           </div>
         </div>
       )}
