@@ -5,11 +5,21 @@ import { CalendarIcon, ClockIcon, Ellipsis, Trash, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useEffect, useRef, useState } from "react";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { User } from "@prisma/client";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import { getInitials } from "@/lib/formatName";
 import { formatDate } from "@/lib/helpers";
-import AlertDialogComp from "../alert-dialog";
 
 type ConversationDropdownMenuProps = {
   selectedUser: User;
@@ -30,7 +40,14 @@ export default function ConversationDropdownMenu({
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      if (drawerRef.current && !drawerRef.current.contains(target)) {
+      if (
+        drawerRef.current &&
+        !drawerRef.current.contains(target) &&
+        !(
+          target.closest(".alert-dialog-content") ||
+          target.closest(".alert-dialog-trigger")
+        )
+      ) {
         setIsOpen(false);
       }
     };
@@ -41,7 +58,10 @@ export default function ConversationDropdownMenu({
     };
   }, []);
 
-  const handleConversationDelete = async () => {
+  const handleConversationDelete = async (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.stopPropagation();
     await fetch(`/api/conversations/${conversationId}`, {
       method: "DELETE",
     });
@@ -95,10 +115,28 @@ export default function ConversationDropdownMenu({
             </div>
           </div>
           <div className="mt-6 flex justify-center">
-            <AlertDialogComp
-              onClick={handleConversationDelete}
-              message="This action cannot be undone. This will permanently delete the conversation and remove all messages from our servers."
-            />
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="ghost">
+                  <Trash size={20} />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent className="alert-dialog-content">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete
+                    the conversation and remove all messages from our servers.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleConversationDelete}>
+                    Delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </div>
       )}

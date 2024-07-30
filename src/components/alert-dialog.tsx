@@ -14,7 +14,7 @@ import { Trash } from "lucide-react";
 
 type AlertDialogProps = {
   message: string;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
 };
 
 export default function AlertDialogComp({
@@ -35,7 +35,14 @@ export default function AlertDialogComp({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onClick}>Continue</AlertDialogAction>
+          <AlertDialogAction
+            onClick={(event) => {
+              event.stopPropagation();
+              onClick(event);
+            }}
+          >
+            Delete
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
