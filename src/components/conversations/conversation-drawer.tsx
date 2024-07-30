@@ -89,6 +89,7 @@ export default function ConversationDropdownMenu({
               <X size={20} />
             </button>
           </div>
+
           <div className="flex flex-col items-center gap-4">
             <Avatar className="h-20 w-20">
               <AvatarImage src={selectedUser.image || DefaultPfp.src} />
@@ -104,6 +105,7 @@ export default function ConversationDropdownMenu({
               {selectedUser.bio ? selectedUser.bio : "No bio available"}
             </div>
           </div>
+
           <div className="mt-6 grid gap-2 text-sm">
             <div className="flex items-center gap-2">
               <ClockIcon className="h-4 w-4 text-muted-foreground" />
@@ -114,6 +116,7 @@ export default function ConversationDropdownMenu({
               <div>{formatDate(selectedUser.createdAt)}</div>
             </div>
           </div>
+
           <div className="mt-6 flex justify-center">
             <AlertDialog>
               <AlertDialogTrigger asChild>
