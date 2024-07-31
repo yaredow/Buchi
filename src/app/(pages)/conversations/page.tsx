@@ -1,12 +1,13 @@
 import EmptyState from "@/components/empty-chat";
 import { getConversations } from "@/data/conversations";
+import { FullConversationType } from "../../../../types/conversation";
 
 export const metadata = {
   title: "Chat",
   description: "Chat with fellow dog owners",
 };
 export default async function Page() {
-  const conversations = await getConversations();
+  const conversations = (await getConversations()) as FullConversationType[];
 
   if (!conversations) return null;
 
@@ -14,7 +15,10 @@ export default async function Page() {
 
   return (
     <main className="flex h-[80vh] w-full flex-col items-center justify-center overflow-hidden md:p-4 md:px-12">
-      <EmptyState thereAreConversations={thereAreConversations} />
+      <EmptyState
+        conversations={conversations}
+        thereAreConversations={thereAreConversations}
+      />
     </main>
   );
 }
