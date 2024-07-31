@@ -32,6 +32,8 @@ export default function MessageList({
     }
   }, [messages]);
 
+  console.log("Second console log for lazy git");
+
   useEffect(() => {
     fetch(`/api/conversations/${conversationId}/seen`, { method: "POST" });
   }, [conversationId]);
