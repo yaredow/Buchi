@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { MoreHorizontal, SquarePen } from "lucide-react";
+import { Ellipsis, MoreHorizontal, SquarePen } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Conversation, Message, User } from "@prisma/client";
 import ConversationItem from "./conversations/conversation-item";
 import { useEffect, useMemo, useState } from "react";
@@ -14,6 +14,14 @@ import useConversation from "@/utils/hook/useConversation";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import EmptyDoggo from "@/../public/images/EmptyDog2.png";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
 
 type ConversationWithDetails = Conversation & {
   users: User[];
@@ -97,64 +105,149 @@ export default function ConversationSidebar({
   }, [pusherkey, conversationId, router]);
 
   return (
-    <div className="group relative hidden min-h-[80vh] flex-col gap-4 border-r md:flex md:w-[28%]">
-      <div className="mb-4 flex items-center justify-between border-b px-2 md:py-[18.8px]">
-        <div className="flex items-center gap-2 text-2xl">
-          <p className="font-medium">Messages</p>
-          <span className="text-slate-300">
-            {conversations && conversations.length > 0
-              ? `(${conversations.length})`
-              : null}
-          </span>
-        </div>
+    <>
+      {/* Mobile sidebar */}
+      <div className="flex md:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="rounded-full">
+              <Ellipsis />
+              <span className="sr-only">Toggle profile drawer</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <SheetHeader>
+              <SheetTitle>Messages</SheetTitle>
+              <SheetDescription>
+                {conversations && conversations.length > 0
+                  ? `(${conversations.length})`
+                  : null}
+              </SheetDescription>
+            </SheetHeader>
+            <div className="flex min-h-[80vh] flex-col gap-4 border-r">
+              <div className="mb-4 flex items-center justify-between border-b px-2 md:py-[18.8px]">
+                <div className="flex items-center gap-2 text-2xl">
+                  <p className="font-medium">Messages</p>
+                  <span className="text-slate-300">
+                    {conversations && conversations.length > 0
+                      ? `(${conversations.length})`
+                      : null}
+                  </span>
+                </div>
 
-        <div>
-          <Link
-            href="#"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "h-9 w-9",
-            )}
-          >
-            <MoreHorizontal size={20} />
-          </Link>
+                <div>
+                  <Link
+                    href="#"
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "icon" }),
+                      "h-9 w-9",
+                    )}
+                  >
+                    <MoreHorizontal size={20} />
+                  </Link>
 
-          <Link
-            href="#"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "h-9 w-9",
-            )}
-          >
-            <SquarePen size={20} />
-          </Link>
-        </div>
+                  <Link
+                    href="#"
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "icon" }),
+                      "h-9 w-9",
+                    )}
+                  >
+                    <SquarePen size={20} />
+                  </Link>
+                </div>
+              </div>
+
+              {conversations.length > 0 ? (
+                <div className="grid gap-1 px-2">
+                  <ul className="flex flex-col gap-1">
+                    {conversations.map((conversation, index) => (
+                      <li key={index} className="w-full">
+                        <ConversationItem
+                          currentLoggedInUserId={currentLoggedInUserId}
+                          conversation={conversation}
+                          isSelectedConversation={
+                            conversationId === conversation.id
+                          }
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <div className="my-auto flex items-center justify-center">
+                  <Image
+                    src={EmptyDoggo}
+                    width={250}
+                    height={500}
+                    alt="a woman with a dog image"
+                  />
+                </div>
+              )}
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
+      {/* Desktop sidebar */}
+      <div className="group relative hidden min-h-[80vh] flex-col gap-4 border-r md:flex md:w-[28%]">
+        <div className="mb-4 flex items-center justify-between border-b px-2 md:py-[18.8px]">
+          <div className="flex items-center gap-2 text-2xl">
+            <p className="font-medium">Messages</p>
+            <span className="text-slate-300">
+              {conversations && conversations.length > 0
+                ? `(${conversations.length})`
+                : null}
+            </span>
+          </div>
 
-      {conversations.length > 0 ? (
-        <div className="grid gap-1 px-2">
-          <ul className="flex flex-col gap-1">
-            {conversations.map((conversation, index) => (
-              <li key={index} className="w-full">
-                <ConversationItem
-                  currentLoggedInUserId={currentLoggedInUserId!}
-                  conversation={conversation}
-                  isSelectedConversation={conversationId === conversation.id}
-                />
-              </li>
-            ))}
-          </ul>
+          <div>
+            <Link
+              href="#"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "h-9 w-9",
+              )}
+            >
+              <MoreHorizontal size={20} />
+            </Link>
+
+            <Link
+              href="#"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "h-9 w-9",
+              )}
+            >
+              <SquarePen size={20} />
+            </Link>
+          </div>
         </div>
-      ) : (
-        <div className="my-auto flex items-center justify-center">
-          <Image
-            src={EmptyDoggo}
-            width={250}
-            height={500}
-            alt="a woman with a dog image"
-          />
-        </div>
-      )}
-    </div>
+
+        {conversations.length > 0 ? (
+          <div className="grid gap-1 px-2">
+            <ul className="flex flex-col gap-1">
+              {conversations.map((conversation, index) => (
+                <li key={index} className="w-full">
+                  <ConversationItem
+                    currentLoggedInUserId={currentLoggedInUserId!}
+                    conversation={conversation}
+                    isSelectedConversation={conversationId === conversation.id}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="my-auto flex items-center justify-center">
+            <Image
+              src={EmptyDoggo}
+              width={250}
+              height={500}
+              alt="a woman with a dog image"
+            />
+          </div>
+        )}
+      </div>
+    </>
   );
 }
