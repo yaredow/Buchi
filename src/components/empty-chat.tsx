@@ -7,6 +7,7 @@ import ConversationItem from "./conversations/conversation-item";
 import { useMemo } from "react";
 import { useSession } from "next-auth/react";
 import useConversation from "@/utils/hook/useConversation";
+import ConversationSearch from "./conversations/conversation-search";
 
 type EmptyStateProps = {
   thereAreConversations: boolean;
@@ -54,22 +55,28 @@ export default function EmptyState({
         )}
       </main>
 
+      {/* Mobile view */}
       <div className="flex w-full flex-col md:hidden">
-        {conversations.length > 0 && (
-          <div className="w-full">
-            <ul className="flex flex-col gap-1">
-              {conversations.map((conversation, index) => (
-                <li key={index} className="w-full">
-                  <ConversationItem
-                    currentLoggedInUserId={currentLoggedInUserId as string}
-                    conversation={conversation}
-                    isSelectedConversation={conversationId === conversation.id}
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <div>
+          <ConversationSearch />
+          {conversations.length > 0 && (
+            <div className="w-full">
+              <ul className="flex flex-col gap-1">
+                {conversations.map((conversation, index) => (
+                  <li key={index} className="w-full">
+                    <ConversationItem
+                      currentLoggedInUserId={currentLoggedInUserId as string}
+                      conversation={conversation}
+                      isSelectedConversation={
+                        conversationId === conversation.id
+                      }
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

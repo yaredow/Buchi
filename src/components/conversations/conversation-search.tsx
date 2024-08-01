@@ -1,17 +1,12 @@
 import { useState } from "react";
 import { Input } from "../ui/input";
 
-export default function ConversationSearch({
-  onSearch,
-}: {
-  onSearch: (query: string) => void;
-}) {
+export default function ConversationSearch() {
   const [query, setQuery] = useState("");
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setQuery(value);
-    onSearch(value);
   };
 
   return (
@@ -21,7 +16,7 @@ export default function ConversationSearch({
         placeholder="Search conversations"
         value={query}
         onChange={handleSearch}
-        className="w-full"
+        className="w-full rounded-xl"
       />
     </div>
   );
