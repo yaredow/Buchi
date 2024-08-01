@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Ellipsis, MoreHorizontal, SquarePen } from "lucide-react";
+import { MoreHorizontal, SquarePen } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Conversation, Message, User } from "@prisma/client";
+import { buttonVariants } from "@/components/ui/button";
 import ConversationItem from "./conversations/conversation-item";
 import { useEffect, useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
@@ -12,8 +11,6 @@ import { pusherClient } from "@/utils/pusher";
 import { find } from "lodash";
 import useConversation from "@/utils/hook/useConversation";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import EmptyDoggo from "@/../public/images/EmptyDog2.png";
 import ConversationSearch from "./conversations/conversation-search";
 import { FullConversationType } from "../../types/conversation";
 

@@ -4,7 +4,7 @@ import EmptyImage from "@/../public/images/doggoEmpty.png";
 import Image from "next/image";
 import { FullConversationType } from "../../types/conversation";
 import ConversationItem from "./conversations/conversation-item";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
 import useConversation from "@/utils/hook/useConversation";
 import ConversationSearch from "./conversations/conversation-search";
@@ -16,8 +16,10 @@ type EmptyStateProps = {
 
 export default function EmptyState({
   thereAreConversations,
-  conversations,
+  conversations: initialConversations,
 }: EmptyStateProps) {
+  const [conversations, setConversations] =
+    useState<FullConversationType[]>(initialConversations);
   const session = useSession();
   const { conversationId } = useConversation();
   const { currentLoggedInUserId } = useMemo(() => {
@@ -25,6 +27,19 @@ export default function EmptyState({
       currentLoggedInUserId: session?.data?.user?.id,
     };
   }, [session?.data?.user?.id]);
+
+  const handleSearch = (query: string) => {
+    if (!query) {
+      setConversations(initialConversations);
+    } else {
+      const filtered = initialConversations.filter((conversation) =>
+        conversation.users.some((user) =>
+          user.name?.toLowerCase().includes(query.toLowerCase()),
+        ),
+      );
+      setConversations(filtered);
+    }
+  };
 
   return (
     <>
@@ -58,8 +73,8 @@ export default function EmptyState({
       {/* Mobile view */}
       <div className="flex w-full flex-col md:hidden">
         <div>
-          <ConversationSearch />
-          {conversations.length > 0 && (
+          <ConversationSearch onSearch={handleSearch} />
+          {conversations.length > 0 ? (
             <div className="w-full">
               <ul className="flex flex-col gap-1">
                 {conversations.map((conversation, index) => (
@@ -75,6 +90,8 @@ export default function EmptyState({
                 ))}
               </ul>
             </div>
+          ) : (
+            <div className="mt-4 text-center">No conversations found</div>
           )}
         </div>
       </div>

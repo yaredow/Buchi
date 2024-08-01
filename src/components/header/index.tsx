@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { MenuIcon, MoveRight, User } from "lucide-react";
@@ -12,10 +14,22 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/../public/images/logo-light.svg";
 import ConversationToggle from "@/components/conversations/conversation-toggle";
+import { usePathname } from "next/navigation";
+import useConversation from "@/utils/hook/useConversation";
+import { cn } from "@/lib/utils";
 
-export default async function Header() {
+export default function Header() {
+  const path = usePathname();
+  const { conversationId } = useConversation();
+  const isConversation = path === `/conversations/${conversationId}`;
+
   return (
-    <header className="text-secondary-body sticky inset-0 inset-y-0 right-0 z-10 w-full border-b bg-background px-4 py-3 md:px-12">
+    <header
+      className={cn(
+        "text-secondary-body sticky inset-0 inset-y-0 right-0 z-10 w-full border-b bg-background px-4 py-3 md:px-12",
+        { "hidden md:flex": isConversation },
+      )}
+    >
       <nav className="flex items-center justify-between">
         <Link href="/" className="flex items-center justify-center gap-2">
           <Image src={Logo} height={40} width={40} alt="An image of a dog" />
