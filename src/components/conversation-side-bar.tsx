@@ -14,30 +14,18 @@ import useConversation from "@/utils/hook/useConversation";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import EmptyDoggo from "@/../public/images/EmptyDog2.png";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
 import ConversationSearch from "./conversations/conversation-search";
-
-type ConversationWithDetails = Conversation & {
-  users: User[];
-  messages: Message[];
-};
+import { FullConversationType } from "../../types/conversation";
 
 type SidebarProps = {
-  conversations: ConversationWithDetails[];
+  conversations: FullConversationType[];
 };
 
 export default function ConversationSidebar({
   conversations: initialConversations,
 }: SidebarProps) {
   const [conversations, setConversations] =
-    useState<ConversationWithDetails[]>(initialConversations);
+    useState<FullConversationType[]>(initialConversations);
   const { data: session } = useSession();
   const { conversationId } = useConversation();
   const router = useRouter();
@@ -54,7 +42,7 @@ export default function ConversationSidebar({
 
     pusherClient.subscribe(pusherkey);
 
-    const newHandler = (conversation: ConversationWithDetails) => {
+    const newHandler = (conversation: FullConversationType) => {
       setConversations((prevConversations) => {
         if (find(prevConversations, { id: conversation.id })) {
           return prevConversations;
@@ -64,7 +52,7 @@ export default function ConversationSidebar({
       });
     };
 
-    const updateHandler = (conversation: ConversationWithDetails) => {
+    const updateHandler = (conversation: FullConversationType) => {
       setConversations((prev) =>
         prev.map((prevConversations) => {
           if (prevConversations.id === conversation.id) {
@@ -79,7 +67,7 @@ export default function ConversationSidebar({
       );
     };
 
-    const deleteHandler = (conversation: ConversationWithDetails) => {
+    const deleteHandler = (conversation: FullConversationType) => {
       setConversations((prev) => {
         return [
           ...prev.filter(
@@ -104,6 +92,19 @@ export default function ConversationSidebar({
       pusherClient.unbind("conversation:delete", deleteHandler);
     };
   }, [pusherkey, conversationId, router]);
+
+  const handleSearch = (query: string) => {
+    if (!query) {
+      setConversations(initialConversations);
+    } else {
+      const filtered = initialConversations.filter((conversation) =>
+        conversation.users.some((user) =>
+          user.name?.toLowerCase().includes(query.toLowerCase()),
+        ),
+      );
+      setConversations(filtered);
+    }
+  };
 
   return (
     <div className="group relative hidden min-h-[80vh] flex-col gap-4 border-r md:flex md:w-[28%]">
@@ -140,9 +141,11 @@ export default function ConversationSidebar({
         </div>
       </div>
 
-      {conversations.length > 0 ? (
-        <div>
-          <ConversationSearch />
+      <>
+        <div className="mb-2">
+          <ConversationSearch onSearch={handleSearch} />
+        </div>
+        {conversations.length > 0 ? (
           <div className="grid gap-1 px-2">
             <ul className="flex flex-col gap-1">
               {conversations.map((conversation, index) => (
@@ -156,17 +159,10 @@ export default function ConversationSidebar({
               ))}
             </ul>
           </div>
-        </div>
-      ) : (
-        <div className="my-auto flex items-center justify-center">
-          <Image
-            src={EmptyDoggo}
-            width={250}
-            height={500}
-            alt="a woman with a dog image"
-          />
-        </div>
-      )}
+        ) : (
+          <div className="text-center">No conversations found</div>
+        )}
+      </>
     </div>
   );
 }

@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { Input } from "../ui/input";
 
-export default function ConversationSearch() {
+type ConversationSearchProps = {
+  onSearch: (query: string) => void;
+};
+
+export default function ConversationSearch({
+  onSearch,
+}: ConversationSearchProps) {
   const [query, setQuery] = useState("");
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setQuery(value);
+    onSearch(value);
   };
 
   return (
