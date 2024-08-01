@@ -22,7 +22,7 @@ export default async function Page({ params }: Iparam) {
   if (!conversation || !currentLoggedInUser) return null;
 
   return (
-    <div className="my-4 flex h-full w-full flex-col justify-between md:h-[80vh]">
+    <div className="flex h-[95vh] w-full flex-col justify-between md:h-[80vh]">
       <ConversationTopbar
         selectedUser={selectedUser}
         conversationId={conversationId}

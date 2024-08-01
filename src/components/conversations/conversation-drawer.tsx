@@ -20,15 +20,16 @@ import { User } from "@prisma/client";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import { getInitials } from "@/lib/formatName";
 import { formatDate } from "@/lib/helpers";
+import ConversationDrawerContent from "./conversation-drawer-content";
 
 type ConversationDropdownMenuProps = {
   selectedUser: User;
-  conversationId: string;
+  onDelete: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 export default function ConversationDropdownMenu({
-  conversationId,
   selectedUser,
+  onDelete,
 }: ConversationDropdownMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -58,15 +59,6 @@ export default function ConversationDropdownMenu({
     };
   }, []);
 
-  const handleConversationDelete = async (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    event.stopPropagation();
-    await fetch(`/api/conversations/${conversationId}`, {
-      method: "DELETE",
-    });
-  };
-
   return (
     <div className="relative">
       <Button
@@ -82,7 +74,7 @@ export default function ConversationDropdownMenu({
       {isOpen && (
         <div
           ref={drawerRef}
-          className="absolute right-0 top-0 z-50 w-full rounded-t-lg border bg-background p-6 shadow-lg sm:w-[350px]"
+          className="absolute right-0 top-0 z-50 w-[350px] rounded-t-lg border bg-background shadow-lg md:w-full md:p-6"
         >
           <div className="text-end">
             <button onClick={toggleDrawer}>
@@ -90,57 +82,10 @@ export default function ConversationDropdownMenu({
             </button>
           </div>
 
-          <div className="flex flex-col items-center gap-4">
-            <Avatar className="h-20 w-20">
-              <AvatarImage src={selectedUser.image || DefaultPfp.src} />
-              <AvatarFallback>
-                {getInitials(selectedUser.name || "")}
-              </AvatarFallback>
-            </Avatar>
-            <div className="text-center">
-              <div className="text-xl font-bold">{selectedUser.name}</div>
-              <div className="text-sm text-muted-foreground">{`@${selectedUser.userName}`}</div>
-            </div>
-            <div className="text-sm text-muted-foreground">
-              {selectedUser.bio ? selectedUser.bio : "No bio available"}
-            </div>
-          </div>
-
-          <div className="mt-6 grid gap-2 text-sm">
-            <div className="flex items-center gap-2">
-              <ClockIcon className="h-4 w-4 text-muted-foreground" />
-              <div>Last seen 2 hours ago</div>
-            </div>
-            <div className="flex items-center gap-2">
-              <CalendarIcon className="h-4 w-4 text-muted-foreground" />
-              <div>{formatDate(selectedUser.createdAt)}</div>
-            </div>
-          </div>
-
-          <div className="mt-6 flex justify-center">
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button variant="ghost">
-                  <Trash size={20} />
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent className="alert-dialog-content">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    the conversation and remove all messages from our servers.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleConversationDelete}>
-                    Delete
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </div>
+          <ConversationDrawerContent
+            onDelete={onDelete}
+            selectedUser={selectedUser}
+          />
         </div>
       )}
     </div>

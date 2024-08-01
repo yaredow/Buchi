@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { User } from "@prisma/client";
@@ -5,6 +7,7 @@ import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import ConversationDrawer from "./conversation-drawer";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa6";
+import ConversationDrawerMobile from "./conversation-drawer-mobile";
 
 interface ChatTopbarProps {
   selectedUser: User;
@@ -15,6 +18,15 @@ export default function ConversationTopbar({
   selectedUser,
   conversationId,
 }: ChatTopbarProps) {
+  const handleConversationDelete = async (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.stopPropagation();
+    await fetch(`/api/conversations/${conversationId}`, {
+      method: "DELETE",
+    });
+  };
+
   return (
     <div className="flex h-14 w-full items-center justify-between border-b md:h-20 md:p-4">
       <div className="flex items-center gap-4">
@@ -36,10 +48,17 @@ export default function ConversationTopbar({
         </div>
       </div>
 
-      <div>
+      <div className="hidden md:block">
         <ConversationDrawer
-          conversationId={conversationId}
           selectedUser={selectedUser}
+          onDelete={handleConversationDelete}
+        />
+      </div>
+
+      <div className="block md:hidden">
+        <ConversationDrawerMobile
+          selectedUser={selectedUser}
+          onDelete={handleConversationDelete}
         />
       </div>
     </div>
