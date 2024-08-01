@@ -1,5 +1,5 @@
 import { IoSearchOutline } from "react-icons/io5";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 function SearchBar() {
   return (

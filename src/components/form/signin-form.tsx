@@ -10,7 +10,7 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 import SubmitButton from "../SubmitButton";
 import { FormSuccess } from "../FormSuccess";
 import { useState, useTransition } from "react";

@@ -2,7 +2,7 @@
 
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 
 export default function Social() {

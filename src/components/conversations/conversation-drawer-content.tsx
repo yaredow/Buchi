@@ -11,7 +11,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { CalendarIcon, ClockIcon, Ellipsis, Trash } from "lucide-react";
 import { getInitials } from "@/lib/formatName";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";

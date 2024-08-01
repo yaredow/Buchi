@@ -21,12 +21,11 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   const breeds = await getAllBreeds();
 
-  const slugs = breeds?.map(
-    (breed) =>
-      ({
-        slug: breed.slug,
-      }) || [],
-  );
+  if (!breeds) return [];
+
+  const slugs = breeds.map((breed) => ({
+    cabinId: String(breed.slug),
+  }));
 
   return slugs;
 }

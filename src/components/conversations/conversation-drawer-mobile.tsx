@@ -1,8 +1,8 @@
 "use client";
 
 import { EllipsisVertical } from "lucide-react";
-import { Button } from "../ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import ConversationDrawerContent from "./conversation-drawer-content";
 import { User } from "@prisma/client";
 

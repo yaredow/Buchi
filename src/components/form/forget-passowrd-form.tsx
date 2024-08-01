@@ -7,11 +7,11 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "../ui/form";
+} from "@/components/ui/form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import SubmitButton from "../SubmitButton";
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 import { useState, useTransition } from "react";
 import { FormSuccess } from "../FormSuccess";
 import { FormError } from "../FormError";

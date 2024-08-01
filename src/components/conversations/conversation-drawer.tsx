@@ -1,25 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CalendarIcon, ClockIcon, Ellipsis, Trash, X } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Ellipsis, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { User } from "@prisma/client";
-import DefaultPfp from "@/../public/images/Default_pfp.svg";
-import { getInitials } from "@/lib/formatName";
-import { formatDate } from "@/lib/helpers";
+
 import ConversationDrawerContent from "./conversation-drawer-content";
 
 type ConversationDropdownMenuProps = {

@@ -7,17 +7,17 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "../ui/form";
+} from "@/components/ui/form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 import SubmitButton from "../SubmitButton";
 import { FormSuccess } from "../FormSuccess";
 import { FormError } from "../FormError";
 import { registerAction } from "@/server/actions/auth/actions";
 import { SignupFormSchema } from "@/lib/schema";
 import { dogBreeds } from "@/lib/constants";
-import { MultiSelect } from "../ui/multi-select";
+import { MultiSelect } from "@/components/ui/multi-select";
 import { useForm } from "react-hook-form";
 
 export default function SignupForm() {

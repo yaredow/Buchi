@@ -10,8 +10,8 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import SubmitButton from "../SubmitButton";
 import { useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";

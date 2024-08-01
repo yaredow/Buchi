@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 import { useState, useTransition } from "react";
 
 import {
@@ -12,7 +12,7 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "../ui/form";
+} from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
 
 import SubmitButton from "../SubmitButton";

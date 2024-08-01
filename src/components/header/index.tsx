@@ -1,14 +1,14 @@
 "use client";
 
-import { Button } from "../ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MenuIcon, MoveRight, User } from "lucide-react";
 
 import React from "react";
 import { navLinks } from "@/lib/constants";
 import NavLink from "@/components/header/nav-link";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import UserMenu from "@/components/user-menu";
 import Link from "next/link";
 import Image from "next/image";

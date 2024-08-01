@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { MessageSquareMore } from "lucide-react";
 
 export default function ConversationToggle() {

@@ -1,12 +1,12 @@
 "use client";
 
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { MessageInputSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
 import { CldUploadWidget } from "next-cloudinary";
 import { ImageUp } from "lucide-react";

@@ -148,7 +148,7 @@ export const FileUploader = forwardRef<
           setActiveIndex(-1);
         }
       },
-      [value, activeIndex, removeFileFromSet, direction],
+      [value, activeIndex, removeFileFromSet, direction, orientation],
     );
 
     const onDrop = useCallback(
@@ -189,7 +189,7 @@ export const FileUploader = forwardRef<
           }
         }
       },
-      [reSelectAll, value],
+      [reSelectAll, value, maxFiles, maxSize, onValueChange],
     );
 
     useEffect(() => {

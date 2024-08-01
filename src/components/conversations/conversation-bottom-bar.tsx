@@ -9,12 +9,16 @@ import {
 } from "lucide-react";
 
 import React, { useRef, useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Textarea } from "../ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
 import { EmojiPicker } from "../emoji-picker";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 type ConversationBottombarProps = {
   conversationId: string;

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Avatar, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { User } from "@prisma/client";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import ConversationDrawer from "./conversation-drawer";
