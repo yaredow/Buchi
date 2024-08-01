@@ -74,7 +74,7 @@ export default function ConversationDropdownMenu({
       {isOpen && (
         <div
           ref={drawerRef}
-          className="absolute right-0 top-0 z-50 w-[350px] rounded-t-lg border bg-background shadow-lg md:w-full md:p-6"
+          className="absolute right-0 top-0 z-50 w-[350px] rounded-t-lg border bg-background shadow-lg md:p-6"
         >
           <div className="text-end">
             <button onClick={toggleDrawer}>

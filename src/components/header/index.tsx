@@ -28,7 +28,7 @@ export default function Header() {
     <header
       className={cn(
         "text-secondary-body sticky inset-0 inset-y-0 right-0 z-10 w-full border-b bg-background px-4 py-3 md:px-12",
-        { "hidden md:flex": isConversation },
+        { "hidden md:block": isConversation },
       )}
     >
       <nav className="flex items-center justify-between">
