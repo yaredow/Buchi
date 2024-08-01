@@ -59,9 +59,6 @@ export default function UserMenu() {
           <DropdownMenuItem>
             <Link href="/profile">Profile</Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/profile/setting">Setting</Link>
-          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={handleLogout}>Log out</DropdownMenuItem>
         </DropdownMenuContent>
