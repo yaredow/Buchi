@@ -2,12 +2,16 @@
 
 import EmptyImage from "@/../public/images/doggoEmpty.png";
 import Image from "next/image";
-import { FullConversationType } from "../../types/conversation";
+import { FullConversationType } from "@/app/types/conversation";
 import ConversationItem from "./conversations/conversation-item";
 import { useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
 import useConversation from "@/utils/hook/useConversation";
 import ConversationSearch from "./conversations/conversation-search";
+import Link from "next/link";
+import { buttonVariants } from "./ui/button";
+import { cn } from "@/lib/utils";
+import { MoreHorizontal, SquarePen } from "lucide-react";
 
 type EmptyStateProps = {
   thereAreConversations: boolean;
@@ -72,28 +76,57 @@ export default function EmptyState({
 
       {/* Mobile view */}
       <div className="flex w-full flex-col md:hidden">
-        <div>
-          <ConversationSearch onSearch={handleSearch} />
-          {conversations.length > 0 ? (
-            <div className="w-full">
-              <ul className="flex flex-col gap-1">
-                {conversations.map((conversation, index) => (
-                  <li key={index} className="w-full">
-                    <ConversationItem
-                      currentLoggedInUserId={currentLoggedInUserId as string}
-                      conversation={conversation}
-                      isSelectedConversation={
-                        conversationId === conversation.id
-                      }
-                    />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            <div className="mt-4 text-center">No conversations found</div>
-          )}
+        <div className="mb-2 flex w-full items-center justify-between border-b">
+          <div className="flex items-center gap-2 text-2xl">
+            <p className="text-lg font-medium">Messages</p>
+            <span className="text-lg text-slate-300">
+              {conversations && conversations.length > 0
+                ? `(${conversations.length})`
+                : null}
+            </span>
+          </div>
+
+          <div>
+            <Link
+              href="#"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "h-9 w-9",
+              )}
+            >
+              <MoreHorizontal size={20} />
+            </Link>
+
+            <Link
+              href="#"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "h-9 w-9",
+              )}
+            >
+              <SquarePen size={20} />
+            </Link>
+          </div>
         </div>
+
+        <ConversationSearch onSearch={handleSearch} />
+        {conversations.length > 0 ? (
+          <div className="w-full">
+            <ul className="flex flex-col gap-1">
+              {conversations.map((conversation, index) => (
+                <li key={index} className="w-full">
+                  <ConversationItem
+                    currentLoggedInUserId={currentLoggedInUserId as string}
+                    conversation={conversation}
+                    isSelectedConversation={conversationId === conversation.id}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="mt-4 text-center">No conversations found</div>
+        )}
       </div>
     </>
   );

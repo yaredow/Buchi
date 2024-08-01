@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FullMessageType } from "../../../types/conversation";
+import { FullMessageType } from "../../app/types/conversation";
 import { User } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage } from "../ui/avatar";

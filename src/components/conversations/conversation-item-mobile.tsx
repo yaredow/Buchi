@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FullConversationType } from "../../../types/conversation";
+import { FullConversationType } from "@/app/types/conversation";
 import {
   Tooltip,
   TooltipContent,

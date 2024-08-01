@@ -3,7 +3,7 @@ import { getConversationById } from "@/data/conversations";
 import { getCurrentUser } from "@/data/user";
 import { User } from "@prisma/client";
 import MessageList from "@/components/conversations/message-list";
-import { FullConversationType } from "../../../../../types/conversation";
+import { FullConversationType } from "@/app/types/conversation";
 
 type Iparam = {
   params: { conversationId: string };
@@ -22,7 +22,7 @@ export default async function Page({ params }: Iparam) {
   if (!conversation || !currentLoggedInUser) return null;
 
   return (
-    <div className="flex h-[80vh] w-full flex-col justify-between">
+    <div className="my-4 flex h-full w-full flex-col justify-between md:h-[80vh]">
       <ConversationTopbar
         selectedUser={selectedUser}
         conversationId={conversationId}

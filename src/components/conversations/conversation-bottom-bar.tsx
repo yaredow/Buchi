@@ -115,7 +115,7 @@ export default function ConversationBottombar({
   };
 
   return (
-    <div className="flex w-full items-center justify-between gap-2 p-2">
+    <div className="flex w-full items-center justify-between gap-2 md:p-2">
       <div className="flex">
         {message.trim() ? (
           <Popover>

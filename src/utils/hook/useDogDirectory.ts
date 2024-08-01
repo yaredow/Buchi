@@ -1,7 +1,7 @@
 import breedData from "@/utils/breed-data/data.json";
 import { useState } from "react";
 import { useAppSelector } from "@/store/hooks";
-import { DogBreed } from "@/../types/breed/index";
+import { DogBreed } from "@/app/types/breed/index";
 import { selectBreeds } from "@/store/breedSlice/breedSlice";
 
 const useDogDirectory = () => {

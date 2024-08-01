@@ -1,3 +1,4 @@
+import { FullConversationType } from "@/app/types/conversation";
 import ConversationSidebar from "@/components/conversation-side-bar";
 import { getConversations } from "@/data/conversations";
 
@@ -6,7 +7,7 @@ export default async function ConversationLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const conversations = await getConversations();
+  const conversations = (await getConversations()) as FullConversationType[];
 
   if (!conversations) return null;
 

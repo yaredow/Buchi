@@ -1,6 +1,6 @@
+import { FullConversationType } from "@/app/types/conversation";
 import EmptyState from "@/components/empty-chat";
 import { getConversations } from "@/data/conversations";
-import { FullConversationType } from "../../../../types/conversation";
 
 export const metadata = {
   title: "Chat",

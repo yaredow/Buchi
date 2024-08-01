@@ -12,7 +12,7 @@ import { find } from "lodash";
 import useConversation from "@/utils/hook/useConversation";
 import { useRouter } from "next/navigation";
 import ConversationSearch from "./conversations/conversation-search";
-import { FullConversationType } from "../../types/conversation";
+import { FullConversationType } from "@/app/types/conversation";
 
 type SidebarProps = {
   conversations: FullConversationType[];

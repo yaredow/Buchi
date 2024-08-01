@@ -6,8 +6,8 @@ import ConversationBottombar from "./conversation-bottom-bar";
 import { User } from "@prisma/client";
 import { pusherClient } from "@/utils/pusher";
 import { find } from "lodash";
-import { FullMessageType } from "@/../../types/conversation";
 import MessageItem from "./message-item";
+import { FullMessageType } from "@/app/types/conversation";
 
 interface ChatListProps {
   messages: FullMessageType[];
@@ -31,8 +31,6 @@ export default function MessageList({
         messagesContainerRef.current.scrollHeight;
     }
   }, [messages]);
-
-  console.log("Second console log for lazy git");
 
   useEffect(() => {
     fetch(`/api/conversations/${conversationId}/seen`, { method: "POST" });
