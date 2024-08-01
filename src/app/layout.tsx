@@ -6,7 +6,6 @@ import { AuthProvider } from "@/components/providers/auth-provider";
 import { Toaster } from "@/components/ui/toaster";
 import NextTopLoader from "nextjs-toploader";
 import QueryProviders from "@/components/providers/query-provider";
-import StoreProvider from "@/components/providers/store-provider";
 import { Metadata } from "next";
 
 const inter = Inter({
@@ -37,12 +36,10 @@ export default function RootLayout({
         >
           <QueryProviders>
             <AuthProvider>
-              <StoreProvider>
-                <NextTopLoader />
-                <Header />
-                <div className="m-6 md:m-12">{children}</div>
-                <Toaster />
-              </StoreProvider>
+              <NextTopLoader />
+              <Header />
+              <div className="m-6 md:m-12">{children}</div>
+              <Toaster />
             </AuthProvider>
           </QueryProviders>
         </ThemeProvider>
