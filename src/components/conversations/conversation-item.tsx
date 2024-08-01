@@ -29,7 +29,7 @@ export default function ConversationItem({
   return (
     <Link
       href={`/conversations/${conversation.id}`}
-      className="max-w-28 shrink rounded-lg dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white" // Added padding and rounded corners for better visibility
+      className="w-full shrink rounded-lg dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white md:max-w-28" // Added padding and rounded corners for better visibility
     >
       <div
         className={cn(

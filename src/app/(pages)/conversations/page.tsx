@@ -14,7 +14,7 @@ export default async function Page() {
   const thereAreConversations = conversations?.length > 0;
 
   return (
-    <main className="flex h-[80vh] w-full flex-col items-center justify-center overflow-hidden md:p-4 md:px-12">
+    <main className="flex w-full flex-col items-center justify-center overflow-hidden md:h-[80vh] md:p-4 md:px-12">
       <EmptyState
         conversations={conversations}
         thereAreConversations={thereAreConversations}

@@ -3,6 +3,8 @@ import { Avatar, AvatarImage } from "../ui/avatar";
 import { User } from "@prisma/client";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import ConversationDrawer from "./conversation-drawer";
+import { MoveLeft } from "lucide-react";
+import Link from "next/link";
 
 interface ChatTopbarProps {
   selectedUser: User;
@@ -14,8 +16,11 @@ export default function ConversationTopbar({
   conversationId,
 }: ChatTopbarProps) {
   return (
-    <div className="flex h-20 w-full items-center justify-between border-b p-4">
-      <div className="flex items-center gap-2">
+    <div className="flex h-14 w-full items-center justify-between border-b md:h-20 md:p-4">
+      <div className="flex items-center gap-4">
+        <Link href="/conversations" className="block md:hidden">
+          <MoveLeft size={20} strokeWidth={3} />
+        </Link>
         <Avatar className="flex items-center justify-center">
           <AvatarImage
             src={selectedUser.image || DefaultPfp.src}

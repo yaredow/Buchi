@@ -7,17 +7,16 @@ import ConversationItem from "./conversations/conversation-item";
 import { useMemo } from "react";
 import { useSession } from "next-auth/react";
 import useConversation from "@/utils/hook/useConversation";
-import EmptyDoggo from "@/../public/images/EmptyDog2.png";
 
 type EmptyStateProps = {
   thereAreConversations: boolean;
   conversations: FullConversationType[];
 };
 
-const EmptyState = ({
+export default function EmptyState({
   thereAreConversations,
   conversations,
-}: EmptyStateProps) => {
+}: EmptyStateProps) {
   const session = useSession();
   const { conversationId } = useConversation();
   const { currentLoggedInUserId } = useMemo(() => {
@@ -54,9 +53,10 @@ const EmptyState = ({
           </div>
         )}
       </main>
-      <div className="flex md:hidden">
-        {conversations.length > 0 ? (
-          <div className="grid gap-1 px-2">
+
+      <div className="flex w-full flex-col md:hidden">
+        {conversations.length > 0 && (
+          <div className="w-full">
             <ul className="flex flex-col gap-1">
               {conversations.map((conversation, index) => (
                 <li key={index} className="w-full">
@@ -69,19 +69,8 @@ const EmptyState = ({
               ))}
             </ul>
           </div>
-        ) : (
-          <div className="my-auto flex items-center justify-center">
-            <Image
-              src={EmptyDoggo}
-              width={250}
-              height={500}
-              alt="a woman with a dog image"
-            />
-          </div>
         )}
       </div>
     </>
   );
-};
-
-export default EmptyState;
+}
