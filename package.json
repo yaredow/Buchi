@@ -18,6 +18,7 @@
     "email:dev": "email dev --dir src/emails",
     "prisma:push": "npx prisma db push",
     "prisma:generate": "npx prisma generate",
+    "postinstall": "prisma generate",
     "prisma:studio": "npx prisma studio"
   },
   "dependencies": {
