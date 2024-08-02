@@ -11,7 +11,6 @@ import { pusherClient } from "@/utils/pusher";
 import { find } from "lodash";
 import useConversation from "@/utils/hook/useConversation";
 import { useRouter } from "next/navigation";
-import ConversationSearch from "./conversations/conversation-search";
 import { FullConversationType } from "@/app/types/conversation";
 
 type SidebarProps = {
@@ -90,19 +89,6 @@ export default function ConversationSidebar({
     };
   }, [pusherkey, conversationId, router]);
 
-  const handleSearch = (query: string) => {
-    if (!query) {
-      setConversations(initialConversations);
-    } else {
-      const filtered = initialConversations.filter((conversation) =>
-        conversation.users.some((user) =>
-          user.name?.toLowerCase().includes(query.toLowerCase()),
-        ),
-      );
-      setConversations(filtered);
-    }
-  };
-
   return (
     <div className="group relative hidden min-h-[80vh] flex-col gap-4 border-r md:flex md:w-[28%]">
       <div className="mb-2 flex items-center justify-between border-b px-2 md:py-[18.8px]">
@@ -138,28 +124,23 @@ export default function ConversationSidebar({
         </div>
       </div>
 
-      <>
-        <div className="mb-2">
-          <ConversationSearch onSearch={handleSearch} />
+      {conversations.length > 0 ? (
+        <div className="grid gap-1 px-2">
+          <ul className="flex flex-col gap-1">
+            {conversations.map((conversation, index) => (
+              <li key={index} className="w-full">
+                <ConversationItem
+                  currentLoggedInUserId={currentLoggedInUserId!}
+                  conversation={conversation}
+                  isSelectedConversation={conversationId === conversation.id}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
-        {conversations.length > 0 ? (
-          <div className="grid gap-1 px-2">
-            <ul className="flex flex-col gap-1">
-              {conversations.map((conversation, index) => (
-                <li key={index} className="w-full">
-                  <ConversationItem
-                    currentLoggedInUserId={currentLoggedInUserId!}
-                    conversation={conversation}
-                    isSelectedConversation={conversationId === conversation.id}
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <div className="text-center">No conversations found</div>
-        )}
-      </>
+      ) : (
+        <div className="text-center">No conversations found</div>
+      )}
     </div>
   );
 }

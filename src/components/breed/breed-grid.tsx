@@ -1,46 +1,26 @@
 "use client";
 
 import BreedCard from "@/components/breed/breed-card";
-import useGetBreeds from "@/utils/hook/useGetBreeds";
 import { Breed } from "@prisma/client";
 import { nanoid } from "@reduxjs/toolkit";
-import BreedSkeleton from "../skeletons/breed-skeleton";
 
-type BreedProps = {
-  slug: string;
-  breedName: string;
-  breedImages: string[];
-  breedShortDescription: string;
+type BreedGridProps = {
+  breeds: Breed[];
 };
 
-function BreedGrid() {
-  const { breeds = [], isFetching }: { breeds: Breed[]; isFetching: boolean } =
-    useGetBreeds();
-
+function BreedGrid({ breeds }: BreedGridProps) {
   return (
     <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
-      {breeds.map(
-        ({
-          slug,
-          breedName,
-          breedImages,
-          breedShortDescription,
-        }: BreedProps) => (
-          <div key={nanoid()} className="w-full">
-            <BreedCard
-              slug={slug}
-              breedName={breedName}
-              breedImages={breedImages}
-              breedShortDescription={breedShortDescription}
-            />
-          </div>
-        ),
-      )}
-
-      {isFetching &&
-        Array.from({ length: 20 }).map((_, index) => {
-          return <BreedSkeleton key={index} />;
-        })}
+      {breeds.map(({ slug, breedName, breedImages, breedShortDescription }) => (
+        <div key={nanoid()} className="w-full">
+          <BreedCard
+            slug={slug}
+            breedName={breedName}
+            breedImages={breedImages}
+            breedShortDescription={breedShortDescription}
+          />
+        </div>
+      ))}
     </div>
   );
 }

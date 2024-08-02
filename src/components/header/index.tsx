@@ -21,8 +21,7 @@ import { cn } from "@/lib/utils";
 export default function Header() {
   const path = usePathname();
   const { conversationId } = useConversation();
-  const isConversation =
-    path === `/conversations` || path === `/conversations/${conversationId}`;
+  const isConversation = path === `/conversations/${conversationId}`;
 
   return (
     <header

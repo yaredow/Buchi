@@ -109,7 +109,6 @@ export default function EmptyState({
           </div>
         </div>
 
-        <ConversationSearch onSearch={handleSearch} />
         {conversations.length > 0 ? (
           <div className="w-full">
             <ul className="flex flex-col gap-1">

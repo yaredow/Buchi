@@ -1,14 +1,14 @@
-"use client";
-
 import React from "react";
 import BreedGrid from "../breed/breed-grid";
+import { getAllBreeds } from "@/data/breed";
+import { Breed } from "@prisma/client";
 
-const HomePage = () => {
+export default async function HomePage() {
+  const breeds = (await getAllBreeds()) as Breed[];
+
   return (
     <section className="mb-10">
-      <BreedGrid />
+      <BreedGrid breeds={breeds} />
     </section>
   );
-};
-
-export default HomePage;
+}
