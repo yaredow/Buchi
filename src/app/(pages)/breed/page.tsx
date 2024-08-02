@@ -1,12 +1,20 @@
-import BreedGrid from "@/components/breed/breed-grid";
-import { getAllBreeds } from "@/data/breed";
+import BreedPage from "@/components/breed";
+import BreedSkeleton from "@/components/skeletons/breed-skeleton";
+import SkeletonLoader from "@/components/skeletons/skeleton-loader";
+import { Suspense } from "react";
 
-export default async function page() {
-  const breeds = await getAllBreeds();
-
-  if (!breeds) {
-    return <div>No breeds found</div>;
-  }
-
-  return <BreedGrid breeds={breeds} />;
+export default function page() {
+  return (
+    <Suspense
+      fallback={
+        <SkeletonLoader
+          count={30}
+          SkeletonComponent={BreedSkeleton}
+          className="grid w-full grid-cols-2 gap-4 md:grid-cols-4"
+        />
+      }
+    >
+      <BreedPage />;
+    </Suspense>
+  );
 }
