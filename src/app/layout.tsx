@@ -38,7 +38,7 @@ export default function RootLayout({
             <AuthProvider>
               <NextTopLoader />
               <Header />
-              <div className="m-6 md:m-12">{children}</div>
+              <div className="m-6 md:mx-12 md:my-6">{children}</div>
               <Toaster />
             </AuthProvider>
           </QueryProviders>
