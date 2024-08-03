@@ -1,6 +1,6 @@
 # Doggo
 
-Buchi is a web platform designed to help people who want to adopt dogs by providing detailed information about various breeds. Users can create accounts, chat with other dog enthusiasts, and share experiences and tips about raising their chosen breeds.
+Buchi is a web platform designed to help people who want to adopt dogs by providing detailed information about various breeds. Users can create accounts, chat with other dog enthusiasts, and share experiences and tips about raising their chosen breeds. It also has a buy a pet feature where pets will be listed for selling
 
 ## Features
 

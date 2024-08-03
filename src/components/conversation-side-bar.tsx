@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { MoreHorizontal, SquarePen } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
 import ConversationItem from "./conversations/conversation-item";
 import { useEffect, useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
@@ -20,6 +19,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "./ui/button";
 
 type SidebarProps = {
   conversations: FullConversationType[];
