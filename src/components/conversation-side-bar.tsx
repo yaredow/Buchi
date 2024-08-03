@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { MoreHorizontal, SquarePen } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import ConversationItem from "./conversations/conversation-item";
 import { useEffect, useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
@@ -12,6 +12,14 @@ import { find } from "lodash";
 import useConversation from "@/utils/hook/useConversation";
 import { useRouter } from "next/navigation";
 import { FullConversationType } from "@/app/types/conversation";
+import { DropdownMenu } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type SidebarProps = {
   conversations: FullConversationType[];
@@ -102,25 +110,18 @@ export default function ConversationSidebar({
         </div>
 
         <div>
-          <Link
-            href="#"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "h-9 w-9",
-            )}
-          >
-            <MoreHorizontal size={20} />
-          </Link>
-
-          <Link
-            href="#"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "h-9 w-9",
-            )}
-          >
-            <SquarePen size={20} />
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost">
+                <MoreHorizontal size={20} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-card md:w-[100px]">
+              <DropdownMenuItem>Archive chat</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Mark as read</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 

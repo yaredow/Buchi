@@ -14,7 +14,7 @@ export default function BreedDetails({ breed }: BreedDetailsProps) {
   if (!breed) return <div>No breed available</div>;
   return (
     <section>
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-8">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-8">
         <div className="relative mx-4 mt-4 h-[50vh] w-full overflow-hidden">
           <Image
             alt={breed?.breedImages[0] as string}
@@ -50,8 +50,7 @@ export default function BreedDetails({ breed }: BreedDetailsProps) {
           <p className="mx-2">{breed.breedLongDescription}</p>
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold">Beagle Breeds</h2>
+        <div className="w-full space-y-4">
           <h3 className="text-lg font-bold">Beagle Traits</h3>
           <div className="flex flex-wrap gap-2">
             {breed.traits.map((trait, index) => (
