@@ -3,7 +3,7 @@ import { getConversationById } from "@/data/conversations";
 import { getCurrentUser } from "@/data/user";
 import { User } from "@prisma/client";
 import MessageList from "@/components/conversations/message-list";
-import { FullConversationType } from "@/app/types/conversation";
+import { FullConversationType } from "@/types/conversation";
 
 type Iparam = {
   params: { conversationId: string };
