@@ -8,8 +8,8 @@ export const navLinks = [
     title: "Breeds",
   },
   {
-    src: "/my-dogs",
-    title: "MyDogs",
+    src: "/buy-pets",
+    title: "Buy Pets",
   },
   {
     src: "/about",
