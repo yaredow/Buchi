@@ -1,6 +1,6 @@
-import { FullConversationType } from "@/app/types/conversation";
 import ConversationSidebar from "@/components/conversation-side-bar";
 import { getConversations } from "@/data/conversations";
+import { FullConversationType } from "@/types/conversation";
 
 export default async function ConversationLayout({
   children,
