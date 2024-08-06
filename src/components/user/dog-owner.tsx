@@ -1,8 +1,8 @@
+"use client";
+
 import { User } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Spinner from "../Spinner";
-import useGetDogOwners from "@/utils/hook/useGetDogOwners";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 
 function DogOwnerCard({ user }: { user: User }) {
@@ -33,24 +33,16 @@ function DogOwnerCard({ user }: { user: User }) {
   );
 }
 
-export default function DogOwner({ breedId }: { breedId: string }) {
-  const { dogOwners, isFetching }: { dogOwners: User[]; isFetching: boolean } =
-    useGetDogOwners(breedId);
-
+export default function DogOwner({ breedOwners }: { breedOwners: User[] }) {
+  console.log(breedOwners);
   return (
     <div className="my-4 flex flex-col md:my-12">
-      <ul>
-        {isFetching ? (
-          <div className="grid items-center justify-center">
-            <Spinner />
-          </div>
-        ) : (
-          dogOwners.map((user, index) => (
-            <li className="flex flex-col gap-4" key={index}>
-              <DogOwnerCard user={user} />
-            </li>
-          ))
-        )}
+      <ul className="grid gap-2">
+        {breedOwners.map((user, index) => (
+          <li className="flex flex-col gap-4" key={index}>
+            <DogOwnerCard user={user} />
+          </li>
+        ))}
       </ul>
     </div>
   );

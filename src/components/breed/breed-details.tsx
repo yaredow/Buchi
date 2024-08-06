@@ -1,4 +1,4 @@
-import { Breed } from "@prisma/client";
+import { Breed, User } from "@prisma/client";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import DogOwner from "../user/dog-owner";
@@ -9,7 +9,8 @@ type BreedDetailsProps = {
 };
 
 export default async function BreedDetails({ breed }: BreedDetailsProps) {
-  const dogOwners = await getDogOwnners(breed.id);
+  const dogOwners = (await getDogOwnners(breed.id)) as User[];
+  console.log(dogOwners);
   if (!breed) return <div>No breed available</div>;
   return (
     <section>
@@ -121,7 +122,7 @@ export default async function BreedDetails({ breed }: BreedDetailsProps) {
           </div>
         </div>
 
-        <DogOwner breedId={breed.id} />
+        <DogOwner breedOwners={dogOwners} />
       </div>
     </section>
   );
