@@ -1,3 +1,7 @@
 export default function page() {
-  return <div>Buy a pet</div>;
+  return (
+    <div>
+      <div></div>
+    </div>
+  );
 }
