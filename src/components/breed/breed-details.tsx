@@ -1,16 +1,15 @@
-"use client";
-
-import useGetBreed from "@/utils/hook/useGetBreed";
 import { Breed } from "@prisma/client";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import DogOwner from "../user/dog-owner";
+import { getDogOwnners } from "@/data/breed";
 
 type BreedDetailsProps = {
   breed: Breed;
 };
 
-export default function BreedDetails({ breed }: BreedDetailsProps) {
+export default async function BreedDetails({ breed }: BreedDetailsProps) {
+  const dogOwners = await getDogOwnners(breed.id);
   if (!breed) return <div>No breed available</div>;
   return (
     <section>

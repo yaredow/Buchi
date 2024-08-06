@@ -1,4 +1,5 @@
 import prisma from "@/utils/db/db";
+import { getCurrentUser } from "./user";
 
 export const getAllBreeds = async () => {
   try {
@@ -16,6 +17,22 @@ export const getBreedWithSlug = async (slug: string) => {
     const breed = await prisma.breed.findFirst({ where: { slug } });
 
     return breed;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const getDogOwnners = async (breedId: string) => {
+  try {
+    const currentUser = await getCurrentUser();
+
+    const owners = await prisma.user.findMany({
+      where: { id: breedId, email: { not: currentUser?.email } },
+      include: { breed: true },
+    });
+
+    return owners;
   } catch (error) {
     console.error(error);
     return null;
