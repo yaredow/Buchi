@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { FullConversationType } from "@/app/types/conversation";
+
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { FullConversationType } from "@/types/conversation";
 
 type ConversationItemMobileProps = {
   conversationId: string;
