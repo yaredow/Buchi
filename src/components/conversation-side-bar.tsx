@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
 import { MoreHorizontal, SquarePen } from "lucide-react";
-import { cn } from "@/lib/utils";
 import ConversationItem from "./conversations/conversation-item";
 import { useEffect, useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
@@ -10,16 +8,16 @@ import { pusherClient } from "@/utils/pusher";
 import { find } from "lodash";
 import useConversation from "@/utils/hook/useConversation";
 import { useRouter } from "next/navigation";
-import { FullConversationType } from "@/app/types/conversation";
+
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
+import { FullConversationType } from "@/types/conversation";
 
 type SidebarProps = {
   conversations: FullConversationType[];
@@ -112,7 +110,7 @@ export default function ConversationSidebar({
         <div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost">
+              <Button variant="ghost" size="icon">
                 <MoreHorizontal size={20} />
               </Button>
             </DropdownMenuTrigger>

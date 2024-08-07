@@ -82,6 +82,7 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
             </div>
           </div>
         </div>
+
         <div className="rounded-lg p-4 shadow">
           <h3 className="text-lg font-semibold">Intro</h3>
           <ul className="mt-2 space-y-2 text-sm">
@@ -117,21 +118,15 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
           </ul>
         </div>
       </div>
+
       <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="rounded-lg p-4 shadow">
           <h3 className="text-lg font-semibold">About</h3>
           <p className="mt-2 text-sm text-muted-foreground">
-            I&apos;m the model of the new CMO. I\&apos;ve combined a deep
-            background in brand management at blue chip CPG companies with
-            eCommerce growth marketing at the world\&apos;s biggest retailer.
-            I\&apos;ve run SingleFire I\&apos;ve created world-class campaigns;
-            I\&apos;ve built digital marketing organizations from the ground up.
-            I have over 20 years&apos; experience leading...
-            <a href="#" className="text-blue-500">
-              See more
-            </a>
+            {user.bio || "Dog lover"}
           </p>
         </div>
+
         <div className="col-span-2 rounded-lg p-4 shadow">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
@@ -154,6 +149,7 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
           </div>
         </div>
       </div>
+
       <div className="mt-4 rounded-lg p-4 shadow">
         <div className="flex items-center justify-between text-sm font-semibold">
           <a href="#" className="text-blue-500">

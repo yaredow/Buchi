@@ -1,9 +1,5 @@
 export const navLinks = [
   {
-    src: "/about",
-    title: "About",
-  },
-  {
     src: "/breed",
     title: "Breeds",
   },
@@ -15,6 +11,7 @@ export const navLinks = [
     src: "/about",
     title: "About",
   },
+
   {
     src: "/contact",
     title: "Contact",

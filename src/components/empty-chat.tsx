@@ -2,17 +2,20 @@
 
 import EmptyImage from "@/../public/images/doggoEmpty.png";
 import Image from "next/image";
-import { FullConversationType } from "@/app/types/conversation";
 import ConversationItem from "./conversations/conversation-item";
 import { useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
 import useConversation from "@/utils/hook/useConversation";
-import ConversationSearch from "./conversations/conversation-search";
-import Link from "next/link";
-import { buttonVariants } from "./ui/button";
-import { cn } from "@/lib/utils";
-import { MoreHorizontal, SquarePen } from "lucide-react";
-
+import { Button } from "./ui/button";
+import { MoreHorizontal } from "lucide-react";
+import { FullConversationType } from "@/types/conversation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 type EmptyStateProps = {
   thereAreConversations: boolean;
   conversations: FullConversationType[];
@@ -87,25 +90,18 @@ export default function EmptyState({
           </div>
 
           <div>
-            <Link
-              href="#"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "h-9 w-9",
-              )}
-            >
-              <MoreHorizontal size={20} />
-            </Link>
-
-            <Link
-              href="#"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "h-9 w-9",
-              )}
-            >
-              <SquarePen size={20} />
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost">
+                  <MoreHorizontal size={20} />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-card md:w-[100px]">
+                <DropdownMenuItem>Archive chat</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Mark as read</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
 
