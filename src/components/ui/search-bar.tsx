@@ -10,12 +10,7 @@ function SearchBar() {
         placeholder="Search 198 dog breeds"
         className="text-secondary-article placeholder-secondary-article w-full bg-input text-sm outline-0"
       />
-      <Button
-        variant="secondary"
-        className="text-secondary-body rounded-full bg-primary py-2.5 md:ml-auto"
-      >
-        Search
-      </Button>
+      <Button className="rounded-md">Search</Button>
     </div>
   );
 }

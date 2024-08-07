@@ -1,49 +1,40 @@
 "use client";
 
 import { User } from "@prisma/client";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
+import Link from "next/link";
+import { Avatar, AvatarImage } from "../ui/avatar";
 
 function DogOwnerCard({ user }: { user: User }) {
-  const router = useRouter();
-
   return (
-    <div className="flex items-center gap-4">
-      <div className="h-12 w-12 overflow-hidden rounded-full">
-        <Image
-          src={user.image || DefaultPfp}
-          alt="Avatar"
-          height={50}
-          width={50}
-          className="h-full w-full object-cover"
+    <Link
+      href={`/profile/${user.id}`}
+      className="flex flex-row items-center justify-center gap-2 border p-2 hover:bg-muted-foreground"
+    >
+      <Avatar>
+        <AvatarImage
+          src={user.image || DefaultPfp.src}
+          alt={user.name || "dog owner image"}
+          className="rounded-full"
         />
+      </Avatar>
+      <div className="px-2">
+        <h1>{user.name}</h1>
+        <span className="text-sm text-muted-foreground">{`@${user.userName?.toLowerCase()}`}</span>
       </div>
-
-      <div className="grid gap-1">
-        <div
-          onClick={() => router.push(`/profile/${user.id}`)}
-          className="cursor-pointer font-medium hover:underline hover:underline-offset-4"
-        >
-          {user.name}
-        </div>
-        <div className="text-muted-foreground">{user.userName}</div>
-      </div>
-    </div>
+    </Link>
   );
 }
 
 export default function DogOwner({ breedOwners }: { breedOwners: User[] }) {
-  console.log(breedOwners);
   return (
-    <div className="my-4 flex flex-col md:my-12">
-      <ul className="grid gap-2">
-        {breedOwners.map((user, index) => (
-          <li className="flex flex-col gap-4" key={index}>
-            <DogOwnerCard user={user} />
-          </li>
+    <div className="w-full bg-background py-4">
+      <h2 className="mb-6 text-2xl font-bold">People who own this breed</h2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {breedOwners.map((user) => (
+          <DogOwnerCard key={user.id} user={user} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

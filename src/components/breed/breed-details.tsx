@@ -10,7 +10,7 @@ type BreedDetailsProps = {
 
 export default async function BreedDetails({ breed }: BreedDetailsProps) {
   const dogOwners = (await getDogOwnners(breed.id)) as User[];
-  console.log(dogOwners);
+
   if (!breed) return <div>No breed available</div>;
   return (
     <section>

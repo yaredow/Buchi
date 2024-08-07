@@ -28,7 +28,7 @@ export const getDogOwnners = async (breedId: string) => {
     const currentUser = await getCurrentUser();
 
     const owners = await prisma.user.findMany({
-      where: { id: breedId, email: { not: currentUser?.email } },
+      where: { breedId, email: { not: currentUser?.email } },
       include: { breed: true },
     });
 
