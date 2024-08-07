@@ -4,6 +4,7 @@ import { getCurrentUser } from "./user";
 export const getAllBreeds = async () => {
   try {
     const breeds = await prisma.breed.findMany();
+    console.log(breeds);
 
     return breeds;
   } catch (error) {

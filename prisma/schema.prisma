@@ -175,8 +175,7 @@ model Breed {
   slug                  String
 
   users User[] @relation()
-
-  @@map("breeds")
+ 
 }
 
 model Conversation {

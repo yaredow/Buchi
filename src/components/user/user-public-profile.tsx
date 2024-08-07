@@ -18,6 +18,9 @@ import { getInitials } from "@/lib/formatName";
 import { Breed, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { FullConversationType } from "@/types/conversation";
+import { useTransition } from "react";
+import { followUser } from "@/server/actions/user/actions";
+import { toast } from "../ui/use-toast";
 
 type FullUserType = User & {
   breed: Breed;
@@ -29,6 +32,7 @@ type PublicUSerProfileProps = {
 
 export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const handleStartConversation = async () => {
     const response = await fetch("/api/conversations", {
@@ -40,6 +44,23 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
       const conversation = (await response.json()) as FullConversationType;
       router.push(`http://localhost:3000/conversations/${conversation.id}`);
     }
+  };
+
+  const handleUserFollow = () => {
+    startTransition(() => {
+      followUser(user.id).then((data) => {
+        if (data.success) {
+          toast({
+            description: data.success,
+          });
+        } else {
+          toast({
+            description: "Something went wrong",
+            variant: "destructive",
+          });
+        }
+      });
+    });
   };
 
   return (
@@ -80,7 +101,9 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
                   <Button onClick={handleStartConversation} variant="outline">
                     Message
                   </Button>
-                  <Button>+Follow</Button>
+                  <Button disabled={isPending} onClick={handleUserFollow}>
+                    +Follow
+                  </Button>
                 </div>
                 <Button variant="ghost">
                   <Ellipsis className="h-5 w-5" />
