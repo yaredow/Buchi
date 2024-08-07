@@ -1,6 +1,6 @@
 import UserPublicProfile from "@/components/user/user-public-profile";
 import { getUserById } from "@/data/user";
-import { User } from "@prisma/client";
+import { FullUserType } from "@/types/user";
 
 type IParams = {
   userId: string;
@@ -8,7 +8,7 @@ type IParams = {
 
 export default async function Page({ params }: { params: IParams }) {
   const { userId } = params;
-  const user = (await getUserById(userId)) as User;
+  const user = (await getUserById(userId)) as FullUserType;
 
   if (!user) return <div className="text-center">User not found</div>;
 

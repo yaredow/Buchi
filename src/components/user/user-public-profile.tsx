@@ -3,7 +3,7 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
-  BriefcaseIcon,
+  Dog,
   Ellipsis,
   LinkedinIcon,
   MailIcon,
@@ -15,12 +15,16 @@ import Image from "next/image";
 import BannerPlaceholder from "@/../public/images/secondary-banner-placeholder.jpg";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import { getInitials } from "@/lib/formatName";
-import { User } from "@prisma/client";
+import { Breed, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { FullConversationType } from "@/types/conversation";
 
+type FullUserType = User & {
+  breed: Breed;
+};
+
 type PublicUSerProfileProps = {
-  user: User;
+  user: FullUserType;
 };
 
 export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
@@ -39,7 +43,7 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
   };
 
   return (
-    <div className="mx-auto w-full p-4">
+    <div className="mx-auto max-w-6xl p-4">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="col-span-2 overflow-hidden rounded-lg shadow">
           <div className="relative w-full">
@@ -52,7 +56,10 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
             />
             <div className="absolute -bottom-10 left-4">
               <Avatar className="h-24 w-24 rounded-full border-4">
-                <AvatarImage src={user.image || DefaultPfp} alt="John Smith" />
+                <AvatarImage
+                  src={user.image || DefaultPfp.src}
+                  alt="John Smith"
+                />
                 <AvatarFallback className="text-2xl text-muted-foreground">
                   {getInitials(user.name || "")}
                 </AvatarFallback>
@@ -83,12 +90,12 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
           </div>
         </div>
 
-        <div className="rounded-lg p-4 shadow">
+        <div className="rounded-lg px-4 shadow">
           <h3 className="text-lg font-semibold">Intro</h3>
           <ul className="mt-2 space-y-2 text-sm">
             <li className="flex items-center">
-              <BriefcaseIcon className="mr-2 h-5 w-5 text-muted-foreground" />{" "}
-              CMO at SingleFire
+              <Dog className="mr-2 h-5 w-5 text-muted-foreground" />{" "}
+              {`${user.breed.breedName} owner`}
             </li>
             <li className="flex items-center">
               <SchoolIcon className="mr-2 h-5 w-5 text-muted-foreground" /> Went
@@ -104,9 +111,7 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
             </li>
             <li className="flex items-center">
               <MailIcon className="mr-2 h-5 w-5 text-muted-foreground" /> Email{" "}
-              <a href="#" className="text-blue-500">
-                jhon@contact.com
-              </a>
+              <a href="#">jhon@contact.com</a>
             </li>
             <li className="flex items-center">
               <LinkedinIcon className="mr-2 h-5 w-5 text-muted-foreground" />{" "}

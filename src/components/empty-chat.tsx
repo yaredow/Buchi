@@ -16,6 +16,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { FaArrowLeft } from "react-icons/fa6";
+import Link from "next/link";
 type EmptyStateProps = {
   thereAreConversations: boolean;
   conversations: FullConversationType[];
@@ -81,6 +83,9 @@ export default function EmptyState({
       <div className="flex w-full flex-col md:hidden">
         <div className="mb-2 flex w-full items-center justify-between border-b">
           <div className="flex items-center gap-2 text-2xl">
+            <Link href="/" className="block md:hidden">
+              <FaArrowLeft className="text-xl" />
+            </Link>
             <p className="text-lg font-medium">Messages</p>
             <span className="text-lg text-slate-300">
               {conversations && conversations.length > 0

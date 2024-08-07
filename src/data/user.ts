@@ -20,6 +20,7 @@ export async function getUserById(id: string): Promise<User | null> {
   try {
     const user = await prisma.user.findUnique({
       where: { id },
+      include: { breed: true },
     });
     return user;
   } catch (error) {
