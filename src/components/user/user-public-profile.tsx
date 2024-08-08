@@ -85,7 +85,7 @@ export default function UserPublicProfile({
   };
 
   return (
-    <div className="mx-auto max-w-6xl p-4">
+    <div className="mx-auto max-w-6xl md:p-4">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="col-span-2 overflow-hidden rounded-lg shadow">
           <div className="relative w-full">
@@ -110,15 +110,23 @@ export default function UserPublicProfile({
           </div>
 
           <div className="mt-6 p-4">
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex flex-col justify-start gap-4">
+              <div className="mt-2 flex flex-col gap-1">
                 <h2 className="text-xl font-bold md:text-2xl">{user.name}</h2>
-                <p className="text-sm text-muted-foreground md:text-lg">
-                  {`@${user.userName?.toLowerCase()}`}
-                </p>
+                <p className="text-sm text-muted-foreground">{`${user.breed.breedName} ownder`}</p>
               </div>
+
+              <div className="flex items-center gap-2">
+                <div className="text-sm">
+                  <span className="text-blue-500">12</span> followers
+                </div>
+                <div className="text-sm">
+                  <span className="text-blue-500">12</span> following
+                </div>
+              </div>
+
               <div className="flex space-x-2">
-                <div className="flex flex-col gap-2 md:flex-row">
+                <div className="flex flex-row gap-2">
                   <Button onClick={handleStartConversation} variant="outline">
                     Message
                   </Button>
@@ -128,7 +136,7 @@ export default function UserPublicProfile({
                       onClick={handleUserUnfollow}
                       onMouseEnter={() => setIsHovering(true)}
                       onMouseLeave={() => setIsHovering(false)}
-                      className="flex w-[120px] items-center justify-center gap-2 rounded-lg hover:bg-red-500 hover:text-white" // Example fixed width
+                      className="flex w-[120px] items-center justify-center gap-2 rounded-lg px-4 py-2 hover:bg-red-500 hover:text-white" // Example fixed width
                     >
                       {isHovering ? "Unfollow" : "Following"}
                     </Button>
@@ -144,6 +152,7 @@ export default function UserPublicProfile({
                     </Button>
                   )}
                 </div>
+
                 <Button variant="ghost">
                   <Ellipsis className="h-5 w-5" />
                 </Button>
