@@ -7,7 +7,7 @@ import { User } from "@prisma/client";
 import { pusherClient } from "@/utils/pusher";
 import { find } from "lodash";
 import MessageItem from "./message-item";
-import { FullMessageType } from "@/app/types/conversation";
+import { FullMessageType } from "@/types/conversation";
 
 interface ChatListProps {
   messages: FullMessageType[];
