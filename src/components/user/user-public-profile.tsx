@@ -20,7 +20,7 @@ import { getInitials } from "@/lib/formatName";
 import { Breed, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { FullConversationType } from "@/types/conversation";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { followUser, unfollowUser } from "@/server/actions/user/actions";
 import { toast } from "../ui/use-toast";
 import { FullUserType } from "@/types/user";
@@ -36,6 +36,7 @@ export default function UserPublicProfile({
 }: PublicUSerProfileProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [isHovering, setIsHovering] = useState(false);
 
   const handleStartConversation = async () => {
     const response = await fetch("/api/conversations", {
@@ -125,10 +126,11 @@ export default function UserPublicProfile({
                     <Button
                       disabled={isPending}
                       onClick={handleUserUnfollow}
-                      className="flex items-center justify-center gap-2"
+                      onMouseEnter={() => setIsHovering(true)}
+                      onMouseLeave={() => setIsHovering(false)}
+                      className="flex w-[120px] items-center justify-center gap-2 rounded-lg hover:bg-red-500 hover:text-white" // Example fixed width
                     >
-                      <span>Following</span>
-                      <CheckIcon size={16} />
+                      {isHovering ? "Unfollow" : "Following"}
                     </Button>
                   ) : (
                     <Button
