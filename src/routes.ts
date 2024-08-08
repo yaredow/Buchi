@@ -10,6 +10,7 @@ export const publicRoutes = [
   "/auth/new-verification",
   "/api/*",
   "/profile/*",
+  "/users/*",
 ];
 
 export const authRoutes = [
