@@ -3,7 +3,6 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
-  CheckIcon,
   Dog,
   Ellipsis,
   LinkedinIcon,
@@ -17,7 +16,6 @@ import Image from "next/image";
 import BannerPlaceholder from "@/../public/images/secondary-banner-placeholder.jpg";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import { getInitials } from "@/lib/formatName";
-import { Breed, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { FullConversationType } from "@/types/conversation";
 import { useState, useTransition } from "react";
