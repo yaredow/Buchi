@@ -1,5 +1,5 @@
 import UserPublicProfile from "@/components/user/user-public-profile";
-import { getUserById } from "@/data/user";
+import { getUserById, isFollowingUser } from "@/data/user";
 import { FullUserType } from "@/types/user";
 
 type IParams = {
@@ -9,8 +9,10 @@ type IParams = {
 export default async function Page({ params }: { params: IParams }) {
   const { userId } = params;
   const user = (await getUserById(userId)) as FullUserType;
+  const isFollowing = await isFollowingUser(user.id);
+  console.log(isFollowing);
 
   if (!user) return <div className="text-center">User not found</div>;
 
-  return <UserPublicProfile user={user} />;
+  return <UserPublicProfile user={user} isFollowing={isFollowing!!} />;
 }

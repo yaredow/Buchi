@@ -1,3 +1,5 @@
+"use server";
+
 import { getCurrentUser } from "@/data/user";
 import { ErrorAndSuccessType } from "@/lib/schema";
 import prisma from "@/utils/db/db";

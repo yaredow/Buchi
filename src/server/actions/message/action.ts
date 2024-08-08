@@ -1,7 +1,6 @@
 import { getCurrentUser } from "@/data/user";
 import { ErrorAndSuccessType, MessageInputSchema } from "@/lib/schema";
 import prisma from "@/utils/db/db";
-import { connect } from "http2";
 import { TypeOf, z } from "zod";
 
 export async function sendMessageAction(

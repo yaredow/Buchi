@@ -3,12 +3,14 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
+  CheckIcon,
   Dog,
   Ellipsis,
   LinkedinIcon,
   MailIcon,
   MapPinIcon,
   SchoolIcon,
+  UserPlus,
   UsersIcon,
 } from "lucide-react";
 import Image from "next/image";
@@ -19,18 +21,19 @@ import { Breed, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { FullConversationType } from "@/types/conversation";
 import { useTransition } from "react";
-import { followUser } from "@/server/actions/user/actions";
+import { followUser, unfollowUser } from "@/server/actions/user/actions";
 import { toast } from "../ui/use-toast";
-
-type FullUserType = User & {
-  breed: Breed;
-};
+import { FullUserType } from "@/types/user";
 
 type PublicUSerProfileProps = {
   user: FullUserType;
+  isFollowing: boolean;
 };
 
-export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
+export default function UserPublicProfile({
+  user,
+  isFollowing,
+}: PublicUSerProfileProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -57,6 +60,23 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
           toast({
             description: "Something went wrong",
             variant: "destructive",
+          });
+        }
+      });
+    });
+  };
+
+  const handleUserUnfollow = () => {
+    startTransition(() => {
+      unfollowUser(user.id).then((data) => {
+        if (data.success) {
+          toast({
+            description: data.success,
+          });
+        } else {
+          toast({
+            variant: "destructive",
+            description: "Something went wrong",
           });
         }
       });
@@ -101,9 +121,26 @@ export default function UserPublicProfile({ user }: PublicUSerProfileProps) {
                   <Button onClick={handleStartConversation} variant="outline">
                     Message
                   </Button>
-                  <Button disabled={isPending} onClick={handleUserFollow}>
-                    +Follow
-                  </Button>
+                  {isFollowing ? (
+                    <Button
+                      disabled={isPending}
+                      onClick={handleUserUnfollow}
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <span>Following</span>
+                      <CheckIcon size={16} />
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outline"
+                      onClick={handleUserFollow}
+                      disabled={isPending}
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <span>Follow</span>
+                      <UserPlus size={16} />
+                    </Button>
+                  )}
                 </div>
                 <Button variant="ghost">
                   <Ellipsis className="h-5 w-5" />

@@ -53,3 +53,22 @@ export async function getCurrentUser(): Promise<User | null> {
     return null;
   }
 }
+
+export async function isFollowingUser(followingId: string) {
+  try {
+    const currentUser = await getCurrentUser();
+    const follower = await prisma.follows.findMany({
+      where: {
+        followerId: currentUser?.id,
+        followingId,
+      },
+    });
+
+    const isFollowing = follower.length > 0;
+
+    return isFollowing;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
