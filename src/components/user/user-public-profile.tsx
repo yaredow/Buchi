@@ -142,7 +142,6 @@ export default function UserPublicProfile({
                     </Button>
                   ) : (
                     <Button
-                      variant="outline"
                       onClick={handleUserFollow}
                       disabled={isPending}
                       className="flex items-center justify-center gap-2"
