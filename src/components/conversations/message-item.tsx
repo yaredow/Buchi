@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FullMessageType } from "../../app/types/conversation";
+
 import { User } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
@@ -7,6 +7,7 @@ import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import { formatDate } from "@/lib/helpers";
 import { CheckCheck } from "lucide-react";
 import Image from "next/image";
+import { FullMessageType } from "@/types/conversation";
 
 type MessageItemProps = {
   message: FullMessageType;
