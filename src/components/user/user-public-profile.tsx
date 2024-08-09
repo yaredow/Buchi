@@ -161,7 +161,7 @@ export default function UserPublicProfile({
 
         <div className="rounded-lg px-4 shadow">
           <h3 className="text-lg font-semibold">Intro</h3>
-          <ul className="mt-2 space-y-2 text-sm">
+          <ul className="mt-2 space-y-4 text-sm">
             <li className="flex items-center">
               <Dog className="mr-2 h-5 w-5 text-muted-foreground" />{" "}
               {`${user.breed.breedName} owner`}
@@ -183,13 +183,6 @@ export default function UserPublicProfile({
               <span className="ml-[4px] font-semibold">
                 <a href="#">{user.email}</a>
               </span>{" "}
-            </li>
-            <li className="flex items-center">
-              <LinkedinIcon className="mr-2 h-5 w-5 text-muted-foreground" />{" "}
-              Linkedin{" "}
-              <a href="#" className="text-blue-500">
-                @jhon_S
-              </a>
             </li>
           </ul>
         </div>
