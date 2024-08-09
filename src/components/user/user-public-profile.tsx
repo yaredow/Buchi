@@ -3,12 +3,14 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
+  Ban,
+  Blocks,
   Dog,
   Ellipsis,
-  LinkedinIcon,
+  Link,
   MailIcon,
   MapPinIcon,
-  SchoolIcon,
+  Upload,
   UserPlus,
   UsersIcon,
 } from "lucide-react";
@@ -23,6 +25,13 @@ import { followUser, unfollowUser } from "@/server/actions/user/actions";
 import { toast } from "../ui/use-toast";
 import { FullUserType } from "@/types/user";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 type PublicUSerProfileProps = {
   user: FullUserType;
@@ -151,9 +160,29 @@ export default function UserPublicProfile({
                   )}
                 </div>
 
-                <Button variant="ghost">
-                  <Ellipsis className="h-5 w-5" />
-                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost">
+                      <Ellipsis className="h-5 w-5" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="flex flex-col items-start justify-start">
+                    <DropdownMenuItem className="flex items-center justify-center gap-2">
+                      <Ban size={16} />
+                      <span>{`Block @${user.userName?.toLowerCase()}`}</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="flex items-center justify-center gap-2">
+                      <Upload size={16} />
+                      <span>Share profile via...</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="flex items-center justify-center gap-2">
+                      <Link size={16} />
+                      <span>Copy link to profile</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </div>

@@ -11,6 +11,7 @@ export const publicRoutes = [
   "/api/*",
   "/profile/*",
   "/users/*",
+  "/buy-pets",
 ];
 
 export const authRoutes = [
