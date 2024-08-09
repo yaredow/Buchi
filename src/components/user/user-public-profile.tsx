@@ -22,6 +22,7 @@ import { useState, useTransition } from "react";
 import { followUser, unfollowUser } from "@/server/actions/user/actions";
 import { toast } from "../ui/use-toast";
 import { FullUserType } from "@/types/user";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 type PublicUSerProfileProps = {
   user: FullUserType;
@@ -111,7 +112,7 @@ export default function UserPublicProfile({
             <div className="flex flex-col justify-start gap-4">
               <div className="mt-2 flex flex-col gap-1">
                 <h2 className="text-xl font-bold md:text-2xl">{user.name}</h2>
-                <p className="text-sm text-muted-foreground">{`${user.breed.breedName} ownder`}</p>
+                <p className="text-sm text-muted-foreground">{`${user.breed.breedName} owner`}</p>
               </div>
 
               <div className="flex items-center gap-2">
@@ -166,20 +167,22 @@ export default function UserPublicProfile({
               {`${user.breed.breedName} owner`}
             </li>
             <li className="flex items-center">
-              <SchoolIcon className="mr-2 h-5 w-5 text-muted-foreground" /> Went
-              to <span className="font-semibold">Oxford International</span>
-            </li>
-            <li className="flex items-center">
               <MapPinIcon className="mr-2 h-5 w-5 text-muted-foreground" />{" "}
-              Lives in <span className="font-semibold">Virginia, NY</span>
+              Lives in{" "}
+              <span className="ml-[4px] font-semibold">
+                Addis Ababa, Ethiopia
+              </span>
             </li>
             <li className="flex items-center">
               <UsersIcon className="mr-2 h-5 w-5 text-muted-foreground" />{" "}
-              Followed by <span className="font-semibold">12.5k people</span>
+              Followed by{" "}
+              <span className="ml-[4px] font-semibold">12.5k people</span>
             </li>
             <li className="flex items-center">
-              <MailIcon className="mr-2 h-5 w-5 text-muted-foreground" /> Email{" "}
-              <a href="#">jhon@contact.com</a>
+              <MailIcon className="mr-2 h-5 w-5 text-muted-foreground" /> Email
+              <span className="ml-[4px] font-semibold">
+                <a href="#">{user.email}</a>
+              </span>{" "}
             </li>
             <li className="flex items-center">
               <LinkedinIcon className="mr-2 h-5 w-5 text-muted-foreground" />{" "}
@@ -204,18 +207,13 @@ export default function UserPublicProfile({
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
               <h4 className="text-sm font-semibold">Marketing expertise</h4>
-              <p className="mt-1 text-sm text-blue-500">
-                #leadership, #advertising, #public-relations, #branding
-              </p>
+              <p className="mt-1 text-sm text-blue-500"></p>
               <p className="mt-2 text-sm font-semibold">Open to networking</p>
               <p className="text-green-500">Yes</p>
             </div>
             <div>
               <h4 className="text-sm font-semibold">Marketing interests</h4>
-              <p className="mt-1 text-sm text-blue-500">
-                #event-marketing, #performance-marketing,
-                #account-based-marketing
-              </p>
+              <p className="mt-1 text-sm text-blue-500"></p>
               <p className="mt-2 text-sm font-semibold">Open to advising</p>
               <p className="text-green-500">Yes</p>
             </div>
@@ -223,21 +221,23 @@ export default function UserPublicProfile({
         </div>
       </div>
 
-      <div className="mt-4 rounded-lg p-4 shadow">
-        <div className="flex items-center justify-between text-sm font-semibold">
-          <a href="#" className="text-blue-500">
-            Vendors (32)
-          </a>
-          <a href="#" className="text-blue-500">
-            Advice (18)
-          </a>
-          <a href="#" className="text-blue-500">
-            Experts (52)
-          </a>
-          <a href="#" className="text-blue-500">
-            Followers (142)
-          </a>
-        </div>
+      <div className="mt-4 w-full rounded-lg p-4 shadow">
+        <Tabs defaultValue="posts" className="h-full w-full">
+          <TabsList className="flex w-full flex-row justify-between">
+            <TabsTrigger value="posts">Posts</TabsTrigger>
+            <TabsTrigger value="replies">Replies</TabsTrigger>
+            <TabsTrigger value="medias">Medias</TabsTrigger>
+          </TabsList>
+          <TabsContent value="posts" className="mx-2">
+            No post are available
+          </TabsContent>
+          <TabsContent value="replies" className="mx-2">
+            No replies are available
+          </TabsContent>
+          <TabsContent value="medias" className="mx-2">
+            No medias are available
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
