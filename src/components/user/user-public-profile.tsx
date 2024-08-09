@@ -4,7 +4,6 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Ban,
-  Blocks,
   Dog,
   Ellipsis,
   Link,
@@ -18,7 +17,7 @@ import Image from "next/image";
 import BannerPlaceholder from "@/../public/images/secondary-banner-placeholder.jpg";
 import DefaultPfp from "@/../public/images/Default_pfp.svg";
 import { getInitials } from "@/lib/formatName";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FullConversationType } from "@/types/conversation";
 import { useState, useTransition } from "react";
 import { followUser, unfollowUser } from "@/server/actions/user/actions";
@@ -45,6 +44,9 @@ export default function UserPublicProfile({
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [isHovering, setIsHovering] = useState(false);
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+  const userProfileUrl = usePathname();
+  console.log(userProfileUrl);
 
   const handleStartConversation = async () => {
     const response = await fetch("/api/conversations", {
@@ -57,6 +59,17 @@ export default function UserPublicProfile({
       router.push(`http://localhost:3000/conversations/${conversation.id}`);
     }
   };
+
+  const handleCopyLinkToClipboad = async () => {
+    try {
+      await navigator.clipboard.writeText(userProfileUrl);
+      setIsCopied(true);
+    } catch (error) {
+      console.log("Error copying to clipboad", error);
+    }
+  };
+
+  const handleShareProfileVia = () => {};
 
   const handleUserFollow = () => {
     startTransition(() => {
@@ -177,7 +190,12 @@ export default function UserPublicProfile({
                       <span>Share profile via...</span>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className="flex items-center justify-center gap-2">
+                    <DropdownMenuItem
+                      onClick={(Event: React.MouseEvent) => {
+                        handleCopyLinkToClipboad;
+                      }}
+                      className="flex items-center justify-center gap-2"
+                    >
                       <Link size={16} />
                       <span>Copy link to profile</span>
                     </DropdownMenuItem>
